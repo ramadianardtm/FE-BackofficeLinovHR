@@ -93,9 +93,7 @@ export class MyProfileWorkingExperienceComponent implements OnInit {
     this.newWorkExp = false;
     this.workExperience = this.cloneWorkExp(work);
     this.selectedWorkExp = this.workExperience;
-    this.displayDialog = true;
-    console.log(this.workExperience);
-    
+    this.displayDialog = true;    
   }
 
 }

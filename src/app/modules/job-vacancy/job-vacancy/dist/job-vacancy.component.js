@@ -42,7 +42,6 @@ var JobVacancyComponent = /** @class */ (function () {
         this.selectedNotified = [];
         this.selectedDate = "Monthly";
         this.selChip = [];
-        this.salaryValues = [];
         this.salaShow = false;
         this.infoApplied = "APPLY";
         this.infoSaved = "SAVE";
@@ -195,27 +194,30 @@ var JobVacancyComponent = /** @class */ (function () {
             this.companyItems.push({ label: 'Item ' + i, value: 'Item ' + i });
         }
         this.salary = [
-            { label: 'IDR', value: 'IDR' },
-            { label: 'USD', value: 'USD' },
+            { label: 'IDR 5.000.000', value: [
+                    '5.000.000'
+                ] },
+            { label: 'USD $5000', value: [
+                    'USD $5000'
+                ] },
         ];
         this.salaryItems = [];
         for (var i = 0; i < 10000; i++) {
-            this.salaryItems.push({ label: 'Item ' + i, value: 'Item ' + i });
+            this.salaryItems.push({ value: 'Item ' + i });
         }
     }
     JobVacancyComponent.prototype.ngOnInit = function () {
     };
-    JobVacancyComponent.prototype.salaryValue = function (event) {
-        console.log("event ", event);
-        this.salaryValues = this.salaryValues.concat(this.selectedSalary);
-    };
     JobVacancyComponent.prototype.changeCity = function (event) {
+        console.log('event', event);
         this.selChip = [];
         console.log('employment', this.selectedEmployement);
+        console.log('salary ', this.selectedSalary);
         this.selChip = this.selChip.concat(this.selectedCity, this.selectedCompany, this.selectedEducation, this.selectedEmployement, this.selectedJobFunction, this.selectedJobLevel, this.selectedJobType, this.selectedSalary);
     };
     JobVacancyComponent.prototype["delete"] = function (i) {
         var event = this.selChip[i];
+        console.log("event ", i);
         this.selectedCity.splice(this.selectedCity.indexOf(event), 1);
         this.selectedCompany.splice(this.selectedCompany.indexOf(event), 1);
         this.selectedEducation.splice(this.selectedEducation.indexOf(event), 1);

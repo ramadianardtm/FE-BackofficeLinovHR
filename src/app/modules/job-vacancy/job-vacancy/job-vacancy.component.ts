@@ -250,28 +250,31 @@ export class JobVacancyComponent implements OnInit {
     }
 
     this.salary = [
-      {label: 'IDR', value: 'IDR'},
-      {label: 'USD', value: 'USD'},
+      {label: 'IDR 5.000.000', value: [
+        '5.000.000'
+      ]},
+      {label: 'USD $5000', value: [
+        'USD $5000'
+      ] },
     ];
 
     this.salaryItems = [];
     for (let i = 0; i < 10000; i++) {
-        this.salaryItems.push({label: 'Item ' + i, value: 'Item ' + i});
+        this.salaryItems.push({value: 'Item ' + i});
     }
   }
 
   ngOnInit() {
 }
 selChip:any[] = [];
-salaryValues: any[] = [];
-salaryValue(event){
-  console.log("event ", event);
-  this.salaryValues = this.salaryValues.concat( this.selectedSalary);
-}
 
 changeCity(event){
+  console.log('event',event);
+  
   this.selChip =[]
   console.log('employment', this.selectedEmployement);
+  console.log('salary ', this.selectedSalary);
+  
   
   this.selChip = this.selChip.concat(this.selectedCity,
     this.selectedCompany,
@@ -285,6 +288,7 @@ changeCity(event){
 
 delete(i){
   let event = this.selChip[i]
+  console.log("event ", i);
   
   this.selectedCity.splice(this.selectedCity.indexOf(event),1)
   this.selectedCompany.splice(this.selectedCompany.indexOf(event),1)

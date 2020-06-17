@@ -5,15 +5,15 @@ import { FormGroup } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/components/common/selectitemgroup';
 import { onConstructTableHeader } from 'app/shared/utils/construct-table-header';
 import {SelectItem} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { jobModel } from '../jobVacancyModel';
 
 @Component({
   selector: 'app-job-vacancy',
   templateUrl: './job-vacancy.component.html',
-  styleUrls: ['./job-vacancy.component.sass']
+  styleUrls: ['./job-vacancy.component.sass'],
+  providers: [MessageService]
 })
-
-
 export class JobVacancyComponent implements OnInit {
   myAppDetailsColumn: TableColumn[];
   rowsPerPage = Paginator.rowsPerPage;
@@ -89,7 +89,7 @@ export class JobVacancyComponent implements OnInit {
 
   items: any[];
   
-  constructor() { 
+  constructor(private messageService: MessageService) { 
     this.myAppDetailsColumn = onConstructTableHeader([
       'Logo',
       'Job',
@@ -325,5 +325,61 @@ this.salaShow = !this.salaShow
   showDialog() {
     this.display = true;
   }
+  
+  showInfo() {
+    this.infoApplied='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved() {
+    this.infoSaved='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+
+  showInfo2() {
+    this.infoApplied2='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved2() {
+    this.infoSaved2='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo3() {
+    this.infoApplied3='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved3() {
+    this.infoSaved3='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo4() {
+    this.infoApplied4='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved4() {
+    this.infoSaved4='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo5() {
+    this.infoApplied5='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved5() {
+    this.infoSaved5='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  infoApplied: string = "APPLY";
+  infoSaved: string = "SAVE";
+  infoApplied2: string = "APPLY";
+  infoSaved2: string = "SAVE";
+  infoApplied3: string = "APPLY";
+  infoSaved3: string = "SAVE";
+  infoApplied4: string = "APPLY";
+  infoSaved4: string = "SAVE";
+  infoApplied5: string = "APPLY";
+  infoSaved5: string = "SAVE";
+
+  // changeInfo(){
+  //   this.info = true;
+  // }
 }
 

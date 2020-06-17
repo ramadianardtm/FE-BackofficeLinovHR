@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  selector: 'app-job-detail',
+  templateUrl: './job-detail.component.html',
+  styleUrls: ['./job-detail.component.scss']
 })
-export class DetailComponent implements OnInit {
+export class JobDetailComponent implements OnInit {
 
   responsiveOptions;
-  constructor() { 
+  constructor() {
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -26,7 +26,7 @@ export class DetailComponent implements OnInit {
           numScroll: 1
       }
     ];
-  }
+   }
 
   ngOnInit() {
   }

@@ -9,6 +9,7 @@ import { MyApplicationsDetailComponent } from '../my-applications/my-application
 import { MyApplicationsComponent } from '../my-applications/my-applications/my-applications.component';
 import { JobAlertListComponent } from '../job-alert/job-alert-list/job-alert-list.component';
 import { SavedJobsComponent } from '../saved-jobs/saved-jobs/saved-jobs.component';
+import { DetailComponent } from '../saved-jobs/detail/detail.component';
 import { AccountSettingsComponent } from '../account-setting/account-settings/account-settings.component';
 import { HelpPageComponent } from '../help-page/help-page.component';
 
@@ -57,6 +58,12 @@ const routes: Routes = [
   {
     path:'saved-jobs',
     component:SavedJobsComponent,
+    children:[
+      {
+        path:'detail',
+        component:DetailComponent,
+      },
+    ],
   },
   {
     path:'job-alert',

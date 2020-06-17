@@ -60,6 +60,7 @@ import { MyApplicationsListComponent } from './modules/my-applications/my-applic
 import { MyApplicationsDetailComponent } from './modules/my-applications/my-applications-detail/my-applications-detail.component';
 import { MyApplicationsComponent } from './modules/my-applications/my-applications/my-applications.component';
 import { JobVacancyNonuserComponent } from './modules/job-vacancy-nonuser/job-vacancy-nonuser.component';
+import { JobDetailComponent } from './modules/job-vacancy-nonuser/job-detail.component';
 
 
 const routes: Routes = [
@@ -98,6 +99,10 @@ const routes: Routes = [
             {
                 path: 'job-vacancy-nonuser',
                 component: JobVacancyNonuserComponent,
+            },
+            {
+                path: 'user-detail',
+                component: JobDetailComponent
             },
         ],
     },

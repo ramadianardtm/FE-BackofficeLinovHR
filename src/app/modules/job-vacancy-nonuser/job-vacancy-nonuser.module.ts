@@ -9,9 +9,10 @@ import { DialogModule, CardModule, PanelModule, CarouselModule } from 'primeng/p
 import { DropdownModule } from 'primeng/dropdown';
 import { ChipsModule } from 'primeng/chips';
 import { SharedModule } from 'app/shared/shared.module';
+import { JobDetailComponent } from './job-detail.component';
 
 @NgModule({
-  declarations: [JobVacancyNonuserComponent],
+  declarations: [JobVacancyNonuserComponent, JobDetailComponent],
   imports: [
     CommonModule,
     SharedModule

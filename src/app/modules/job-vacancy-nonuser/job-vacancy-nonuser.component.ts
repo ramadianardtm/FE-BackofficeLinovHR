@@ -259,54 +259,65 @@ export class JobVacancyNonuserComponent implements OnInit {
   }
   selChip:any[] = []
 
-  changeCity(event){
-    this.selChip =[]
-    console.log('employment', this.selectedEmployement);
-    
-    this.selChip = this.selChip.concat(this.selectedCity,
-      this.selectedCompany,
-      this.selectedEducation,
-      this.selectedEmployement,
-      this.selectedJobFunction,
-      this.selectedJobLevel,
-      this.selectedJobType,
-      this.selectedSalary)
-  }
-  selChipRemove(event){
-    console.log("event", event);
-    console.log("idx",this.selectedCity.indexOf(event.value));
-    
-    this.selectedCity.splice(this.selectedCity.indexOf(event.value),1)
-    this.selectedCompany.splice(this.selectedCompany.indexOf(event.value),1)
-    this.selectedEducation.splice(this.selectedEducation.indexOf(event.value),1)
-    this.selectedEmployement.splice(this.selectedEmployement.indexOf(event.value),1)
-    this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event.value),1)
-    this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event.value),1)
-    this.selectedJobType.splice(this.selectedJobType.indexOf(event.value),1)
-    this.selectedSalary.splice(this.selectedSalary.indexOf(event.value),1)
-    
-  }
-  removeChip(){
-    this.selectedCity.splice(0, this.selChip.length)
-    this.selectedCompany.splice(0, this.selChip.length)
-    this.selectedEducation.splice(0, this.selChip.length)
-    this.selectedEmployement.splice(0, this.selChip.length)
-    this.selectedJobFunction.splice(0, this.selChip.length)
-    this.selectedJobLevel.splice(0, this.selChip.length)
-    this.selectedJobType.splice(0, this.selChip.length)
-    this.selectedSalary.splice(0, this.selChip.length)
-    this.selChip.splice(0, this.selChip.length);
+changeCity(event){
+  this.selChip =[]
+  console.log('employment', this.selectedEmployement);
   
-  }
-  salaShow:boolean = false
-  salaryClick(){
-    this.salaShow = !this.salaShow
-  }
+  this.selChip = this.selChip.concat(this.selectedCity,
+    this.selectedCompany,
+    this.selectedEducation,
+    this.selectedEmployement,
+    this.selectedJobFunction,
+    this.selectedJobLevel,
+    this.selectedJobType,
+    this.selectedSalary)
+}
 
-  redirectLogin(){
-    this.router.navigate(['home/login/'])
-  }
+delete(i){
+  let event = this.selChip[i]
   
+  this.selectedCity.splice(this.selectedCity.indexOf(event),1)
+  this.selectedCompany.splice(this.selectedCompany.indexOf(event),1)
+  this.selectedEducation.splice(this.selectedEducation.indexOf(event),1)
+  this.selectedEmployement.splice(this.selectedEmployement.indexOf(event),1)
+  this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event),1)
+  this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event),1)
+  this.selectedJobType.splice(this.selectedJobType.indexOf(event),1)
+  this.selectedSalary.splice(this.selectedSalary.indexOf(event),1)
+
+  this.selChip.splice(i,1)
+}
+selChipRemove(event){
+  console.log("event", event);
+  console.log("idx",this.selectedCity.indexOf(event.value));
+  
+  this.selectedCity.splice(this.selectedCity.indexOf(event.value),1)
+  this.selectedCompany.splice(this.selectedCompany.indexOf(event.value),1)
+  this.selectedEducation.splice(this.selectedEducation.indexOf(event.value),1)
+  this.selectedEmployement.splice(this.selectedEmployement.indexOf(event.value),1)
+  this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event.value),1)
+  this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event.value),1)
+  this.selectedJobType.splice(this.selectedJobType.indexOf(event.value),1)
+  this.selectedSalary.splice(this.selectedSalary.indexOf(event.value),1)
+  
+}
+removeChip(){
+  this.selectedCity.splice(0, this.selChip.length)
+  this.selectedCompany.splice(0, this.selChip.length)
+  this.selectedEducation.splice(0, this.selChip.length)
+  this.selectedEmployement.splice(0, this.selChip.length)
+  this.selectedJobFunction.splice(0, this.selChip.length)
+  this.selectedJobLevel.splice(0, this.selChip.length)
+  this.selectedJobType.splice(0, this.selChip.length)
+  this.selectedSalary.splice(0, this.selChip.length)
+  this.selChip.splice(0, this.selChip.length);
+
+}
+salaShow:boolean = false
+salaryClick(){
+this.salaShow = !this.salaShow
+}
+
   showDialog() {
     this.display = true;
   }

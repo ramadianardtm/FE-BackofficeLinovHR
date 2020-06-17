@@ -1,6 +1,6 @@
 <p-card header="{{ 'Family Members' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addFamilyDialog()"></p-button>
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
@@ -25,9 +25,9 @@
                             {{ fam.relationship }}
                         </td>
                         <td>{{ fam.gender }}</td>
-                        <td>
+                        <!-- <td>
                             {{ fam.phone }}
-                        </td>
+                        </td> -->
                         <td>
                             {{ fam.birthdate }}
                         </td>
@@ -71,12 +71,12 @@
         <div class="p-col-8">
             <input pInputText id="brand" [(ngModel)]="family.gender" />
         </div>
-        <div class="p-col-4">
+        <!-- <div class="p-col-4">
             <label for="color">Phone</label>
         </div>
         <div class="p-col-8">
             <input pInputText id="color" [(ngModel)]="family.phone" />
-        </div>
+        </div> -->
         <div class="p-col-4">
             <label for="color">Date of Birth</label>
         </div>
@@ -95,17 +95,17 @@
         <div class="p-col-8">
             <input pInputText id="color" [(ngModel)]="family.occupation" />
         </div>
-        <div class="p-col-4">
+        <!-- <div class="p-col-4">
             <label for="color">Note</label>
         </div>
         <div class="p-col-8">
             <input pInputText id="color" [(ngModel)]="family.note" />
-        </div>
+        </div> -->
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
         </div>
     </p-footer>
 </p-dialog>

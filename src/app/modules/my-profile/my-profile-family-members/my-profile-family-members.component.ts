@@ -12,7 +12,7 @@ export interface familyMembers{
   birthdate;
   education;
   occupation;
-  note;
+  // note;
 }
 
 @Component({
@@ -27,6 +27,7 @@ export class MyProfileFamilyMembersComponent implements OnInit {
   family: familyMembers;
   selectedFamily: familyMembers;
   familyMembers: familyMembers[];
+  newFamily: boolean;
 
   constructor() { 
     this.familyColumns = onConstructTableHeader([
@@ -45,7 +46,7 @@ export class MyProfileFamilyMembersComponent implements OnInit {
       birthdate: '30-03-1997',
       education: 'Bachelor',
       gender: 'Male',
-      note: 'Currently at Jakarta',
+      // note: 'Currently at Jakarta',
       occupation: 'Programmer',
       phone: '08987126883',
       relationship: 'Brother'
@@ -62,7 +63,7 @@ export class MyProfileFamilyMembersComponent implements OnInit {
       education: '',
       gender: '',
       name: '',
-      note: '',
+      // note: '',
       occupation: '',
       phone: '',
       relationship: ''
@@ -73,7 +74,43 @@ export class MyProfileFamilyMembersComponent implements OnInit {
     return fam;
   }
 
+  addFamilyDialog(){
+    this.newFamily = true;
+    this.family = {
+      birthdate: '',
+      education: '',
+      gender: '',
+      name: '',
+      // note: '',
+      occupation: '',
+      phone: '',
+      relationship: ''
+    };
+    this.displayDialog = true;
+  }
+
+  onSave() {
+    let familyMembers = [...this.familyMembers];
+    if(this.newFamily){
+      familyMembers.push(this.family);
+    } else {
+      familyMembers[this.familyMembers.indexOf(this.selectedFamily)]=this.family;
+    }
+
+    this.familyMembers = familyMembers;
+    this.family = null;
+    this.displayDialog = false;
+  }
+
+  onDelete() {
+    let index = this.familyMembers.indexOf(this.selectedFamily);
+    this.familyMembers = this.familyMembers.filter((val, i) => i != index);
+    this.family = null;
+    this.displayDialog = false;
+  }
+
   onRowSelect(event){
+    this.newFamily = false;
     this.family = this.cloneFamily(event.data);
     this.displayDialog = true;
   }

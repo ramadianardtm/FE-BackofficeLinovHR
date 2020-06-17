@@ -31,7 +31,7 @@
           [style]="{width: '103px'}" styleClass="ui-button-info" label="Salary" 
           (onDropdownClick)="salaryClick()" [model]="items">
           </p-splitButton>
-          <p-card [style]="{width: '260px'}" *ngIf="salaShow">
+          <p-card appendTo="body" [style]="{width: '260px'}" *ngIf="salaShow">
             <div>
               <div class="row" style="font-size: small;">
                 <div class="col ui-g-4">

@@ -3,44 +3,6 @@
         <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addAddresInf()"></p-button>
     </p-header>
     <div class="ui-g" *ngFor="let data of addressData">
-        <!-- <div class="ui-g-12 p-0">
-            <p-card class="border-title ui-grid-row mt-1">
-                <p-header class="header-title-card" style="font-size: medium;">
-                    <div>
-                        Home
-                    </div>
-                    <p-button type="button" class="m-2 pull-right" icon="pi pi-trash"></p-button>
-                    <p-button type="button" class="m-2 pull-right" icon="pi pi-pencil"></p-button>
-                </p-header>
-                <div class="ui-grid-row my-0">
-                    Jln. Kemanggisan No.25A, Kebon Lawas
-                </div>
-                <div class="ui-grid-row my-0">
-                    Jakarta Barat, DKI Jakarta
-                </div>
-                <div class="ui-grid-row my-0">
-                    Indonesia, 11560
-                </div>
-            </p-card>
-            <p-card class="border-title ui-grid-row mt-1">
-                <p-header class="header-title-card" style="font-size: medium;">
-                    <div>
-                        Office
-                    </div>
-                    <p-button type="button" class="m-2 pull-right" styleClass="ui-button-danger" icon="pi pi-trash"></p-button>
-                    <p-button type="button" class="m-2 pull-right" styleClass="ui-button-warning" icon="pi pi-pencil"></p-button>
-                </p-header>
-                <div class="ui-grid-row my-0">
-                    Wisma Staco, 5th Floor Casablanca Street, Kav 18
-                </div>
-                <div class="ui-grid-row my-0">
-                    Jakarta Selatan, DKI Jakarta
-                </div>
-                <div class="ui-grid-row my-0">
-                    Indonesia, 12870
-                </div>
-            </p-card>
-        </div> -->
         <div class="ui-g-12 p-0">
         <p-card styleClass="ui-card-shadow">
                         <p-header class="header-title-card" style="font-size: medium;">
@@ -89,13 +51,13 @@
             <label>Addres Line 1</label>
         </div>
         <div class="p-col-8">
-            <input pInputText  [(ngModel)]="addresData.Line1" />
+            <input pInputText  [(ngModel)]="addresData.addLine1" />
         </div>
         <div class="p-col-4">
             <label >Addres Line 2</label>
         </div>
         <div class="p-col-8">
-            <input pInputText [(ngModel)]="addresData.Line2" />
+            <input pInputText [(ngModel)]="addresData.addLine2" />
         </div>
         <div class="p-col-4">
             <label>Country</label>
@@ -126,7 +88,6 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
             <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
         </div>
     </p-footer>

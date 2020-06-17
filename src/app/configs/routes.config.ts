@@ -17,8 +17,11 @@ export const MENU_CODE = {
 export const MODULE_ROUTES: Routes = [
 
     {
-        path:'',
-        loadChildren: () => import('app/modules/job-portal/job-portal.module').then( m => JobPortalModule)
-    }
+        path: '',
+        loadChildren: () =>
+            import('app/modules/job-portal/job-portal.module').then(
+                m => m.JobPortalModule
+            ),
+    },
 
 ];

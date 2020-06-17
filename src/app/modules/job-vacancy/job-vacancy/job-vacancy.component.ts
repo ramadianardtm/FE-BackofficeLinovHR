@@ -88,6 +88,7 @@ export class JobVacancyComponent implements OnInit {
   notifiedItems: SelectItem[];
 
   items: any[];
+  selectedDate: string = "Monthly";
   
   constructor(private messageService: MessageService) { 
     this.myAppDetailsColumn = onConstructTableHeader([

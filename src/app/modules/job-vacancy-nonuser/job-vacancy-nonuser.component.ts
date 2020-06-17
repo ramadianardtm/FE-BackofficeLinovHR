@@ -89,6 +89,8 @@ export class JobVacancyNonuserComponent implements OnInit {
   selectedNotified: string[] = [];
   notifiedItems: SelectItem[]; 
 
+  selectedDate: string = "Monthly";
+
   constructor(private messageService: MessageService){}
 
   ngOnInit() {

@@ -40,6 +40,7 @@ var JobVacancyComponent = /** @class */ (function () {
         this.selectedSalary = [];
         this.selectedAlert = [];
         this.selectedNotified = [];
+        this.selectedDate = "Monthly";
         this.selChip = [];
         this.salaShow = false;
         this.infoApplied = "APPLY";

@@ -8,13 +8,13 @@
                 </h1>
             </div>
         </div>
-        <div *ngIf="errorMsg && !username.value && !password.value" class="ui-grid-row">
+        <!-- <div *ngIf="errorMsg && !username.value && !password.value" class="ui-grid-row">
             <div class="ui-grid-col-12">
                 <h1 *ngIf="errorMsg" class="error-msg">
                     {{ errorMsg }}
                 </h1>
             </div>
-        </div>
+        </div> -->
         <div *ngIf="name.invalid && name.dirty" class="ui-grid-row">
             <div class="ui-grid-col-12">
                 <p-message *ngIf="name.errors['required']" severity="error" text="Name is required"></p-message>

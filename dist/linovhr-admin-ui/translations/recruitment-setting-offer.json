@@ -1,0 +1,32 @@
+{
+    "data":[
+        {
+            "itemName":"Signed Offer Letter",
+            "description":"-",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "itemName":"Phone Call",
+            "description":"-",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "itemName":"Send Email",
+            "description":"-",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "itemName":"Receive Email",
+            "description":"-",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        }
+    ]
+}

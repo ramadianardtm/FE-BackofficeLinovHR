@@ -11,19 +11,19 @@
 
     <div class="detail-job ui-g-12 p-0">
       <div class="ui-g-12 p-0">
-        <p-multiSelect [options]="citys" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
+        <p-multiSelect [options]="citys" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobLevel" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
+        <p-multiSelect [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobType" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
+        <p-multiSelect [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="employment" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
+        <p-multiSelect [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobFunction" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
+        <p-multiSelect [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="education" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
+        <p-multiSelect [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="company" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
+        <p-multiSelect [options]="company" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
         &nbsp;
         <div class="row" style="margin: 1px; margin-top: 12px;">
           <p-splitButton class="split-color split-font split-height split-height2 drop-height align-left font-color icon-color" 

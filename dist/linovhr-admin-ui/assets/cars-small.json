@@ -1,0 +1,21 @@
+{
+    "data": [{
+            "brand": "Andrea Sach",
+            "year": 2012,
+            "color": "Orange",
+            "vin": "dsad231ff"
+        },
+        {
+            "brand": "John Smith",
+            "year": 2011,
+            "color": "Black",
+            "vin": "gwregre345"
+        },
+        {
+            "brand": "Miranda Prisley",
+            "year": 2005,
+            "color": "Gray",
+            "vin": "h354htr"
+        }
+    ]
+}

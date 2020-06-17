@@ -1,0 +1,30 @@
+{
+    "data":[
+        {
+            "code":"ZYTJVP2020001",
+            "vacancyTitle":"Java Programming",
+            "hrPic":"19123-Reza",
+            "userPic":"19078-Chyntia",
+            "jobName":"ZYT-Programmer",
+            "startDate":"13-JAN-2020",
+            "endDate":"7-FEB-2020",
+            "type":"External",
+            "level":"Experienced",
+            "status":"Open",
+            "appliedCandidate":"32"
+        },
+        {
+            "code":"KTRJMX2020002",
+            "vacancyTitle":"Junior Marketing",
+            "hrPic":"19094-Aisyah",
+            "userPic":"19035-Cindy",
+            "jobName":"KTR-Marketing",
+            "startDate":"15-JAN-2020",
+            "endDate":"9-FEB-2020",
+            "type":"External",
+            "level":"Graduated",
+            "status":"Open",
+            "appliedCandidate":"15"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "data": [{
+            "code": "EXP001",
+            "name": "Pesawat",
+            "limitType": "Per Periode",
+            "remburseType": "Travel",
+            "maximumClaim": "Sesuai Saldo",
+            "isActive": true
+        },
+        {
+            "code": "EXP002",
+            "name": "Bensin",
+            "limitType": "Harian",
+            "remburseType": "Client",
+            "maximumClaim": "Terbatas",
+            "isActive": false
+        }
+    ]
+}

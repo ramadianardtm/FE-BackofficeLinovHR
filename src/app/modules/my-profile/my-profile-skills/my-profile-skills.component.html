@@ -1,11 +1,11 @@
 <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill()"></p-button>
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
-            <p-table [columns]="skillColumns" [value]="candidateI?.subAddress" [scrollable]="true"
-                [style]="{ minWidth: '100%' }">
+            <p-table [columns]="skillColumns" [value]="skills" [scrollable]="true"
+                [style]="{ minWidth: '100%' }" selectionMode="single" [(selection)]="selectedSkill" (onRowSelect)="onRowSelect($event)">
                   <ng-template pTemplate="colgroup" let-columns>
                     <colgroup>
                         <col *ngFor="let col of columns" style="width: 250px" />
@@ -18,8 +18,8 @@
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-addr>
-                    <tr>
+                <ng-template pTemplate="body" let-skill>
+                    <tr [pSelectableRow]="skill">
                         <td>
                             <p-checkbox></p-checkbox>
                         </td>
@@ -42,3 +42,27 @@
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '300px'}">
+    <div class="p-grid ui-fluid" *ngIf="skill">
+        <div class="p-col-4">
+            <label for="vin">Skill</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="skill.skill" autofocus />
+        </div>
+        <div class="p-col-4">
+            <label for="year">Level</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="year" [(ngModel)]="skill.level" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

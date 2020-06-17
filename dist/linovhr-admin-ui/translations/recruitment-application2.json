@@ -1,0 +1,52 @@
+{
+    "data":[
+        {
+            "nik":"NIK1122",
+            "candidateName":"Steve Carell",
+            "email":"s_carell@gmail.com",
+            "mobile":"08134568493",
+            "experience":"6 Years 1 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-UI UX Developer",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"DD-MON-YYYY",
+            "onStage":"APPLICATION",
+            "onStageDate":"DD-MON-YYYY"        
+        },
+        {
+            "nik":"NIK0282",
+            "candidateName":"Jim Halpert",
+            "email":"jim_h@gmail.com",
+            "mobile":"08128983793",
+            "experience":"5 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-SEO",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"DD-MON-YYYY",
+            "onStage":"APPLICATION",
+            "onStageDate":"DD-MON-YYYY"        
+        },
+        {
+            "nik":"NIK1029",
+            "candidateName":"Pamela Beasley",
+            "email":"robin_s@gmail.com",
+            "mobile":"08128347493",
+            "experience":"3 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-Trainer Java",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"DD-MON-YYYY",
+            "onStage":"APPLICATION",
+            "onStageDate":"DD-MON-YYYY"        
+        }
+    ]
+}

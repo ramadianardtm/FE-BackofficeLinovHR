@@ -1,33 +1,42 @@
 <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill()"></p-button>
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
-            <p-table [columns]="skillColumns" [value]="candidateI?.subAddress" [scrollable]="true"
+            <p-table [columns]="skillColumns" [value]="skills" [scrollable]="true"
                 [style]="{ minWidth: '100%' }">
-                  <ng-template pTemplate="colgroup" let-columns>
+                  <!-- <ng-template pTemplate="colgroup" let-columns>
                     <colgroup>
                         <col *ngFor="let col of columns" style="width: 250px" />
                     </colgroup>
-                </ng-template>
+                </ng-template> -->
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th *ngFor="let column of columns">
+                        <!-- <th *ngFor="let column of columns">
                             {{ column.label }}
+                        </th> -->
+                        <th>
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>
+                            Skill
+                        </th>
+                        <th>
+                            Level
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-addr>
+                <ng-template pTemplate="body" let-skill>
                     <tr>
                         <td>
                             <p-checkbox></p-checkbox>
                         </td>
                         <td>
-                            <p-dropdown [options]="skills" [(ngModel)]="selectedSkill"></p-dropdown>
+                            <p-dropdown appendTo="body" [options]="skillList" [(ngModel)]="skill.skill" placeholder="Select a Skill"></p-dropdown>
                         </td>
                         <td>
-                            <p-dropdown [options]="skillLevel" [(ngModel)]="selectedSkillLevel"></p-dropdown>
+                            <p-dropdown appendTo="body" [options]="skillLevel" [(ngModel)]="skill.level" placeholder="Select Level"></p-dropdown>
                         </td>
                     </tr>
                 </ng-template>
@@ -42,3 +51,27 @@
         </div>
     </div>
 </p-card>
+
+<!-- <p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '300px'}">
+    <div class="p-grid ui-fluid" *ngIf="skill">
+        <div class="p-col-4">
+            <label for="vin">Skill</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="skill.skill" autofocus />
+        </div>
+        <div class="p-col-4">
+            <label for="year">Level</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="year" [(ngModel)]="skill.level" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog> -->

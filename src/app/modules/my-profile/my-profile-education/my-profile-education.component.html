@@ -1,11 +1,11 @@
 <p-card header="{{ 'Education' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addEducation()"></p-button>
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
-            <p-table [columns]="educationColumns" [value]="candidateI?.subAddress" [scrollable]="true"
-                [style]="{ minWidth: '100%' }">
+            <p-table [columns]="educationColumns" [value]="educations" [scrollable]="true"
+                [style]="{ minWidth: '100%' }" selectionMode="single" [(selection)]="selectedEducation" (onRowSelect)="onRowSelect($event)">
                   <ng-template pTemplate="colgroup" let-columns>
                     <colgroup>
                         <col *ngFor="let col of columns" style="width: 250px" />
@@ -18,30 +18,26 @@
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-addr>
-                    <tr>
+                <ng-template pTemplate="body" let-addr let-edu>
+                    <tr [pSelectableRow]="edu">
                         <td>
-                            {{ addr?.valData0 }}
+                            {{ edu.degree }}
                         </td>
                         <td>
-                            {{ addr?.valData1 }}
+                            {{ edu.institution }}
                         </td>
                         <td>
-                            {{ addr?.valData2 }}
+                            {{ edu.gradeType }}
                         </td>
                         <td>
-                            {{ addr?.valData4 }}
+                            {{ edu.grade }}
                         </td>
                         <td>
-                            {{ addr?.valData3 }}
+                            {{ edu.beginYear }}
                         </td>
                         <td>
-                            {{ addr?.valData5 }}
+                            {{ edu.endYear }}
                         </td>
-                        <td>
-                            {{ addr?.valData6 }}
-                        </td>
-
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage" let-columns>
@@ -55,3 +51,51 @@
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '300px'}">
+    <div class="p-grid ui-fluid" *ngIf="education">
+        <div class="p-col-4">
+            <label for="vin">Degree</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="education.degree" autofocus />
+        </div>
+        <div class="p-col-4">
+            <label for="year">Institution</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="year" [(ngModel)]="education.institution" />
+        </div>
+        <div class="p-col-4">
+            <label for="brand">Grade Type</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="brand" [(ngModel)]="education.gradeType" />
+        </div>
+        <div class="p-col-4">
+            <label for="brand">Grade</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="brand" [(ngModel)]="education.grade" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Begin Year</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="education.beginYear" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">End Year</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="education.endYear" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

@@ -21,6 +21,7 @@ export class JobVacancyNonuserComponent implements OnInit {
   moveTo: SelectItemGroup[];
   myAppData: any[];
   cols: any[];
+  items: any[];
   display: boolean = false;
   // jobVacancy:jobModel[] = [
   //   {jobName:'Java Programmer', 

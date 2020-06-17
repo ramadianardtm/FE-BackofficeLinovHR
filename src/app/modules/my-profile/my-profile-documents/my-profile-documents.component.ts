@@ -42,7 +42,7 @@ export class MyProfileDocumentsComponent implements OnInit {
   }
 
   cloneDocument(d: documents): documents {
-    let doc : documents = {
+    let doc = {
       document: '',
       exp: '',
       name: '',

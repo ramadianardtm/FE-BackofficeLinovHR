@@ -12,17 +12,17 @@
 
     <div class="detail-job ui-g-12 p-0">
       <div class="ui-g-12 p-0">
-        <p-multiSelect [options]="citys" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
+        <p-multiSelect [options]="citys" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobLevel" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
+        <p-multiSelect [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobType" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
+        <p-multiSelect [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="employment" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
+        <p-multiSelect [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="jobFunction" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
+        <p-multiSelect [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
         &nbsp;
-        <p-multiSelect [options]="education" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
+        <p-multiSelect [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
         &nbsp;
         <!-- <p-multiSelect [options]="company" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
         &nbsp; -->
@@ -54,7 +54,8 @@
                       <input id="fieldId" type="text" pInputText><br>
                   </div>
                   <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
-                    <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
+                    <button type="button" pButton icon="pi pi-save" (click)="display=false" 
+                    label="Save" class="ui-button-secondary"></button>
                   </div>
                   </div>
                 </div>

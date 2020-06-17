@@ -4,7 +4,7 @@
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
-            <p-table [columns]="languageColumns" [value]="candidateI?.subAddress" [scrollable]="true"
+            <p-table [columns]="languageColumns" [value]="" [scrollable]="true"
                 [style]="{ minWidth: '100%' }">
                   <ng-template pTemplate="colgroup" let-columns>
                     <colgroup>
@@ -18,30 +18,9 @@
                         </th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-addr>
+                <ng-template pTemplate="body">
                     <tr>
-                        <td>
-                            {{ addr?.valData0 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData1 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData2 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData4 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData3 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData5 }}
-                        </td>
-                        <td>
-                            {{ addr?.valData6 }}
-                        </td>
-
+                        
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage" let-columns>

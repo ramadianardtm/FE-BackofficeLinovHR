@@ -10,9 +10,10 @@ exports.JobVacancyNonuserComponent = void 0;
 var core_1 = require("@angular/core");
 var paginator_config_1 = require("app/configs/paginator.config");
 var construct_table_header_1 = require("app/shared/utils/construct-table-header");
+var api_1 = require("primeng/api");
 var JobVacancyNonuserComponent = /** @class */ (function () {
-    function JobVacancyNonuserComponent(router) {
-        this.router = router;
+    function JobVacancyNonuserComponent(messageService) {
+        this.messageService = messageService;
         this.rowsPerPage = paginator_config_1.Paginator.rowsPerPage;
         this.rowsPerPageOptions = paginator_config_1.Paginator.rowsPerPageOptions;
         this.display = false;
@@ -28,6 +29,16 @@ var JobVacancyNonuserComponent = /** @class */ (function () {
         this.selectedNotified = [];
         this.selChip = [];
         this.salaShow = false;
+        this.infoApplied = "APPLY";
+        this.infoSaved = "SAVE";
+        this.infoApplied2 = "APPLY";
+        this.infoSaved2 = "SAVE";
+        this.infoApplied3 = "APPLY";
+        this.infoSaved3 = "SAVE";
+        this.infoApplied4 = "APPLY";
+        this.infoSaved4 = "SAVE";
+        this.infoApplied5 = "APPLY";
+        this.infoSaved5 = "SAVE";
     }
     JobVacancyNonuserComponent.prototype.ngOnInit = function () {
         this.myAppDetailsColumn = construct_table_header_1.onConstructTableHeader([
@@ -225,11 +236,52 @@ var JobVacancyNonuserComponent = /** @class */ (function () {
     JobVacancyNonuserComponent.prototype.showDialog = function () {
         this.display = true;
     };
+    JobVacancyNonuserComponent.prototype.showInfo = function () {
+        this.infoApplied = 'APPLIED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Submit is Successed' });
+    };
+    JobVacancyNonuserComponent.prototype.showSaved = function () {
+        this.infoSaved = 'SAVED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Job Saved' });
+    };
+    JobVacancyNonuserComponent.prototype.showInfo2 = function () {
+        this.infoApplied2 = 'APPLIED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Submit is Successed' });
+    };
+    JobVacancyNonuserComponent.prototype.showSaved2 = function () {
+        this.infoSaved2 = 'SAVED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Job Saved' });
+    };
+    JobVacancyNonuserComponent.prototype.showInfo3 = function () {
+        this.infoApplied3 = 'APPLIED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Submit is Successed' });
+    };
+    JobVacancyNonuserComponent.prototype.showSaved3 = function () {
+        this.infoSaved3 = 'SAVED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Job Saved' });
+    };
+    JobVacancyNonuserComponent.prototype.showInfo4 = function () {
+        this.infoApplied4 = 'APPLIED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Submit is Successed' });
+    };
+    JobVacancyNonuserComponent.prototype.showSaved4 = function () {
+        this.infoSaved4 = 'SAVED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Job Saved' });
+    };
+    JobVacancyNonuserComponent.prototype.showInfo5 = function () {
+        this.infoApplied5 = 'APPLIED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Submit is Successed' });
+    };
+    JobVacancyNonuserComponent.prototype.showSaved5 = function () {
+        this.infoSaved5 = 'SAVED';
+        this.messageService.add({ severity: 'info', summary: 'Info Message', detail: 'Job Saved' });
+    };
     JobVacancyNonuserComponent = __decorate([
         core_1.Component({
             selector: 'app-job-vacancy-nonuser',
             templateUrl: './job-vacancy-nonuser.component.html',
-            styleUrls: ['./job-vacancy-nonuser.component.sass']
+            styleUrls: ['./job-vacancy-nonuser.component.sass'],
+            providers: [api_1.MessageService]
         })
     ], JobVacancyNonuserComponent);
     return JobVacancyNonuserComponent;

@@ -42,12 +42,12 @@
             </p-card>
         </div> -->
         <div class="ui-g-12 p-0">
-        <p-card [style]="{width: '700px'}" styleClass="ui-card-shadow">
+        <p-card styleClass="ui-card-shadow">
                         <p-header class="header-title-card" style="font-size: medium;">
                             {{ data.addName }}
                             <div>
-                                <p-button type="button" class="m-2 pull-right" icon="pi pi-trash"></p-button>
-                                <p-button type="button" class="m-2 pull-right" icon="pi pi-pencil"></p-button>
+                                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil" (click)="edit(data)"></p-button>
+                                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-trash" (click)="delete(data)"></p-button>
                             </div>
                         </p-header>
                         <div class="ui-grid-row my-0" style="font-size: small;">

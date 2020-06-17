@@ -1,12 +1,14 @@
 <p-card header="{{ 'Reference' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addReference()"></p-button>
     </p-header>
-    <div class="ui-g">
+    <div class="ui-g" *ngFor="let ref of references">
         <div class="ui-g-12 p-0">
             <p-card class="border-title ui-grid-row mt-1">
                 <p-header class="header-title-card" style="font-size: medium;">
-                    Reference 1
+                    {{ref.reference}}
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-pencil" (click)="edit(ref)"></p-button>
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-trash" (click)="delete(ref)"></p-button>
                 </p-header>
                 <div class="ui-grid-row my-1">
                     <div class="ui-grid-col-12 p-0">
@@ -17,7 +19,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;Zolla Haryadi
+                                :&nbsp;{{ref.name}}
                             </span>
                         </div>
                     </div>
@@ -31,7 +33,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;Project Manager
+                                :&nbsp;{{ref.relationship}}
                             </span>
                         </div>
                     </div>
@@ -45,7 +47,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;Project Manager
+                                :&nbsp;{{ref.occupation}}
                             </span>
                         </div>
                     </div>
@@ -59,7 +61,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;08833241234
+                                :&nbsp;{{ref.phone}}
                             </span>
                         </div>
                     </div>
@@ -73,7 +75,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;zolla.haryadi@lawencon.com
+                                :&nbsp;{{ref.email}}
                             </span>
                         </div>
                     </div>
@@ -87,7 +89,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;PT. Lawencon Internasional
+                                :&nbsp;{{ref.company}}
                             </span>
                         </div>
                     </div>
@@ -101,7 +103,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                :&nbsp;Good attitude and great employee
+                                :&nbsp;{{ref.description}}
                             </span>
                         </div>
                     </div>
@@ -110,3 +112,62 @@
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '400px'}">
+    <div class="p-grid ui-fluid" *ngIf="reference">
+        <div class="p-col-4">
+            <label for="vin">Reference Type</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="reference.reference" autofocus />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Name</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.name" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Relationship</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.relationship" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Occupation</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.occupation" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Phone</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.phone" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Email</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.email" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Company</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.company" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Description</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="reference.description" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

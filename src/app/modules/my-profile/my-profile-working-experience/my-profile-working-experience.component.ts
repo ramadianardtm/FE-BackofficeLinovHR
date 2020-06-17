@@ -21,6 +21,8 @@ export class MyProfileWorkingExperienceComponent implements OnInit {
   workExperiences: workExperience[] = [];
   workExperience: workExperience;
   displayDialog: boolean;
+  newWorkExp: boolean;
+  selectedWorkExp: workExperience;
 
   constructor() { 
     this.workExperiences = [
@@ -40,7 +42,25 @@ export class MyProfileWorkingExperienceComponent implements OnInit {
   ngOnInit() {
   }
 
+  cloneWorkExp(w: workExperience): workExperience {
+    let work : workExperience = {
+      occupation: '',
+        company: '',
+        location: '',
+        start: '',
+        end: '',
+        responsibility: null,
+        benefit: null,
+        reason: '',
+    };
+    for(let prop in w){
+      work[prop]=w[prop]
+    }
+    return work;
+  }
+
   addWorkExperience(){
+    this.newWorkExp = true;
     this.workExperience =
       {
         occupation: '',
@@ -57,7 +77,29 @@ export class MyProfileWorkingExperienceComponent implements OnInit {
   }
 
   onSave(){
-    this.workExperiences.push(this.workExperience)
+    let workExperiences = [...this.workExperiences];
+    if(this.newWorkExp){
+      workExperiences.push(this.workExperience);
+    } else {
+      // console.log("index : ", this.workExperiences.indexOf(this.selectedWorkExp));
+      workExperiences[this.workExperiences.indexOf(this.selectedWorkExp)+1]=this.workExperience;
+    }
+    this.workExperiences = workExperiences;
+    this.workExperience = null;
+    this.displayDialog = false;
+  }
+
+  edit(work){
+    this.newWorkExp = false;
+    this.workExperience = this.cloneWorkExp(work);
+    this.selectedWorkExp = this.workExperience;
+    this.displayDialog = true;    
+  }
+
+  delete(work){
+    let index = this.workExperiences.indexOf(work);
+    this.workExperiences = this.workExperiences.filter((val, i)=> i != index);
+    this.workExperience = null;
   }
 
 }

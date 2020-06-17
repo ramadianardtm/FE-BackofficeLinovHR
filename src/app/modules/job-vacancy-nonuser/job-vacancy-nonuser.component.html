@@ -28,18 +28,19 @@
         <div class="row" style="margin: 1px; margin-top: 12px;">
           <p-splitButton class="split-color split-font split-height split-height2 drop-height align-left font-color icon-color" 
           [style]="{width: '103px'}" styleClass="ui-button-info" label="Salary" 
-          (onDropdownClick)="salaryClick()" [model]="items"></p-splitButton>
+          (onDropdownClick)="salaryClick()" [model]="items">
+          </p-splitButton>
           <p-card [style]="{width: '260px'}" *ngIf="salaShow">
             <div>
               <div class="row" style="font-size: small;">
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Hourly" label="Hourly"></p-radioButton>
+                  <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
                 </div>
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Monthly" label="Monthly"></p-radioButton>
+                  <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
                 </div>
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Yearly" label="Yearly"></p-radioButton>
+                  <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
                 </div> 
               </div>
               <div>
@@ -49,8 +50,7 @@
                   </div>
                   <div class="ui-g-11">
                     <div class="p-field">
-                      <label for="fieldId"></label>
-                      <input id="fieldId" type="text" pInputText> 
+                      <input id="fieldId" type="text" pInputText><br>
                   </div>
                   <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
                     <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
@@ -62,14 +62,11 @@
           </p-card>
         </div>
       </div>
-      <!-- <div class="ui-g-9"></div>
-      <div class="ui-g-3" *ngIf="salaShow">
-        
-      </div> -->
-      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
       <div class="ui-g-12">
-        <p-chips [(ngModel)]="selChip" (onRemove)="selChipRemove($event)"></p-chips>
-      </div>
+        <div class="chip" *ngFor="let item of selChip; let i = index">
+          <label style="vertical-align: middle; padding-bottom: 8px;"> {{item}} </label>
+          <button class="btn" style="margin-top: -15px;" (click)="delete(i)"><i class="fa fa-times"></i></button>
+        </div>
       </div>
     </div>
     <div class="pull-right">
@@ -82,34 +79,34 @@
 
 <div class="ui-g-12">
   <div class="container">
-    <div class="ui-g-6">
-      <div>
-        <a style="margin-left: 20px;"><strong>RECOMMENDED JOBS</strong></a>
-      </div>
-    </div>
-    <div class="col ui-g-6" style="text-align: right;">
-      <button type="button" (click)="showDialog()" 
-                pButton icon="pi pi-bell" style="font-size: 12px;" label="Create Job Alert"></button>
-                <!-- <button (click)="showDialog()"><i class="pi pi-bell" style="font-size: 12px;">Create Job Alert</i></button> -->
+  <div class="ui-g-6">
+    <div>
+      <a style="margin-left: 20px;"><strong>RECOMMENDED JOBS</strong></a>
     </div>
   </div>
+  <div class="col ui-g-6" style="text-align: right;">
+    <button type="button" (click)="showDialog()" 
+              pButton icon="pi pi-bell" style="font-size: 12px;" label="Create Job Alert"></button>
+              <!-- <button (click)="showDialog()"><i class="pi pi-bell" style="font-size: 12px;">Create Job Alert</i></button> -->
+  </div>
+</div>
 </div>
 
 <p-dialog header="Create Search Alert" 
-                [(visible)]="display" [style]="{width: '20vw'}" [baseZIndex]="10000">
-                  <p><strong><small>Programmer</small></strong></p>
-                  <p><small>Jakarta, Indonesia</small></p>
-                  <br>
-                  <p><small>Receive Alert</small></p>
-                  <p-dropdown [options]="alert" [(ngModel)]="selectedAlert" placeholder="Weekly" [style]="{'width':'50px'}"></p-dropdown>
-                  <br><br>
-                  <p><small>Get Notified Via</small></p>
-                  <p-dropdown [options]="getNotified" [(ngModel)]="selectedNotified" placeholder="Email and Notification"></p-dropdown>
-                  <p-footer>
-                    <button type="button" pButton icon="pi pi-undo" (click)="display=false" label="Cancel"></button>
-                    <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
-                  </p-footer>
-                </p-dialog>
+              [(visible)]="display" [style]="{width: '40vw'}" [baseZIndex]="10000">
+                <p><strong><small>Programmer</small></strong></p>
+                <p><small>Jakarta, Indonesia</small></p>
+                <br>
+                <p><small>Receive Alert</small></p>
+                <p-dropdown [options]="alert" [(ngModel)]="selectedAlert" placeholder="Weekly" [style]="{'width':'50px'}"></p-dropdown>
+                <br><br>
+                <p><small>Get Notified Via</small></p>
+                <p-dropdown [options]="getNotified" [(ngModel)]="selectedNotified" placeholder="Email and Notification"></p-dropdown>
+                <p-footer>
+                  <button type="button" pButton icon="pi pi-undo" (click)="display=false" label="Cancel"></button>
+                  <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
+                </p-footer>
+              </p-dialog>
 
 <div class="ui-g-12">
   <div class="row" style="margin-left: 6px;">
@@ -117,144 +114,168 @@
       <div class="container-fluid">
         <div class="row clearfix">
           <div class="col-12">
+              <span><small>1-10 of 33 job vacancy matches</small></span>
+              <span style="float:right;">
+                <span style="color: rgb(37, 51, 241);">
+                    <a><small>Applied Date&nbsp;</small><i class="fa fa-sort-amount-asc"></i></a>
+                </span>
+                <span>
+                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Alphabet&nbsp;</small> <i class="fa fa-sort-alpha-asc"></i></a>
+                </span>
+                <span>
+                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Salary&nbsp;</small>  <i class="fa fa-sort-amount-asc"></i></a>
+                </span>
+                <span>
+                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Expiry Date&nbsp;</small> <i class="fa fa-sort-amount-asc"></i></a>
+                </span>
+                <span>
+                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Posting Date&nbsp; </small> <i class="fa fa-sort-amount-asc"></i></a>
+                </span> 
+                <span style="font-size: x-large;">
+                  <a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-bars"></i></a>
+                </span> 
+                <span style="font-size: x-large;">
+                  <a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-th-list"></i></a>
+              </span> 
+          </span>
+          </div>
+          <div class="col-12">
               <div class="card">
                 <div class="table-responsive">
                   <table class="table table-hover table-striped table-vcenter mb-0">
-                    <thead>
-                    <tr>
-                      <th colspan="5" class="fontSize">1-10 of job vacancy matches</th>
-                      <th colspan="1" class="fontSize"><a class="pi pi-sort-amount-down-alt">Applied Date&nbsp;</a></th>
-                      <th colspan="1" class="fontSize"><a class="pi pi-sort-alpha-down">Alphabet&nbsp;</a>&nbsp; </th>
-                      <th colspan="1" class="fontSize"><a class="pi pi-sort-amount-down-alt">Salary&nbsp;</a>&nbsp;</th>
-                      <th colspan="1" class="fontSize"><a class="pi pi-sort-amount-down-alt">Expiry Date&nbsp;</a>&nbsp;</th>
-                      <th colspan="1" class="fontSize"><a class="pi pi-sort-amount-down-alt">Posting Date</a></th>
-                      <th colspan="1" class="fontSize"><button><i class="pi pi-list"></i></button></th>
-                      <th colspan="1" class="fontSize"><button><i class="pi pi-bars"></i></button></th>
-                    </tr>
-                    </thead>
                     <tbody>
                     <tr>
-                      <td colspan="2">
+                      <td style="width: 20%;">
                           <img class="fit-picture"
-                          src="./assets/images/gallery/logo.jpg"
+                          src="./assets/images/gallery/defaultLogo.jpg"
                           alt="Company Logo">
                       </td>
-                      <td colspan="7" >
-                          <a href="./job-detail" class="detail-job"><u>Java Programmer</u></a>
+                      <td colspan="12" >
+                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Java Programmer</u></a>
                           <br><span><small>Lawencon International</small></span>
                           <br><span><small>Jakarta, Indonesia</small></span>
                           <br><span><small> IDR 5,000,000-10,000,000</small></span>
                       </td>
-                      <!-- <td colspan="4">
-                        <span class="d-flex flex-row" style="text-align: center;"></span>
-                      </td> -->
-                      <td colspan="4">
+                      <td colspan="4" style="text-align: right;">
                           <span>
                               <br><span><small>Posted 1 Month ago</small></span>
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
-                              <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="redirectLogin()"></button>
-                              <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="redirectLogin()"></button>
+                              <button type="button" pButton icon="pi pi-heart" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoSaved}}" class="ui-button-secondary" (click)="onApply()"></button>
+
+                              <button type="button" pButton icon="pi pi-check" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoApplied}}" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">
+                      <td style="width: 20%;">
                           <img class="fit-picture"
-                          src="./assets/images/gallery/logo.jpg"
+                          src="./assets/images/gallery/defaultLogo.jpg"
                           alt="Company Logo">
                       </td>
-                      <td colspan="7">
-                          <a href="./job-detail" class="detail-job"><u>Bussiness Analyst</u></a>
+                      <td colspan="12">
+                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Bussiness Analyst</u></a>
                           <br><span><small>Lawencon International</small></span>
                           <br><span><small>Jakarta, Indonesia</small></span>
                           <br><span><small> IDR 5,000,000-10,000,000</small></span>
                       </td>
-                      <!-- <td colspan="4">
-                        <span class="d-flex flex-row" style="text-align: center;"></span>
-                      </td> -->
-                      <td colspan="4">
+                      <td colspan="4" style="text-align: right;">
                           <span>
                               <br><span><small>Posted 1 Month ago</small></span>
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
-                              <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="redirectLogin()"></button>
-                              <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="redirectLogin()"></button>
+                              <button type="button" pButton icon="pi pi-heart" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoSaved2}}" class="ui-button-secondary" (click)="onApply()"></button>
+
+                              <button type="button" pButton icon="pi pi-check" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoApplied2}}" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">
+                      <td style="width: 20%;">
                           <img class="fit-picture"
-                          src="./assets/images/gallery/logo.jpg"
+                          src="./assets/images/gallery/defaultLogo.jpg"
                           alt="Company Logo">
                       </td>
-                      <td colspan="7">
-                          <a href="./job-detail" class="detail-job"><u>Full-Stack Developer</u></a>
+                      <td colspan="12">
+                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Full-Stack Developer</u></a>
                           <br><span><small>Lawencon International</small></span>
                           <br><span><small>Jakarta, Indonesia</small></span>
                           <br><span><small> IDR 5,000,000-10,000,000</small></span>
                       </td>
-                      <!-- <td colspan="4">
-                        <span class="d-flex flex-row" style="text-align: center;"></span>
-                      </td> -->
-                      <td colspan="4">
+                      <td colspan="4" style="text-align: right;">
                           <span>
                               <br><span><small>Posted 1 Month ago</small></span>
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
-                              <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="redirectLogin()"></button>
-                              <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="redirectLogin()"></button>
+                              <button type="button" pButton icon="pi pi-heart" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoSaved3}}" class="ui-button-secondary" (click)="onApply()"></button>
+
+                              <button type="button" pButton icon="pi pi-check" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoApplied3}}" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">
+                      <td style="width: 20%;">
                           <img class="fit-picture"
-                          src="./assets/images/gallery/logo.jpg"
+                          src="./assets/images/gallery/defaultLogo.jpg"
                           alt="Company Logo">
                       </td>
-                      <td colspan="7">
-                          <a href="./job-detail" class="detail-job"><u>Angular Developer</u></a>
+                      <td colspan="12">
+                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Angular Developer</u></a>
                           <br><span><small>Lawencon International</small></span>
                           <br><span><small>Jakarta, Indonesia</small></span>
                           <br><span><small> IDR 5,000,000-10,000,000</small></span>
                       </td>
-                      <!-- <td colspan="4">
-                        <span class="d-flex flex-row" style="text-align: center;"></span>
-                      </td> -->
-                      <td colspan="4">
+                      <td colspan="4" style="text-align: right;">
                           <span>
                               <br><span><small>Posted 1 Month ago</small></span>
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
-                              <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="redirectLogin()"></button>
-                              <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="redirectLogin()"></button>
+                              <button type="button" pButton icon="pi pi-heart" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoSaved4}}" class="ui-button-secondary" (click)="onApply()"></button>
+
+                              <button type="button" pButton icon="pi pi-check" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoApplied4}}" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">
+                      <td style="width: 20%;">
                           <img class="fit-picture"
-                          src="./assets/images/gallery/logo.jpg"
+                          src="./assets/images/gallery/defaultLogo.jpg"
                           alt="Company Logo">
                       </td>
-                      <td colspan="7">
-                          <a href="./job-detail" class="detail-job"><u>Backend Developer</u></a>
+                      <td colspan="12">
+                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Backend Developer</u></a>
                           <br><span><small>Lawencon International</small></span>
                           <br><span><small>Jakarta, Indonesia</small></span>
                           <br><span><small> IDR 5,000,000-10,000,000</small></span>
                       </td>
-                      <!-- <td colspan="4">
-                        <span class="d-flex flex-row" style="text-align: center;"></span>
-                      </td> -->
-                      <td colspan="4">
+                      <td colspan="4" style="text-align: right;">
                           <span>
                               <br><span><small>Posted 1 Month ago</small></span>
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
-                              <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="redirectLogin()"></button>
-                              <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="redirectLogin()"></button>
+                              <button type="button" pButton icon="pi pi-heart" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoSaved5}}" class="ui-button-secondary" (click)="onApply()"></button>
+
+                              <button type="button" pButton icon="pi pi-check" 
+                              style="border-color: black; font-size: 10px; "
+                              label="{{infoApplied5}}" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
@@ -268,3 +289,4 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

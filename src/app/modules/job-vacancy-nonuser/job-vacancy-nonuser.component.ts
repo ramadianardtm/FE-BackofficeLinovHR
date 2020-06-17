@@ -5,12 +5,14 @@ import { FormGroup } from '@angular/forms';
 import { SelectItemGroup } from 'primeng/components/common/selectitemgroup';
 import { onConstructTableHeader } from 'app/shared/utils/construct-table-header';
 import {SelectItem} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-vacancy-nonuser',
   templateUrl: './job-vacancy-nonuser.component.html',
-  styleUrls: ['./job-vacancy-nonuser.component.sass']
+  styleUrls: ['./job-vacancy-nonuser.component.sass'],
+  providers: [MessageService]
 })
 export class JobVacancyNonuserComponent implements OnInit {
 
@@ -87,7 +89,9 @@ export class JobVacancyNonuserComponent implements OnInit {
   selectedNotified: string[] = [];
   notifiedItems: SelectItem[]; 
 
-  constructor(private router: Router){}
+  selectedDate: string = "Monthly";
+
+  constructor(private messageService: MessageService, private router: Router){}
 
   ngOnInit() {
     this.myAppDetailsColumn = onConstructTableHeader([
@@ -260,55 +264,122 @@ export class JobVacancyNonuserComponent implements OnInit {
   }
   selChip:any[] = []
 
-  changeCity(event){
-    this.selChip =[]
-    console.log('employment', this.selectedEmployement);
-    
-    this.selChip = this.selChip.concat(this.selectedCity,
-      this.selectedCompany,
-      this.selectedEducation,
-      this.selectedEmployement,
-      this.selectedJobFunction,
-      this.selectedJobLevel,
-      this.selectedJobType,
-      this.selectedSalary)
-  }
-  selChipRemove(event){
-    console.log("event", event);
-    console.log("idx",this.selectedCity.indexOf(event.value));
-    
-    this.selectedCity.splice(this.selectedCity.indexOf(event.value),1)
-    this.selectedCompany.splice(this.selectedCompany.indexOf(event.value),1)
-    this.selectedEducation.splice(this.selectedEducation.indexOf(event.value),1)
-    this.selectedEmployement.splice(this.selectedEmployement.indexOf(event.value),1)
-    this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event.value),1)
-    this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event.value),1)
-    this.selectedJobType.splice(this.selectedJobType.indexOf(event.value),1)
-    this.selectedSalary.splice(this.selectedSalary.indexOf(event.value),1)
-    
-  }
-  removeChip(){
-    this.selectedCity.splice(0, this.selChip.length)
-    this.selectedCompany.splice(0, this.selChip.length)
-    this.selectedEducation.splice(0, this.selChip.length)
-    this.selectedEmployement.splice(0, this.selChip.length)
-    this.selectedJobFunction.splice(0, this.selChip.length)
-    this.selectedJobLevel.splice(0, this.selChip.length)
-    this.selectedJobType.splice(0, this.selChip.length)
-    this.selectedSalary.splice(0, this.selChip.length)
-    this.selChip.splice(0, this.selChip.length);
+changeCity(event){
+  this.selChip =[]
+  console.log('employment', this.selectedEmployement);
   
-  }
-  salaShow:boolean = false
-  salaryClick(){
-    this.salaShow = !this.salaShow
-  }
+  this.selChip = this.selChip.concat(this.selectedCity,
+    this.selectedCompany,
+    this.selectedEducation,
+    this.selectedEmployement,
+    this.selectedJobFunction,
+    this.selectedJobLevel,
+    this.selectedJobType,
+    this.selectedSalary)
+}
 
-  redirectLogin(){
-    this.router.navigate(['home/login/'])
-  }
+delete(i){
+  let event = this.selChip[i]
   
+  this.selectedCity.splice(this.selectedCity.indexOf(event),1)
+  this.selectedCompany.splice(this.selectedCompany.indexOf(event),1)
+  this.selectedEducation.splice(this.selectedEducation.indexOf(event),1)
+  this.selectedEmployement.splice(this.selectedEmployement.indexOf(event),1)
+  this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event),1)
+  this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event),1)
+  this.selectedJobType.splice(this.selectedJobType.indexOf(event),1)
+  this.selectedSalary.splice(this.selectedSalary.indexOf(event),1)
+
+  this.selChip.splice(i,1)
+}
+selChipRemove(event){
+  console.log("event", event);
+  console.log("idx",this.selectedCity.indexOf(event.value));
+  
+  this.selectedCity.splice(this.selectedCity.indexOf(event.value),1)
+  this.selectedCompany.splice(this.selectedCompany.indexOf(event.value),1)
+  this.selectedEducation.splice(this.selectedEducation.indexOf(event.value),1)
+  this.selectedEmployement.splice(this.selectedEmployement.indexOf(event.value),1)
+  this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event.value),1)
+  this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event.value),1)
+  this.selectedJobType.splice(this.selectedJobType.indexOf(event.value),1)
+  this.selectedSalary.splice(this.selectedSalary.indexOf(event.value),1)
+  
+}
+removeChip(){
+  this.selectedCity.splice(0, this.selChip.length)
+  this.selectedCompany.splice(0, this.selChip.length)
+  this.selectedEducation.splice(0, this.selChip.length)
+  this.selectedEmployement.splice(0, this.selChip.length)
+  this.selectedJobFunction.splice(0, this.selChip.length)
+  this.selectedJobLevel.splice(0, this.selChip.length)
+  this.selectedJobType.splice(0, this.selChip.length)
+  this.selectedSalary.splice(0, this.selChip.length)
+  this.selChip.splice(0, this.selChip.length);
+
+}
+salaShow:boolean = false
+salaryClick(){
+this.salaShow = !this.salaShow
+}
+
   showDialog() {
     this.display = true;
   }
+  onApply(){
+    this.router.navigate(['/home/login']);
+  }
+
+  showInfo() {
+    this.infoApplied='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved() {
+    this.infoSaved='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+
+  showInfo2() {
+    this.infoApplied2='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved2() {
+    this.infoSaved2='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo3() {
+    this.infoApplied3='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved3() {
+    this.infoSaved3='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo4() {
+    this.infoApplied4='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved4() {
+    this.infoSaved4='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  showInfo5() {
+    this.infoApplied5='APPLIED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  }
+  showSaved5() {
+    this.infoSaved5='SAVED';
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+  }
+  infoApplied: string = "APPLY";
+  infoSaved: string = "SAVE";
+  infoApplied2: string = "APPLY";
+  infoSaved2: string = "SAVE";
+  infoApplied3: string = "APPLY";
+  infoSaved3: string = "SAVE";
+  infoApplied4: string = "APPLY";
+  infoSaved4: string = "SAVE";
+  infoApplied5: string = "APPLY";
+  infoSaved5: string = "SAVE";
+
 }  

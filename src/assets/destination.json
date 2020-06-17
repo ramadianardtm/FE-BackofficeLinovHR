@@ -1,0 +1,17 @@
+{
+    "data": [{
+            "id": "0",
+            "code": "CTY001",
+            "name": "Semarang",
+            "group": "Provinsi",
+            "isActive": true
+        },
+        {
+            "id": "1",
+            "code": "CTY002",
+            "name": "Surabaya",
+            "group": "Provinsi",
+            "isActive": false
+        }
+    ]
+}

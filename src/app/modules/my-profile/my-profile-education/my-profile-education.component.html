@@ -1,0 +1,57 @@
+<p-card header="{{ 'Education' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+    <p-header>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+    </p-header>
+    <div class="ui-g">
+        <div class="ui-g-12 p-0">
+            <p-table [columns]="educationColumns" [value]="candidateI?.subAddress" [scrollable]="true"
+                [style]="{ minWidth: '100%' }">
+                  <ng-template pTemplate="colgroup" let-columns>
+                    <colgroup>
+                        <col *ngFor="let col of columns" style="width: 250px" />
+                    </colgroup>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let column of columns">
+                            {{ column.label }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-addr>
+                    <tr>
+                        <td>
+                            {{ addr?.valData0 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData1 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData2 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData4 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData3 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData5 }}
+                        </td>
+                        <td>
+                            {{ addr?.valData6 }}
+                        </td>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td class="text-center" [attr.colspan]="9">
+                            {{'No Records Found'}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-card>

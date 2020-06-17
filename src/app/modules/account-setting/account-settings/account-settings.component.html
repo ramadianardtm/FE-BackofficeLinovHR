@@ -1,0 +1,154 @@
+<div class="ui-g">
+    <div class="ui-grid-row ui-g-12 mx-2">
+        <h2>Account Setting</h2>
+    </div>
+    <div class="ui-grid-row ui-g-12">
+        <div class="ui-g-12">
+            <p-card header="{{ 'Email' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+                <div class="ui-g">
+                    <div class="ui-g-12 p-0">
+                        <div class="ui-grid-row" style="font-weight: bold;">
+                            Current Email Address
+                        </div>
+                        <div class="ui-grid-row mb-3">
+                            john.doe@gmail.com
+                        </div>
+                        <div class="ui-grid-row mb-0">
+                            <label>Current Password</label>
+                        </div>
+                        <div class="ui-grid-row mb-2">
+                            <input type="password" style="width: 30%;">
+                        </div>
+                        <div class="ui-grid-row mb-0">
+                            <label>New Email Address</label>
+                        </div>
+                        <div class="ui-grid-row mb-4">
+                            <input type="email" style="width: 30%;" placeholder="myemail@email.com">
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="ui-grid-row ui-g-12">
+        <div class="ui-g-12">
+            <p-card header="{{ 'Mobile Number' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+                <div class="ui-g">
+                    <div class="ui-g-12 p-0">
+                        <div class="ui-grid-row">
+                            Enter Mobile Number
+                        </div>
+                        <div class="ui-grid-row mb-4">
+                            <div class="ui-g-3">
+                                <p-autoComplete [(ngModel)]="countryCode" [(suggestions)]="results" (completeMethod)="search($event)" [dropdown]="true" placeholder="Country Code">
+                                    <ng-template let-countryCode pTemplate="item">
+                                        <div class="ui-helper-clearfix">
+                                            {{countryCode}}
+                                        </div>
+                                    </ng-template>
+                                </p-autoComplete>
+                            </div>
+                            <div class="ui-g-9">
+                                <input type="text" style="width: 30%;">
+                            </div>
+                        </div>
+                        <div class="ui-grid-row mb-5">
+                            Your mobile number will be used to send important updates on your applications, and allow recruiters to contact you and invite you to interviews.
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="ui-grid-row ui-g-12">
+        <div class="ui-g-12">
+            <p-card header="{{ 'Password' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+                <div class="ui-g">
+                    <div class="ui-g-12 p-0">
+                        <div class="ui-grid-row my-3">
+                            To change your password, please complete the following fields.
+                        </div>
+                        <div class="ui-grid-row my-1">
+                            <div class="ui-grid-row my-0">
+                                <label>Old Password</label>
+                            </div>
+                            <div class="ui-grid-row my-0">
+                                <input type="password" style="width: 30%;">
+                            </div>
+                        </div>
+                        <div class="ui-grid-row my-1">
+                            <div class="ui-grid-row my-0">
+                                <label>New Password</label>
+                            </div>
+                            <div class="ui-grid-row my-0">
+                                <input type="password" style="width: 30%;">
+                            </div>
+                        </div>
+                        <div class="ui-grid-row my-1 mb-3">
+                            <div class="ui-grid-row my-0">
+                                <label>Retype New Password</label>
+                            </div>
+                            <div class="ui-grid-row my-0">
+                                <input type="password" style="width: 30%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="ui-grid-row ui-g-12">
+        <div class="ui-g-12">
+            <p-card header="{{ 'Timezone' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+                <div class="ui-g">
+                    <div class="ui-g-12 p-0">
+                        <div class="ui-grid-row my-0">
+                            <label for="timezone">Select the timezone</label>
+                        </div>
+                        <div class="ui-grid-row">
+                            <p-autoComplete id="timezone" [(ngModel)]="timezone" [(suggestions)]="resultsTimezone" (completeMethod)="searchTimezone($event)" [dropdown]="true" placeholder="Timezone"
+                            [size]="40" [minLength]="1">
+                                <ng-template let-timezone pTemplate="item">
+                                    <div class="ui-helper-clearfix">
+                                        {{timezone}}
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+    <div class="ui-grid-row ui-g-12">
+        <div class="ui-g-12">
+            <p-card header="{{ 'Deactivate Account' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+                <div class="ui-g">
+                    <div class="ui-g-12 p-0">
+                        <div class="ui-grid-row my-2">
+                            <p>Account deactivation is <strong>permanent</strong>. You will lose your completed profile and all your skill test results.</p>
+                        </div>
+                        <div class="ui-grid-row my-2">
+                            <p>If you want to come back, you can still search through our job board and apply. However, you will have to create an entirely new account and fill in all your details once again.</p>
+                        </div>
+                        <div class="ui-grid-row my-3 col-lg-3 mx-auto">
+                            <p-button icon="pi pi-trash" label="Deactivate My Account" styleClass="ui-button-danger" (click)="showDeact()"></p-button> 
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="DEACTIVATE ACCOUNT" [(visible)]="displayDeactAcct" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <div class="ui-grid-row my-3" style="text-align: center;">
+        <p>You are about to deactivate the account for</p>
+        <p><strong>john.doe@gmail.com</strong></p>
+        <p>This cannot be undone</p>
+    </div>
+<p-footer>
+    <button type="button" pButton icon="pi pi-undo" (click)="displayDeactAcct=false" label="Cancel"></button>
+    <button type="button" pButton icon="pi pi-trash" (click)="displayDeactAcct=false" label="Deactivate My Account" class="ui-button-danger"></button>
+</p-footer>
+</p-dialog>

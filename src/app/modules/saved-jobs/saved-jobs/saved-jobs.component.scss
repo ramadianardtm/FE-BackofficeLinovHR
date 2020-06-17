@@ -1,0 +1,27 @@
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
+  
+.detail-alert{
+  font-size: small;
+  font-weight: bolder;
+}
+
+/* Style buttons */
+.btn {
+  background-color: white; /* Blue background */
+  border: 1px solid black; /* Remove borders */
+  color: black; /* White text */
+  padding: 5px 18px; /* Some padding */
+  font-size: 10px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color:  #007bffe5;
+}
+

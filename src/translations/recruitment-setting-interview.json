@@ -1,0 +1,32 @@
+{
+    "data":[
+        {
+            "interviewName":"Interview HR",
+            "description":"to judge your personality",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "interviewName":"Interview User",
+            "description":"a common user research technique used typically..",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "interviewName":"Interview CEO",
+            "description":"Interview by CEO",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "interviewName":"Interview COO",
+            "description":"Interview by COO",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        }
+    ]
+}

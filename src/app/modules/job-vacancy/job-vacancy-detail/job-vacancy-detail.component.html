@@ -1,0 +1,150 @@
+<p-carousel [value]="cars" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+  <p-header>
+      <h3 style="text-align: center;">JOB POSTERS</h3>
+  </p-header>
+  <ng-template>
+      <div>
+          <div class="p-grid p-nogutter">
+              <div class="p-col-12">
+                  <img src="./assets/images/gallery/1.jpg" alt="Company Logo">
+              </div>
+              <div class="p-col-12 car-data">
+                  <div >Java Programmer at PT Lawencon</div>
+                  <div >2019 | Jakarta</div>
+
+                  <div >
+                      <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                      <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                      <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-carousel>
+
+<div class="ui-helper-clearfix">
+  <p-card>
+      <div class="card">
+          <div class="row col-lg-12">
+              <div class="col-lg-3" style="text-align: center; vertical-align: middle;">
+                  <img class="fit-picture"
+                      src="./assets/images/gallery/defaultLogo.jpg"
+                      alt="Company Logo">
+              </div>
+              <div class="col-lg-6">
+                <div class="row mb-2 mt-1"><h6 href="./detail" class="detail-job">Java Programmer</h6></div>
+                <div class="row"><span><small>PT Lawencon International</small></span></div>
+                <div class="row"><span><small>Jakarta, Indonesia</small></span></div>
+                <div class="row"><span><small>Salary IDR 5,000,000-10,000,000</small></span></div>
+              </div>
+              <div class="col-lg-3 pull-right" style="float: right; text-align: right;">
+                  <div class="row mt-2">
+                      <small>Posted 5 month ago <br></small>
+                  </div>
+                  <div class="row mb-2">
+                    <small>applied 3 month ago </small>
+                  </div>
+                  <div class="row">
+                      <button type="button" pButton icon="pi pi-share-alt" style="border-color: black; font-size: 10px; "label="SHARE" class="ui-button-secondary"(click)="showDialog()"></button>
+                      <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; "label="SAVE" class="ui-button-secondary"(click)="showDialog()"></button>
+                      <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; "label="APPLY" class="ui-button-secondary"(click)="showDialog()"></button>
+                  </div>                   
+              </div>
+          </div>
+                
+      </div>
+  </p-card>
+</div>
+
+<div class="ui-helper-clearfix">
+  <p-card>
+  <div class="ui-g">
+      <div class="ui-g-12 p-0">
+  
+      <p-panel header="Job Description">
+          A Java developer is responsible for many duties throughout the development lifecycle of applications, from concept and design right through to testing. Here are some other responsibilities they may have:
+          <ul>
+              <li>Design, implement and maintain java application phases</li>
+              <li>To take part in software and architectural development activities</li>
+              <li>Conduct software analysis, programming, testing and debugging</li>
+              <li>Identifying production and non-production application issues</li>
+              <li>Transforming requirements into stipulations</li>
+              <li> Develop, test, implement and maintain application software</li>
+              <li>Recommend changes to improve established java application processes</li>
+              <li>technical designs for application development</li>
+              <li>Develop application code for java programs</li>
+          </ul>
+      </p-panel>
+      <p-panel header="Qualification">
+        <p>
+          A professional certification is recommended when looking for jobs in in Java Development. Most employers will require applicants to have a degree in computer science, information systems, mathematics or any other closely related field. Computer science degrees tend to be more preferable as these courses tend to offer tasks related to Java programming with coursework including data structures, computer architecture, database management, statistics and technical writing.
+          However, applicants without any kind of degree or education can still be considered if they can show significant knowledge and experience of programming in Java.
+        </p>
+      </p-panel>
+  </div>
+  </div>
+  </p-card>
+</div>
+
+<div class="ui-helper-clearfix">
+  <p-card>
+      <div class="ui-g">
+          <div class="ui-g-12 p-0">
+              <p-panel header="BENEFIT">
+                  <div class="chip">
+                  <!-- <img src="img_avatar.jpg" alt="Person" width="96" height="96"> -->
+                      Medical insurance
+                  </div>
+                  <div class="chip">
+                      Dental insurance
+                  </div>
+                  <div class="chip">
+                      Transportation allowance
+                  </div>
+                  <div class="chip">
+                      Free gym membership 
+                  </div>
+                  <div class="chip">
+                      Free launch
+                  </div>
+                  <div class="chip">
+                      Housing allowance
+                  </div>
+                  <div class="chip">
+                      Free shuttle bus
+                  </div>
+              </p-panel>
+          </div>
+      </div>
+  </p-card>
+</div>
+
+
+
+<div class="ui-helper-clearfix">
+  <p-card>
+      <div class="ui-g">
+          <div class="ui-g-12 p-0">
+              <p-panel header="REQUIRED SKILLS">
+              </p-panel>
+          </div>
+      </div>
+  </p-card>
+</div>
+           
+<div class="ui-helper-clearfix">
+  <p-card>
+      <div class="ui-g">
+          <div class="ui-g-12 p-0">
+              <p-panel header="JOB SUMMARY">
+              </p-panel>
+          </div>
+      </div>
+  </p-card>
+</div>
+             
+
+
+
+ 

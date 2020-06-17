@@ -1,0 +1,109 @@
+<p-toast position="top-right"></p-toast>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (reset)="onRevert()" class="sign-in mx-auto" style="margin-top: -7vh;">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid form-signin">
+        <div class="ui-grid-row my-2">
+            <div class="ui-grid-col-12">
+                <h1 class="sub-title" style="font-size: 16px;">
+                    Sign In to LinovHR
+                </h1>
+            </div>
+        </div>
+        <div *ngIf="errorMsg && !username.value && !password.value" class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <h1 *ngIf="errorMsg" class="error-msg">
+                    {{ errorMsg }}
+                </h1>
+            </div>
+        </div>
+        <div *ngIf="username.invalid && username.dirty" class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <p-message *ngIf="username.errors['required']" severity="error" text="Username is required"></p-message>
+                <p-message *ngIf="username.errors['pattern']" severity="error" text="Username must be an alphanumberic">
+                </p-message>
+            </div>
+        </div>
+        <div *ngIf="password.invalid && password.dirty" class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <p-message *ngIf="password.errors['required']" severity="error" text="Password is required"></p-message>
+            </div>
+        </div>
+        <div class="ui-grid-row my-3">
+            <div class="ui-grid-col-12">
+                <span>
+                    <label>Email</label>
+                    <input pInputText formControlName="username" type="text" autofocus />
+                </span>
+            </div>
+        </div>
+        <div class="ui-grid-row my-3">
+            <div class="ui-grid-col-12">
+                <span>
+                    <label>Password</label>
+                    <input pInputText formControlName="password" type="password" />
+                </span>
+            </div>
+        </div>
+        <!-- <div class="ui-grid-row my-3">
+            <div class="ui-grid-col-12 recaptcha-container">
+                <re-captcha formControlName="g-recaptcha-response"></re-captcha>
+            </div>
+        </div> -->
+        <div class="ui-grid-row my-3">
+            <div class="ui-grid-col-12">
+                <div class="ui-g-6">
+                    <p-checkbox label="Remember Me"></p-checkbox>
+                </div>
+                <div class="ui-g-6">
+                    <a href="">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-2" style="height: 3vh;">
+            <div class="ui-g-12">
+                <button [ladda]="isLoading" [disabled]="loginForm.invalid" type="submit"
+                    class="btn btn-primary btn-sm btn-login" style="width: 100%;">
+                    Log In
+                </button>
+            </div>
+        </div>
+        <div class="ui-grid-row my-3" style="height: 3vh;">
+            <div class="ui-grid-col-12">
+                <hr class="middle">
+            </div>
+        </div>
+        <div class="ui-grid-row my-3" style="height: 3vh;">
+            <div class="ui-grid-col-12">
+                <p class="sub-title">Sign In Using Account</p>
+            </div>
+        </div>
+        <div class="ui-grid-row my-2">
+            <div class="ui-grid-col-12">
+                <button class="btn btn-primary btn-sm btn-login" style="width: 100%;">
+                    <i class="pi pi-facebook"></i>&nbsp; Facebook
+                </button>
+            </div>
+        </div>
+        <div class="ui-grid-row my-2" style="height: 2vh;">
+            <div class="ui-grid-col-12">
+                <button class="btn btn-primary btn-sm btn-login" style="width: 100%">
+                    <i class="pi pi-google"></i>&nbsp; Google
+                </button>
+            </div>
+        </div>
+        <div class="ui-grid-row my-2" style="height: 2vh;">
+            <div class="ui-grid-col-12">
+                <hr class="end">
+            </div>
+        </div>
+        <div class="ui-grid-row my-3" style="height: 5vh;">
+            <div class="ui-grid-col-12">
+                <div class="ui-g-9">
+                    Don't have a LinovHR account yet?
+                </div>
+                <div class="ui-g-3">
+                    <a href="home/register">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

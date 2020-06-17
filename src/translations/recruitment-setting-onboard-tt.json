@@ -1,0 +1,47 @@
+{
+    "data":[
+        {
+            "code":"TTG001",
+            "name":"Transition Task IT",
+            "description":"-",
+            "ttGroup":"TTG04-Transition Task HRD",
+            "duration":"5 days",
+            "startDate":"1-JAN-2015",
+            "endDate":"-",
+            "instruction":"copy akta..",
+            "file":"file1.xls",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "code":"TTG001",
+            "name":"Transition Task IT",
+            "description":"-",
+            "ttGroup":"TTG04-Transition Task HRD",
+            "duration":"3 weeks",
+            "startDate":"1-JAN-2015",
+            "endDate":"-",
+            "instruction":"copy ijazah..",
+            "file":"file2.xls",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        },
+        {
+            "code":"TTG001",
+            "name":"Transition Task IT",
+            "description":"-",
+            "ttGroup":"TTG04-Transition Task HRD",
+            "duration":"2 days",
+            "startDate":"1-JAN-2015",
+            "endDate":"-",
+            "instruction":"register finger..",
+            "file":"file3.xls",
+            "pic":"19735-Fira",
+            "createdBy":"17654-Riella",
+            "createdTime":"13-JUL-2019 12:00 PM"
+        }
+        
+    ]
+}

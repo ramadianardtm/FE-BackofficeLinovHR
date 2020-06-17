@@ -1,0 +1,111 @@
+<p-card header="{{ 'Family Members' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+    <p-header>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+    </p-header>
+    <div class="ui-g">
+        <div class="ui-g-12 p-0">
+            <p-table [columns]="familyColumns" [value]="familyMembers" [scrollable]="true"
+                [style]="{ minWidth: '100%' }" selectionMode="single" [(selection)]="selectedFamily" (onRowSelect)="onRowSelect($event)">
+                <ng-template pTemplate="colgroup" let-columns>
+                    <colgroup>
+                        <col *ngFor="let col of columns" style="width: 250px" />
+                    </colgroup>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let column of columns">
+                            {{ column.label }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-fam>
+                    <tr [pSelectableRow]="fam">
+                        <td>{{ fam.name }}</td>
+                        <td>
+                            {{ fam.relationship }}
+                        </td>
+                        <td>{{ fam.gender }}</td>
+                        <td>
+                            {{ fam.phone }}
+                        </td>
+                        <td>
+                            {{ fam.birthdate }}
+                        </td>
+                        <td>
+                            {{ fam.education }}
+                        </td>
+                        <td>{{ fam.occupation }}</td>
+                        <!-- <td>{{ fam.note }}</td> -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td class="text-center" [attr.colspan]="9">
+                            {{'No Records Found'}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '300px'}">
+    <div class="p-grid ui-fluid" *ngIf="family">
+        <div class="p-col-4">
+            <label for="vin">Name</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="family.name" autofocus />
+        </div>
+        <div class="p-col-4">
+            <label for="year">Relationship</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="year" [(ngModel)]="family.relationship" />
+        </div>
+        <div class="p-col-4">
+            <label for="brand">Gender</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="brand" [(ngModel)]="family.gender" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Phone</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="family.phone" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Date of Birth</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="family.birthdate" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Education</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="family.education" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Occupation</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="family.occupation" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Note</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="family.note" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

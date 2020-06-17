@@ -1,0 +1,32 @@
+<div class="ui-g position-relative" [formGroup]="formBody">
+    <div class="ui-g-12">
+        <div class="ui-g-3" style="display: flex;">
+            <input formControlName="inquiry" (keyup.enter)="onSearch()" type="search" style="padding-left:2em"
+                pInputText class="w-100 input-text" placeholder="{{ 'search' | translate }}" />
+            <span class="pi pi-search icon-search" style="position: absolute;
+                            padding-left:0.25em;
+                            display:block;
+                            margin-top: 6px;
+                            color: #0087E0;
+                            pointer-events: none;"> <small></small>
+            </span>
+        </div>
+        <div class="ui-g-9 d-flex align-items-start">
+            <div class="mr-3">
+                <!-- {{settingDate.value | json}} -->
+                <span class="mr-2">From</span>
+                <p-calendar formControlName="periodBegin" dataType="string" dateFormat="yy-mm-dd" [showIcon]="true"
+                    class="bordered-datepicker" appendTo="body" placeholder="{{ today | formatDate}}">
+                </p-calendar>
+            </div>
+            <div class="mr-3">
+                <span class="mr-2">To</span>
+                <p-calendar formControlName="periodEnd" dataType="string" dateFormat="yy-mm-dd" [showIcon]="true"
+                    class="bordered-datepicker" appendTo="body" placeholder="{{ today | formatDate}}">
+                </p-calendar>
+            </div>
+            <button (click)="onRefresh()" pButton type="button" class="btn-refresh"
+                icon="pi pi-refresh" iconPos="left"></button>
+        </div>
+    </div>
+</div>

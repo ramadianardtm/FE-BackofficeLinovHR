@@ -1,0 +1,52 @@
+{
+    "data":[
+        {
+            "nik":"NIK1122",
+            "candidateName":"Marshall Eriksen",
+            "email":"m_eriksen@gmail.com",
+            "mobile":"08128938493",
+            "experience":"5 Years 1 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-Golang Programmer",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"21-01-2020",
+            "onStage":"APPLICATION",
+            "onStageDate":"01-01-2020"        
+        },
+        {
+            "nik":"NIK0238",
+            "candidateName":"Lily Aldrin",
+            "email":"l_aldrin@gmail.com",
+            "mobile":"08128983793",
+            "experience":"2 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-PHP Programmer",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"11-01-2020",
+            "onStage":"OFFERS",
+            "onStageDate":"01-01-2020"        
+        },
+        {
+            "nik":"NIK72387",
+            "candidateName":"Robin Scherbatsky",
+            "email":"robin_s@gmail.com",
+            "mobile":"08128347493",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedVacancy":"ZYTJVP2020001-Front End Developer",
+            "vacancyStartDate":"DD-MON-YYYY",
+            "vacancyEndDate":"DD-MON-YYYY",
+            "jobName":"ZYT-Programmer",
+            "appliedDate":"15-01-2020",
+            "onStage":"INTERVIEW",
+            "onStageDate":"01-01-2020"        
+        }
+    ]
+}

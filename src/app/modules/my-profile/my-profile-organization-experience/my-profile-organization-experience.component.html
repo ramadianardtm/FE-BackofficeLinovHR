@@ -1,26 +1,71 @@
 <p-card header="{{ 'Organization Experience' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addOrg()"></p-button>
     </p-header>
-    <div class="ui-g">
+    <div class="ui-g" *ngFor="let org of orgExperiences">
         <div class="ui-g-12 p-0">
             <p-card class="border-title ui-grid-row mt-1">
                 <p-header class="header-title-card" style="font-size: medium;">
-                    Karang Taruna
+                    {{org.name}}
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-pencil" (click)="edit(org)"></p-button>
                 </p-header>
                 <div class="ui-grid-row my-0">
-                    Role : Leader
+                    Role : {{org.role}}
                 </div>
                 <div class="ui-grid-row my-0">
-                    30-Mar-2012 to 29-Mar-2013
+                    {{org.start}} to {{org.end}}
                 </div>
                 <div class="ui-grid-row my-0" style="font-weight: bold;">
                     Description :
                 </div>
-                <div class="ui-grid-row my-0">
-                    <li>Lead the organization for various events and ensuring a harmony between members</li>
+                <div class="ui-grid-row my-0" *ngFor="let desc of org.description">
+                    <li>{{desc}}</li>
                 </div>
             </p-card>
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '400px'}">
+    <div class="p-grid ui-fluid" *ngIf="orgExperience">
+        <div class="p-col-4">
+            <label for="vin">Organization Name</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="orgExperience.name" autofocus />
+        </div>
+        <div class="ui-g">
+            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+                <label for="year" class="ui-g-6">Start Date</label>
+                <label for="brand" class="ui-g-6">End Date</label>
+            </div>
+            <div class="row ui-g-12 mb-0">
+                <div class="ui-g-6">
+                    <input pInputText id="year" [(ngModel)]="orgExperience.start" />
+                </div>
+                <div class="ui-g-6">
+                    <input class="ui-g-6" pInputText id="brand" [(ngModel)]="orgExperience.end" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-4">
+            <label for="color">Role</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="orgExperience.role" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Description</label>
+        </div>
+        <div class="p-col-8">
+            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
+            <p-chips [(ngModel)]="orgExperience.description"></p-chips>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

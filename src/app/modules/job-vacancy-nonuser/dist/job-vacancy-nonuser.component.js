@@ -12,8 +12,9 @@ var paginator_config_1 = require("app/configs/paginator.config");
 var construct_table_header_1 = require("app/shared/utils/construct-table-header");
 var api_1 = require("primeng/api");
 var JobVacancyNonuserComponent = /** @class */ (function () {
-    function JobVacancyNonuserComponent(messageService) {
+    function JobVacancyNonuserComponent(messageService, router) {
         this.messageService = messageService;
+        this.router = router;
         this.rowsPerPage = paginator_config_1.Paginator.rowsPerPage;
         this.rowsPerPageOptions = paginator_config_1.Paginator.rowsPerPageOptions;
         this.display = false;
@@ -236,6 +237,9 @@ var JobVacancyNonuserComponent = /** @class */ (function () {
     };
     JobVacancyNonuserComponent.prototype.showDialog = function () {
         this.display = true;
+    };
+    JobVacancyNonuserComponent.prototype.onApply = function () {
+        this.router.navigate(['/home/login']);
     };
     JobVacancyNonuserComponent.prototype.showInfo = function () {
         this.infoApplied = 'APPLIED';

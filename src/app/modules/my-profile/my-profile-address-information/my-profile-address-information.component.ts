@@ -22,6 +22,8 @@ export class MyProfileAddressInformationComponent implements OnInit {
   addressData: addressData[] =[];
   addresData: addressData;
   displayDialog: boolean;
+  newAddress: boolean;
+  selectedAddress: addressData;
   
   
   constructor() { 
@@ -66,8 +68,46 @@ export class MyProfileAddressInformationComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  cloneAddress(a: addressData): addressData {
+    let address : addressData = {
+      addName:'',
+      addLine1:'',
+      addLine2:'',
+      country:'',
+      state:'',
+      city:'',
+      postalCode:'',
+    };
+    for(let prop in a){
+      address[prop]=a[prop]
+    }
+    return address;
+  }
+
   onSave(){
-    this.addressData.push(this.addresData)
+    let addressData = [...this.addressData];
+    if(this.newAddress){
+      addressData.push(this.addresData);
+    } else {
+      // console.log("index : ", this.addressData.indexOf(this.selectedWorkExp));
+      addressData[this.addressData.indexOf(this.selectedAddress)+1]=this.addresData;
+    }
+    this.addressData = addressData;
+    this.addresData = null;
+    this.displayDialog = false;
+  }
+
+  edit(address){
+    this.newAddress = false;
+    this.addresData = this.cloneAddress(address);
+    this.selectedAddress = this.addresData;
+    this.displayDialog = true;    
+  }
+
+  delete(work){
+    let index = this.addressData.indexOf(work);
+    this.addressData = this.addressData.filter((val, i)=> i != index);
+    this.addresData = null;
   }
 
 

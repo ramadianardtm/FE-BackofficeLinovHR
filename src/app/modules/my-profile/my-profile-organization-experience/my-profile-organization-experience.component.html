@@ -8,6 +8,7 @@
                 <p-header class="header-title-card" style="font-size: medium;">
                     {{org.name}}
                     <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-pencil" (click)="edit(org)"></p-button>
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-trash" (click)="delete(org)"></p-button>
                 </p-header>
                 <div class="ui-grid-row my-0">
                     Role : {{org.role}}

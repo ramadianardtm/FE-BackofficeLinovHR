@@ -84,4 +84,10 @@ export class MyProfileProjectExperienceComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  delete(project){
+    let index = this.projectExperiences.indexOf(project);
+    this.projectExperiences = this.projectExperiences.filter((val, i)=> i != index);
+    this.projectExperience = null;
+  }
+
 }

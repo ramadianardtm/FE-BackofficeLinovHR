@@ -84,4 +84,10 @@ export class MyProfileOrganizationExperienceComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  delete(org){
+    let index = this.orgExperiences.indexOf(org);
+    this.orgExperiences = this.orgExperiences.filter((val, i)=> i != index);
+    this.orgExperience = null;
+  }
+
 }

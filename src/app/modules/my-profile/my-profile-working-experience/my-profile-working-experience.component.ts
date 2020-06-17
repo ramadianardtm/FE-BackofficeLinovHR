@@ -96,4 +96,10 @@ export class MyProfileWorkingExperienceComponent implements OnInit {
     this.displayDialog = true;    
   }
 
+  delete(work){
+    let index = this.workExperiences.indexOf(work);
+    this.workExperiences = this.workExperiences.filter((val, i)=> i != index);
+    this.workExperience = null;
+  }
+
 }

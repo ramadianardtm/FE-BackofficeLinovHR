@@ -96,4 +96,10 @@ export class MyProfileReferenceComponent implements OnInit {
     this.displayDialog = true;    
   }
 
+  delete(reference){
+    let index = this.references.indexOf(reference);
+    this.references = this.references.filter((val, i)=> i != index);
+    this.reference = null;
+  }
+
 }

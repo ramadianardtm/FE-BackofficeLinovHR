@@ -88,4 +88,10 @@ export class MyProfileTrainingComponent implements OnInit {
     this.displayDialog = true;    
   }
 
+  delete(training){
+    let index = this.trainings.indexOf(training);
+    this.trainings = this.trainings.filter((val, i)=> i != index);
+    this.training = null;
+  }
+
 }

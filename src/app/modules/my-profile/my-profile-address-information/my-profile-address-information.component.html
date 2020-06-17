@@ -89,13 +89,13 @@
             <label>Addres Line 1</label>
         </div>
         <div class="p-col-8">
-            <input pInputText  [(ngModel)]="addresData.Line1" />
+            <input pInputText  [(ngModel)]="addresData.addLine1" />
         </div>
         <div class="p-col-4">
             <label >Addres Line 2</label>
         </div>
         <div class="p-col-8">
-            <input pInputText [(ngModel)]="addresData.Line2" />
+            <input pInputText [(ngModel)]="addresData.addLine2" />
         </div>
         <div class="p-col-4">
             <label>Country</label>
@@ -126,7 +126,6 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-times" (click)="onDelete()" label="Delete"></button>
             <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
         </div>
     </p-footer>

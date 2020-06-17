@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class JobDetailComponent implements OnInit {
 
   responsiveOptions;
+  showDialog: any;
+
   constructor() {
     this.responsiveOptions = [
       {

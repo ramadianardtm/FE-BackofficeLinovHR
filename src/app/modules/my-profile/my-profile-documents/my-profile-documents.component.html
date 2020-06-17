@@ -19,7 +19,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-doc>
-                    <tr pSelectableRow="doc">
+                    <tr [pSelectableRow]="doc">
                         <td>
                             {{ addr?.valData0 }}
                         </td>

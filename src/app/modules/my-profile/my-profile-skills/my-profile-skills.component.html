@@ -1,6 +1,6 @@
 <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill()"></p-button>
     </p-header>
     <div class="ui-g">
         <div class="ui-g-12 p-0">
@@ -47,40 +47,16 @@
     width: '300px'}">
     <div class="p-grid ui-fluid" *ngIf="skill">
         <div class="p-col-4">
-            <label for="vin">Degree</label>
+            <label for="vin">Skill</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="education.degree" autofocus />
+            <input pInputText id="vin" [(ngModel)]="skill.skill" autofocus />
         </div>
         <div class="p-col-4">
-            <label for="year">Institution</label>
+            <label for="year">Level</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="year" [(ngModel)]="education.institution" />
-        </div>
-        <div class="p-col-4">
-            <label for="brand">Grade Type</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="education.gradeType" />
-        </div>
-        <div class="p-col-4">
-            <label for="brand">Grade</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="education.grade" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Begin Year</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="education.beginYear" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">End Year</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="education.endYear" />
+            <input pInputText id="year" [(ngModel)]="skill.level" />
         </div>
     </div>
     <p-footer>

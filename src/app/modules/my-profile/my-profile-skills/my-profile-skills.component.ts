@@ -18,8 +18,10 @@ export class MyProfileSkillsComponent implements OnInit {
   skills: skill[] = [];
   skill: skill;
   selectedSkill: skill;
+  selectedSkillLevel: any;
   displayDialog: boolean;
   newSkill;
+  skillLevel: any[];
 
   constructor() { 
     this.skillColumns = onConstructTableHeader([

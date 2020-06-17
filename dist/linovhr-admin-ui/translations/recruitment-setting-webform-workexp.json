@@ -1,0 +1,20 @@
+{
+    "data":[
+        {
+            "field":"Position"
+        },
+        {
+            "field":"Company"
+        },
+        {
+            "field":"Location"
+        },
+        {
+            "field":"Responsibility"
+        },
+        {
+            "field":"Reason Leave"
+        }
+        
+    ]
+}

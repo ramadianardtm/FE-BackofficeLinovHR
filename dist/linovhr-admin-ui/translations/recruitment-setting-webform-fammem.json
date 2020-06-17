@@ -1,0 +1,20 @@
+{
+    "data":[
+        {
+            "field":"Name"
+        },
+        {
+            "field":"Relationship"
+        },
+        {
+            "field":"Address"
+        },
+        {
+            "field":"Phone"
+        },
+        {
+            "field":"Gender"
+        }
+        
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "data":[
+        {
+            "nik":"99999999",
+            "candidateName":"John Doe",
+            "email":"jdoe@gmail.com",
+            "mobile":"99999999",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"9 Vacancy",
+            "status":"ON-STAGE"
+        },
+        {
+            "nik":"99999999",
+            "candidateName":"John Doe",
+            "email":"jdoe@gmail.com",
+            "mobile":"99999999",
+            "experience":"9 Years 9 Month",
+            "source":"Mobile ESS",
+            "personType":"Employee",
+            "appliedCount":"5 Vacancy",
+            "status":"ACTIVE"
+        },
+        {
+            "nik":"99999999",
+            "candidateName":"John Doe",
+            "email":"jdoe@gmail.com",
+            "mobile":"99999999",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"10 Vacancy",
+            "status":"BLACKLIST"
+        },
+        {
+            "nik":"99999999",
+            "candidateName":"John Doe",
+            "email":"jdoe@gmail.com",
+            "mobile":"99999999",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"1 Vacancy",
+            "status":"ON-STAGE"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "data":[
+        {
+            "nik":"102942",
+            "candidateName":"Mitchel Pritchett",
+            "email":"mitch@gmail.com",
+            "mobile":"089039048093",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"9 Vacancy",
+            "status":"BLACKLIST"
+        },
+        {
+            "nik":"091238",
+            "candidateName":"Cameron Tucker",
+            "email":"camT@gmail.com",
+            "mobile":"02383232",
+            "experience":"9 Years 9 Month",
+            "source":"Mobile ESS",
+            "personType":"Employee",
+            "appliedCount":"5 Vacancy",
+            "status":"BLACKLIST"
+        },
+        {
+            "nik":"894348",
+            "candidateName":"Many Delgado",
+            "email":"manyD@gmail.com",
+            "mobile":"0183092832",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"10 Vacancy",
+            "status":"BLACKLIST"
+        },
+        {
+            "nik":"893483",
+            "candidateName":"Lily Tucker",
+            "email":"LilT@gmail.com",
+            "mobile":"0340389",
+            "experience":"9 Years 9 Month",
+            "source":"Career Website",
+            "personType":"Public",
+            "appliedCount":"1 Vacancy",
+            "status":"BLACKLIST"
+        }
+    ]
+}

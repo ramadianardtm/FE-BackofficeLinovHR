@@ -20,6 +20,8 @@ export class SavedJobsComponent implements OnInit {
   myAppData: any[];
   cols: any[];
   display: boolean = false;
+  display2: boolean = false;
+  msgs: any;
 
   constructor() {
     this.myAppDetailsColumn = onConstructTableHeader([
@@ -54,6 +56,10 @@ export class SavedJobsComponent implements OnInit {
   
   showDialog() {
     this.display = true;
+  }
+
+  showDialog2() {
+    this.display2 = true;
   }
 
   myFunction(x) {

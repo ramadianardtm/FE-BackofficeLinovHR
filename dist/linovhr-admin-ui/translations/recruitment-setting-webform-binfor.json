@@ -1,0 +1,20 @@
+{
+    "data":[
+        {
+            "field":"NIK"
+        },
+        {
+            "field":"Name"
+        },
+        {
+            "field":"Email"
+        },
+        {
+            "field":"Phone"
+        },
+        {
+            "field":"Nationality"
+        }
+        
+    ]
+}

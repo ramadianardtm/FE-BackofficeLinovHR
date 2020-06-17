@@ -1,26 +1,71 @@
 <p-card header="{{ 'Project Experience' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addProject()"></p-button>
     </p-header>
-    <div class="ui-g">
+    <div class="ui-g" *ngFor="let proj of projectExperiences">
         <div class="ui-g-12 p-0">
             <p-card class="border-title ui-grid-row mt-1">
                 <p-header class="header-title-card" style="font-size: medium;">
-                    Linov HR
+                    {{proj.name}}
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-pencil" (click)="edit(proj)"></p-button>
                 </p-header>
                 <div class="ui-grid-row my-0">
-                    21-Mar-2010 to 15-Jan-2013
+                    {{proj.start}} to {{proj.end}}
                 </div>
                 <div class="ui-grid-row my-0" style="font-weight: bold;">
-                    Project URL : <a href="demo4.linovhr.com">demo4.linovhr.com</a>
+                    Project URL : <a href="demo4.linovhr.com">{{proj.url}}</a>
                 </div>
                 <div class="ui-grid-row my-0" style="font-weight: bold;">
                     Description :
                 </div>
-                <div class="ui-grid-row my-0">
-                    <li>Building an app for human resource department uses.</li>
+                <div class="ui-grid-row my-0" *ngFor="let desc of proj.description">
+                    <li>{{desc}}</li>
                 </div>
             </p-card>
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '400px'}">
+    <div class="p-grid ui-fluid" *ngIf="projectExperience">
+        <div class="p-col-4">
+            <label for="vin">Project Name</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="projectExperience.name" autofocus />
+        </div>
+        <div class="ui-g">
+            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+                <label for="year" class="ui-g-6">Start Date</label>
+                <label for="brand" class="ui-g-6">End Date</label>
+            </div>
+            <div class="row ui-g-12 mb-0">
+                <div class="ui-g-6">
+                    <input pInputText id="year" [(ngModel)]="projectExperience.start" />
+                </div>
+                <div class="ui-g-6">
+                    <input class="ui-g-6" pInputText id="brand" [(ngModel)]="projectExperience.end" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-4">
+            <label for="color">Project URL</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="projectExperience.url" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Description</label>
+        </div>
+        <div class="p-col-8">
+            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
+            <p-chips [(ngModel)]="projectExperience.description"></p-chips>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

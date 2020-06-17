@@ -1,29 +1,93 @@
 <p-card header="{{ 'Training' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addTraining()"></p-button>
     </p-header>
-    <div class="ui-g">
+    <div class="ui-g" *ngFor="let train of trainings">
         <div class="ui-g-12 p-0">
             <p-card class="border-title ui-grid-row mt-1">
                 <p-header class="header-title-card" style="font-size: medium;">
-                    PT. Lawencon Internasional
+                    {{train.institution}}
+                    <p-button type="button" styleClass="ui-button-secondary" class="m-2 pull-right" icon="pi pi-pencil" (click)="edit(train)"></p-button>
                 </p-header>
                 <div class="ui-grid-row my-0" style="font-size: smaller; font-weight: bold;">
-                    Java Bootcamp
+                    {{train.subject}}
                 </div>
                 <div class="ui-grid-row my-0">
-                    15-Jan-2010 to 30-Mar-2010
+                    {{train.start}} to {{train.end}}
                 </div>
                 <div class="ui-grid-row my-0" style="font-weight: bold;">
                     Description :
                 </div>
-                <div class="ui-grid-row my-0">
-                    <li>Learn about programming using Java language and build various projects based on Java</li>
+                <div class="ui-grid-row my-0" *ngFor="let desc of train.description">
+                    <li>{{desc}}</li>
                 </div>
                 <div class="ui-grid-row my-0">
-                    <p style="font-weight: bold;">Documents : <a href="">JavaCertificate.pdf</a>, <a href="">JavaCertificate.doc</a></p>
+                    <p style="font-weight: bold;">Documents : <a href="" *ngFor="let docs of train.documents">{{docs}}&nbsp;&nbsp;</a>
                 </div>
             </p-card>
         </div>
     </div>
 </p-card>
+
+<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+    width: '400px'}">
+    <div class="p-grid ui-fluid" *ngIf="training">
+        <div class="p-col-4">
+            <label for="vin">Occupation</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="vin" [(ngModel)]="workExperience.occupation" autofocus />
+        </div>
+        <div class="ui-g">
+            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+                <label for="year" class="ui-g-6">Start Date</label>
+                <label for="brand" class="ui-g-6">End Date</label>
+            </div>
+            <div class="row ui-g-12 mb-0">
+                <div class="ui-g-6">
+                    <input pInputText id="year" [(ngModel)]="workExperience.start" />
+                </div>
+                <div class="ui-g-6">
+                    <input class="ui-g-6" pInputText id="brand" [(ngModel)]="workExperience.end" />
+                </div>
+            </div>
+        </div>
+        <div class="p-col-4">
+            <label for="color">Company</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="workExperience.company" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Location</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="workExperience.location" />
+        </div>
+        <div class="p-col-4">
+            <label for="color">Responsibility</label>
+        </div>
+        <div class="p-col-8">
+            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
+            <p-chips [(ngModel)]="workExperience.responsibility"></p-chips>
+        </div>
+        <div class="p-col-4">
+            <label for="color">Benefit</label>
+        </div>
+        <div class="p-col-8">
+            <!-- <input pInputText id="color" [(ngModel)]="workExperience.benefit" /> -->
+            <p-chips [(ngModel)]="workExperience.benefit"></p-chips>
+        </div>
+        <div class="p-col-4">
+            <label for="color">Reason Leave</label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="color" [(ngModel)]="workExperience.reason" />
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="pi pi-check" (click)="onSave()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

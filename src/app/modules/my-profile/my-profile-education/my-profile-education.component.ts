@@ -34,7 +34,19 @@ export class MyProfileEducationComponent implements OnInit {
       'Begin Year',
       'End Year',
     ]);
+    
+    this.educations = [
+      {
+        degree:'Bachelor ',
+        institution:'University Of Indonesia ',
+        gradeType:'CGPA 4.0',
+        grade:'3.5',
+        beginYear:'2015',
+        endYear:'2019'
+      }
+    ]
   }
+
 
   ngOnInit() {
   }

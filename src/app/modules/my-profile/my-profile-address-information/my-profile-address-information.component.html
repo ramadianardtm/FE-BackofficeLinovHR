@@ -1,8 +1,8 @@
 <p-card header="{{ 'Address Information' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
-        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addFamilyDialog()"></p-button>
+        <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addAddresInf()"></p-button>
     </p-header>
-    <div class="ui-g">
+    <div class="ui-g" *ngFor="let data of addressData">
         <!-- <div class="ui-g-12 p-0">
             <p-card class="border-title ui-grid-row mt-1">
                 <p-header class="header-title-card" style="font-size: medium;">
@@ -42,46 +42,35 @@
             </p-card>
         </div> -->
         <div class="ui-g-12 p-0">
-        <p-card subheader="Home" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-            <p-header class="header-title-card" style="font-size: medium;">
-                    <div style="text-align: right;">
-                        <button pButton type="button" label="Edit" icon="pi pi-pencil" style="margin-right: .25em"></button>
-                        <button pButton type="button" label="Delete" icon="pi pi-trash" class="ui-button-secondary"></button>
-                    </div>
-            </p-header>
-            <div>
-                <div class="ui-grid-row my-0">
-                    Jln. Kemanggisan No.25A, Kebon Lawas
-                </div>
-                <div class="ui-grid-row my-0">
-                    Jakarta Barat, DKI Jakarta
-                </div>
-                <div class="ui-grid-row my-0">
-                    Indonesia, 11560
-                </div>
-            </div>
+        <p-card [style]="{width: '700px'}" styleClass="ui-card-shadow">
+                        <p-header class="header-title-card" style="font-size: medium;">
+                            {{ data.addName }}
+                            <div>
+                                <p-button type="button" class="m-2 pull-right" icon="pi pi-trash"></p-button>
+                                <p-button type="button" class="m-2 pull-right" icon="pi pi-pencil"></p-button>
+                            </div>
+                        </p-header>
+                        <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.addLine1}}
+                        </div>
+                        <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.addLine2}}
+                        </div>
+                        <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.city}}, {{data.state}}
+                        </div>
+                        <!-- <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.state}}
+                        </div> -->
+                        <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.country}},{{data.postalCode}}
+                        </div>
+                        <!-- <div class="ui-grid-row my-0" style="font-size: small;">
+                            {{data.postalCode}}
+                        </div> -->
         </p-card>
         </div>
         <div>
-        <p-card subheader="Office" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-        <p-header class="header-title-card" style="font-size: medium;">
-            <div style="text-align: right;">
-                <button pButton type="button" label="Edit" icon="pi pi-pencil" style="margin-right: .25em"></button>
-                <button pButton type="button" label="Delete" icon="pi pi-trash" class="ui-button-secondary"></button>
-            </div>
-        </p-header>
-        <div>
-            <div class="ui-grid-row my-0">
-                Wisma Staco, 5th Floor Casablanca Street, Kav 18
-            </div>
-            <div class="ui-grid-row my-0">
-                Jakarta Selatan, DKI Jakarta
-            </div>
-            <div class="ui-grid-row my-0">
-                Indonesia, 12870
-            </div>
-        </div>
-        </p-card>   
         </div>
     
     </div>
@@ -91,46 +80,48 @@
     width: '600px'}">
     <div class="p-grid ui-fluid" *ngIf="addresData">
         <div class="p-col-4">
-            <label for="vin">Addres Name</label>
+            <label >Addres Name</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="addresData.addName" autofocus />
+            <input pInputText [(ngModel)]="addresData.addName"/>
         </div>
         <div class="p-col-4">
-            <label for="year">Addres Line 1</label>
+            <label>Addres Line 1</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="year" [(ngModel)]="addresData.Line1" />
+            <input pInputText  [(ngModel)]="addresData.Line1" />
         </div>
         <div class="p-col-4">
-            <label for="brand">Addres Line 2</label>
+            <label >Addres Line 2</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="addresData.Line2" />
+            <input pInputText [(ngModel)]="addresData.Line2" />
         </div>
         <div class="p-col-4">
-            <label for="color">Country</label>
+            <label>Country</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="addresData.country" />
+            <!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown> -->
+            <!-- <p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p> -->
+            <input pInputText [(ngModel)]="addresData.country" />
         </div>
         <div class="p-col-4">
-            <label for="color">State</label>
+            <label>State</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="addresData.state" />
+            <input pInputText [(ngModel)]="addresData.state" />
         </div>
         <div class="p-col-4">
-            <label for="color">City</label>
+            <label>City</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="addresData.city" />
+            <input pInputText [(ngModel)]="addresData.city" />
         </div>
         <div class="p-col-4">
-            <label for="color">Postal Code</label>
+            <label>Postal Code</label>
         </div>
         <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="addresData.postalCode" />
+            <input pInputText [(ngModel)]="addresData.postalCode" />
         </div>
     </div>
     <p-footer>

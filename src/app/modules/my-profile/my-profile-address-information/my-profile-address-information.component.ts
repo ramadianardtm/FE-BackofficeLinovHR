@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TableColumn } from 'app/shared/models/table.interface';
 import { onConstructTableHeader } from 'app/shared/utils';
 
-export interface addresData{
+export interface addressData{
   addName;
   addLine1;
   addLine2;
@@ -20,29 +19,41 @@ export interface addresData{
 })
 export class MyProfileAddressInformationComponent implements OnInit {
 
-  addressColumns: TableColumn[]
+  addressData: addressData[] =[];
+  addresData: addressData;
   displayDialog: boolean;
-  newAddrs: boolean;
-  addresData: addresData;
+  
   
   constructor() { 
-    this.addressColumns = onConstructTableHeader([
-      'Home',
-      'Residence Type',
-      'Address',
-      'Country',
-      'Province',
-      'City',
-      'Postal Code',
-    ]);
+    this.addressData = [
+      { 
+        addName:'Home',
+        addLine1:'Jalan KH Ramli no 8',
+        addLine2:'',
+        country:'Indonesia',
+        state:'DKI Jakarta',
+        city:'Jakarta Selatan',
+        postalCode:'29998',
+      },
+      { 
+        addName:'Office',
+        addLine1:'Wisma Staco, 5th Floor Casablanca Street',
+        addLine2:'',
+        country:'Indonesia',
+        state:'DKI Jakarta',
+        city:'Jakarta Selatan',
+        postalCode:'11560',
+      }
+    ]
   }
 
   ngOnInit() {
   }
 
-  addFamilyDialog(){
-    this.newAddrs = true;
-    this.addresData = {
+
+  addAddresInf(){
+    this.addresData = 
+    {
       addName:'',
       addLine1:'',
       addLine2:'',
@@ -51,7 +62,12 @@ export class MyProfileAddressInformationComponent implements OnInit {
       city:'',
       postalCode:'',
     };
+
     this.displayDialog = true;
+  }
+
+  onSave(){
+    this.addressData.push(this.addresData)
   }
 
 

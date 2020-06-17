@@ -88,6 +88,7 @@ export class JobVacancyComponent implements OnInit {
   notifiedItems: SelectItem[];
 
   items: any[];
+  selectedDate: string = "Monthly";
   
   constructor(private messageService: MessageService) { 
     this.myAppDetailsColumn = onConstructTableHeader([
@@ -261,7 +262,12 @@ export class JobVacancyComponent implements OnInit {
 
   ngOnInit() {
 }
-selChip:any[] = []
+selChip:any[] = [];
+salaryValues: any[] = [];
+salaryValue(event){
+  console.log("event ", event);
+  this.salaryValues = this.salaryValues.concat( this.selectedSalary);
+}
 
 changeCity(event){
   this.selChip =[]
@@ -378,8 +384,5 @@ this.salaShow = !this.salaShow
   infoApplied5: string = "APPLY";
   infoSaved5: string = "SAVE";
 
-  // changeInfo(){
-  //   this.info = true;
-  // }
 }
 

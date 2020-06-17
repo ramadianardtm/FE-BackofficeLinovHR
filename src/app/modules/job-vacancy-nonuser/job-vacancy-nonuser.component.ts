@@ -89,7 +89,9 @@ export class JobVacancyNonuserComponent implements OnInit {
   selectedNotified: string[] = [];
   notifiedItems: SelectItem[]; 
 
-  constructor(private messageService: MessageService){}
+  selectedDate: string = "Monthly";
+
+  constructor(private messageService: MessageService, private router: Router){}
 
   ngOnInit() {
     this.myAppDetailsColumn = onConstructTableHeader([
@@ -324,6 +326,10 @@ this.salaShow = !this.salaShow
   showDialog() {
     this.display = true;
   }
+  onApply(){
+    this.router.navigate(['/home/login']);
+  }
+
   showInfo() {
     this.infoApplied='APPLIED';
     this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});

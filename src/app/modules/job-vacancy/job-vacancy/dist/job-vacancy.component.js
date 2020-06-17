@@ -40,7 +40,9 @@ var JobVacancyComponent = /** @class */ (function () {
         this.selectedSalary = [];
         this.selectedAlert = [];
         this.selectedNotified = [];
+        this.selectedDate = "Monthly";
         this.selChip = [];
+        this.salaryValues = [];
         this.salaShow = false;
         this.infoApplied = "APPLY";
         this.infoSaved = "SAVE";
@@ -202,6 +204,10 @@ var JobVacancyComponent = /** @class */ (function () {
         }
     }
     JobVacancyComponent.prototype.ngOnInit = function () {
+    };
+    JobVacancyComponent.prototype.salaryValue = function (event) {
+        console.log("event ", event);
+        this.salaryValues = this.salaryValues.concat(this.selectedSalary);
     };
     JobVacancyComponent.prototype.changeCity = function (event) {
         this.selChip = [];

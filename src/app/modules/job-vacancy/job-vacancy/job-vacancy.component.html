@@ -47,16 +47,17 @@
               <div>
                 <div class="row">
                   <div class="col ui-g-1">
-                    <p-dropdown [style]="{width: '2px'}" [options]="salary" [(ngModel)]="selectedSalary"></p-dropdown>
+                    <p-dropdown [style]="{width: '2px'}" [options]="salary" (onChange)="changeCity($event)" [(ngModel)]="selectedSalary" ></p-dropdown>
+                    <!-- {{selectedSalary}} -->
                   </div>
                   <div class="ui-g-11">
-                    <div class="p-field">
+                    <!-- <div class="p-field">
                       <input id="fieldId" type="text" pInputText><br>
-                  </div>
-                  <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
-                    <button type="button" pButton icon="pi pi-save" (click)="salaryValue($event)" 
-                    label="Save" class="ui-button-secondary"></button>
-                  </div>
+                    </div> -->
+                    <!-- <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
+                      <button type="button" pButton icon="pi pi-save" [options]="salary" [(ngModel)]="selectedSalary" (onClick)="changeCity($event)" 
+                      label="Save" class="ui-button-secondary"></button>
+                    </div> -->
                   </div>
                 </div>
               </div>  

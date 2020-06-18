@@ -1,3 +1,9 @@
+<style>
+  .ui-dropdown {
+    min-width: 5em;
+    width: 10px;
+  }
+</style>
 <p-toast></p-toast>
 <div class="ui-g-12 p-2" style="background-color: gainsboro;border-radius: 2%;">
   <div class="container">
@@ -39,13 +45,13 @@
             <div>
               <div class="row" style="font-size: small;">
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
+                  <p-radioButton name="group1" value="Hourly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
                 </div>
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
+                  <p-radioButton name="group1" value="Monthly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
                 </div>
                 <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
+                  <p-radioButton name="group1" value="Yearly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
                 </div> 
               </div>
               <div>
@@ -55,11 +61,12 @@
                     <!-- {{selectedSalary}} -->
                   </div>
                   <div class="ui-g-11">
-                    <!-- <div class="p-field">
-                      <input id="fieldId" type="text" pInputText><br>
-                    </div> -->
+                    <div class="p-field">
+                      <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal" (keyup.enter)="changeCity($event)"><br>
+                    </div>
                     <!-- <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
-                      <button type="button" pButton icon="pi pi-save" [options]="salary" [(ngModel)]="selectedSalary" (onClick)="changeCity($event)" 
+                      <button type="button" pButton icon="pi pi-save" [options]="salary" 
+                      [(ngModel)]="selectedSalary" (onClick)="changeCity($event)" 
                       label="Save" class="ui-button-secondary"></button>
                     </div> -->
                   </div>
@@ -174,7 +181,7 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              style="border-color: black; font-size: 10px; "
                               label="{{infoSaved}}" class="ui-button-secondary" (click)="showSaved()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
@@ -201,7 +208,7 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              style="border-color: black; font-size: 10px; "
                               label="{{infoSaved2}}" class="ui-button-secondary"(click)="showSaved2()"></button>
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
@@ -227,7 +234,7 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              style="border-color: black; font-size: 10px; "
                               label="{{infoSaved3}}" class="ui-button-secondary"(click)="showSaved3()"></button>
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
@@ -253,7 +260,7 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              style="border-color: black; font-size: 10px; "
                               label="{{infoSaved4}}" class="ui-button-secondary"(click)="showSaved4()"></button>
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
@@ -279,7 +286,7 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              style="border-color: black; font-size: 10px; "
                               label="{{infoSaved5}}" class="ui-button-secondary"(click)="showSaved5()"></button>
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "

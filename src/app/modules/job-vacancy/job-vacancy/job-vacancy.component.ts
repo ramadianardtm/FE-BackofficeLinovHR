@@ -23,19 +23,20 @@ export class JobVacancyComponent implements OnInit {
   myAppData: any[];
   cols: any[];
   display: boolean = false;
-  jobVacancy:jobModel[] = [
-    {jobName:'Java Programmer', 
-    jobCompany:'Lawencon', 
-    jobLocation:'Jakarta, Indonesia', 
-    jobSalary:'IDR 5.000.000',
-    jobInfo:'Posted 1 month ago',
-    jobBenefit:'',
-    jobDescription:'',
-    jobQualification:'',
-    jobRequiredSkill:'',
-    jobSummary:'',
-  },
-  ];
+  nominal: number;
+  // jobVacancy:jobModel[] = [
+  //   {jobName:'Java Programmer', 
+  //   jobCompany:'Lawencon', 
+  //   jobLocation:'Jakarta, Indonesia', 
+  //   jobSalary:'IDR 5.000.000',
+  //   jobInfo:'Posted 1 month ago',
+  //   jobBenefit:'',
+  //   jobDescription:'',
+  //   jobQualification:'',
+  //   jobRequiredSkill:'',
+  //   jobSummary:'',
+  // },
+  // ];
 
   // dropdown location
   citys: SelectItem[];
@@ -74,7 +75,7 @@ export class JobVacancyComponent implements OnInit {
 
   // dropdown Salary
   salary: SelectItem[];
-  selectedSalary: string[] = [];
+  selectedSalary:any = ["IDR"]
   salaryItems: SelectItem[];
 
   // drpodown Receive Alert
@@ -250,11 +251,11 @@ export class JobVacancyComponent implements OnInit {
     }
 
     this.salary = [
-      {label: 'IDR 5.000.000', value: [
-        '5.000.000'
+      {label: 'IDR', value: [
+        'IDR'
       ]},
-      {label: 'USD $5000', value: [
-        'USD $5000'
+      {label: 'USD', value: [
+        'USD'
       ] },
     ];
 
@@ -275,6 +276,7 @@ changeCity(event){
   console.log('employment', this.selectedEmployement);
   console.log('salary ', this.selectedSalary);
   
+  console.log("asas",this.selectedSalary);
   
   this.selChip = this.selChip.concat(this.selectedCity,
     this.selectedCompany,
@@ -282,12 +284,16 @@ changeCity(event){
     this.selectedEmployement,
     this.selectedJobFunction,
     this.selectedJobLevel,
-    this.selectedJobType,
-    this.selectedSalary)
+    this.selectedJobType)
+    for(let i of this.selectedSalary){
+      let b = this.selectedDate  + "|" + i + "|" + this.nominal
+      this.selChip.push(b)
+    }
 }
 
+
 delete(i){
-  let event = this.selChip[i]
+  let event:string = this.selChip[i]
   console.log("event ", i);
   
   this.selectedCity.splice(this.selectedCity.indexOf(event),1)
@@ -297,7 +303,6 @@ delete(i){
   this.selectedJobFunction.splice(this.selectedJobFunction.indexOf(event),1)
   this.selectedJobLevel.splice(this.selectedJobLevel.indexOf(event),1)
   this.selectedJobType.splice(this.selectedJobType.indexOf(event),1)
-  this.selectedSalary.splice(this.selectedSalary.indexOf(event),1)
 
   this.selChip.splice(i,1)
 }

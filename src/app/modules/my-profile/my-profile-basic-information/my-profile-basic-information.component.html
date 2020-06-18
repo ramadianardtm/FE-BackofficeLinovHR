@@ -1,8 +1,32 @@
+<style>
+    /* #disabled-input {
+        border: none;
+        opacity: 1;
+    } */
+    .ui-widget:disabled{
+        border: none;
+        opacity: 1;
+    }
+    .ui-widget:enabled{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+</style>
 <p-card
             header="{{ 'Basic Information' }}"
             styleClass="ui-card--workforce mb-3"
             class="border-title"
         >
+        <p-header class="pull-right">
+            <div *ngIf="editMode; else onEdit">
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil" (click)="edit(data)"></p-button>
+            </div>
+            <ng-template #onEdit>
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-check" (click)="edit(data)"></p-button>
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-undo" (click)="edit(data)"></p-button>
+            </ng-template>
+        </p-header>
             <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
                 <div class="ui-grid-row my-1">
                     <div class="ui-grid-col-12 p-0">
@@ -12,9 +36,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                John Doe
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.name"/>
                         </div>
                     </div>
                 </div>
@@ -26,9 +48,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                20200230001
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.nik"/>
                         </div>
                     </div>
                 </div>
@@ -40,9 +60,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                john.doe@gmail.com
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.email"/>
                         </div>
                     </div>
                 </div>
@@ -54,9 +72,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                022-33132341
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.phone"/>
                         </div>
                     </div>
                 </div>
@@ -68,9 +84,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Indonesia
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.nationality"/>
                         </div>
                     </div>
                 </div>
@@ -82,9 +96,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Surabaya
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.birthPlace"/>
                         </div>
                     </div>
                 </div>
@@ -96,9 +108,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                23-JUN-1988
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.birthDate"/>
                         </div>
                     </div>
                 </div>
@@ -110,9 +120,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Male
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.gender"/>
                         </div>
                     </div>
                 </div>
@@ -124,9 +132,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Married
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.maritalStatus"/>
                         </div>
                     </div>
                 </div>
@@ -138,9 +144,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Islam
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.religion"/>
                         </div>
                     </div>
                 </div>
@@ -152,9 +156,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                A
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.bloodType"/>
                         </div>
                     </div>
                 </div>
@@ -174,7 +176,7 @@
                             <div class="ui-grid-row my-1">
                                 <span class="border-none pad-4">
                                     <a href="">
-                                        linkedin.com/john.doe
+                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[0]"/>
                                     </a>
                                 </span>    
                             </div>
@@ -188,7 +190,7 @@
                             <div class="ui-grid-row my-1">
                                 <span class="border-none pad-4">
                                     <a href="">
-                                        facebook.com/john.doe
+                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[1]"/>
                                     </a>
                                 </span>    
                             </div>
@@ -202,7 +204,7 @@
                             <div class="ui-grid-row my-1">
                                 <span class="border-none pad-4">
                                     <a href="">
-                                        instagram.com/john.doe
+                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[2]"/>
                                     </a>
                                 </span>    
                             </div>
@@ -218,7 +220,7 @@
                         </div>
                         <div class="ui-grid-col-10">
                             <span class="border-none pad-4">
-                                Swimming
+                                <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.hobbies"/>
                             </span>
                         </div>
                     </div>
@@ -231,9 +233,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Visionary, Target-Based
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.strength"/>
                         </div>
                     </div>
                 </div>
@@ -245,9 +245,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                Pressure
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.weakness"/>
                         </div>
                     </div>
                 </div>
@@ -259,9 +257,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                4 Years
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.experience"/>
                         </div>
                     </div>
                 </div>
@@ -273,9 +269,7 @@
                             </label>
                         </div>
                         <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                IDR 6,000,000
-                            </span>
+                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.salaryExpect"/>
                         </div>
                     </div>
                 </div>

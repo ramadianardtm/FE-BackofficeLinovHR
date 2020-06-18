@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-<div class="ui-g-12" style="background-color: gainsboro;border-radius: 2%;">
+<div class="ui-g-12 p-2" style="background-color: gainsboro;border-radius: 2%;">
   <div class="container">
     <div class="img-fluid"> 
       <div class="input-group mb-3">
@@ -12,24 +12,28 @@
 
     <div class="detail-job ui-g-12 p-0">
       <div class="ui-g-12 p-0">
-        <p-multiSelect [options]="citys" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
-        &nbsp;
-        <!-- <p-multiSelect [options]="company" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
-        &nbsp; -->
-        <div class="row" style="margin: 1px; margin-top: 12px;">
-          <p-splitButton class="split-color split-font split-height split-height2 drop-height align-left font-color icon-color" 
-          [style]="{width: '103px'}" styleClass="ui-button-info" label="Salary" 
-          (onDropdownClick)="salaryClick()" [model]="items">
+        <div class="ui-g-1" style="width: 10%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="citys" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 15%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 15%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect styleClass="ui-multiselect-jobvacancy" [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
+        </div>
+        <div class="ui-g-1" style="width: 10%;">
+          <p-splitButton class="split-color split-font split-height split-height2 drop-height align-left" 
+          [style]="{width: '103px'}" styleClass="ui-button" label="Salary" 
+          (onDropdownClick)="salaryClick()" [model]="items" >
           </p-splitButton>
           <p-card appendTo="body" [style]="{width: '260px'}" *ngIf="salaShow">
             <div>
@@ -63,6 +67,11 @@
               </div>  
             </div>
           </p-card>
+        </div>
+        <!-- <p-multiSelect [options]="company" (onChange)="changeCity(event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
+        &nbsp; -->
+        <div class="row" style="margin: 1px; margin-top: 12px;">
+          
         </div>
       </div>
       <div class="ui-g-12">
@@ -119,7 +128,7 @@
           <div class="col-12">
               <span><small>1-10 of 33 job vacancy matches</small></span>
               <span style="float:right;">
-                <span style="color: rgb(37, 51, 241);">
+                <span style="color: rgb(37, 241, 48);">
                     <a><small>Applied Date&nbsp;</small><i class="fa fa-sort-amount-asc"></i></a>
                 </span>
                 <span>

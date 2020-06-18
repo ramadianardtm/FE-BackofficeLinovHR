@@ -1,3 +1,10 @@
+<style>
+    .ui-dropdown {
+        min-width: 12.5em;
+        width: 100%;
+    }
+</style>
+
 <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
         <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill()"></p-button>
@@ -16,24 +23,24 @@
                         <!-- <th *ngFor="let column of columns">
                             {{ column.label }}
                         </th> -->
-                        <th>
+                        <th style="width: 10%;">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th>
+                        <th style="text-align: center;">
                             Skill
                         </th>
-                        <th>
+                        <th style="text-align: center;">
                             Level
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-skill>
                     <tr>
-                        <td>
-                            <p-checkbox></p-checkbox>
+                        <td style="width: 10%;">
+                            <p-tableCheckbox [value]="skill"></p-tableCheckbox>
                         </td>
                         <td>
-                            <p-dropdown appendTo="body" [options]="skillList" [(ngModel)]="skill.skill" placeholder="Select a Skill"></p-dropdown>
+                            <p-dropdown style="width: 100%;" appendTo="body" [options]="skillList" [(ngModel)]="skill.skill" placeholder="Select a Skill"></p-dropdown>
                         </td>
                         <td>
                             <p-dropdown appendTo="body" [options]="skillLevel" [(ngModel)]="skill.level" placeholder="Select Level"></p-dropdown>

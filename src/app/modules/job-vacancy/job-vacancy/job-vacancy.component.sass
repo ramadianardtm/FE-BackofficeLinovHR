@@ -44,9 +44,38 @@ body
         color: black
         min-width: 3.5em
 
+.multiselect-jobvacancy
+        border: none
+        background: transparent
 
 .fontSize
         font-size: 10px
+
+:host ::ng-deep
+        .ui-multiselect-jobvacancy
+                background: transparent
+                border: none
+                .ui-multiselect-trigger
+                        background: transparent
+                        border: none
+
+:host ::ng-deep
+        .ui-button
+                background: transparent
+                border: none
+                .ui-button:trigger
+                        background: transparent
+                        border: none
+                .ui-button:enabled:hover
+                        background: transparent
+                        border: none
+                        
+                .ui-button:enabled:active
+                        background: transparent
+                        border: none
+                        
+                .ui-button-text
+                        font-size: 14px
 
 \:host ::ng-deep
     .align-left .ui-menu ul

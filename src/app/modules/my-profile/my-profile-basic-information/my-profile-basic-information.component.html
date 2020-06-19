@@ -20,11 +20,11 @@
         >
         <p-header class="pull-right">
             <div *ngIf="editMode; else onEdit">
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil" (click)="edit(data)"></p-button>
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil" (click)="edit()"></p-button>
             </div>
             <ng-template #onEdit>
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-check" (click)="edit(data)"></p-button>
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-undo" (click)="edit(data)"></p-button>
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-check" (click)="edit()"></p-button>
+                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-undo" (click)="edit()"></p-button>
             </ng-template>
         </p-header>
             <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">

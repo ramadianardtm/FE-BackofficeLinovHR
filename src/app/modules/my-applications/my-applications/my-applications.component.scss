@@ -13,14 +13,16 @@
     color: black; /* White text */
     padding: -1px 0px; /* Some padding */
     font-size: 13px; /* Set a font size */
-    border-radius: 2px;
+    border-radius: 6px;
     cursor: pointer; /* Mouse pointer on hover */
   }
   
   /* Darker background on mouse-over */
-.btn-myapp:hover {
-    background-color:  #007bffe5;
-  }
+// .btn-myapp:hover {
+    // background-color:  #007bffe5;
+    // border-color: #007bffe5;
+    // box-shadow: #007bffe5;
+//   }
 
 //garis putus-putus
 hr.new2 {

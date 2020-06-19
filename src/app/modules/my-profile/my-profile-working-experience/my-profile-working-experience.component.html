@@ -33,21 +33,19 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Working Experience" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '400px'}">
     <div class="p-grid ui-fluid" *ngIf="workExperience">
-        <div class="p-col-4">
-            <label for="vin">Occupation</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="workExperience.occupation" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="occupation" class="mb-0">Occupation</label>
+            <input pInputText id="occupation" [(ngModel)]="workExperience.occupation" autofocus />
         </div>
         <div class="ui-g">
-            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+            <div class="row ui-g-12 mb-0" style="height: 4vh; width: 110%;">
                 <label for="year" class="ui-g-6">Start Date</label>
                 <label for="brand" class="ui-g-6">End Date</label>
             </div>
-            <div class="row ui-g-12 mb-0">
+            <div class="row ui-g-12 mb-0" style="width: 110%;">
                 <div class="ui-g-6">
                     <input pInputText id="year" [(ngModel)]="workExperience.start" />
                 </div>
@@ -56,37 +54,25 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-4">
-            <label for="color">Company</label>
+        <div class="p-col-4 mb-2">
+            <label for="company" class="mb-0">Company</label>
+            <input pInputText id="company" [(ngModel)]="workExperience.company" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="workExperience.company" />
+        <div class="p-col-4 mb-2">
+            <label for="location" class="mb-0">Location</label>
+            <input pInputText id="location" [(ngModel)]="workExperience.location" />
         </div>
-        <div class="p-col-4">
-            <label for="color">Location</label>
+        <div class="p-col-4 mb-2">
+            <label for="responsibility" class="mb-0">Responsibility</label>
+            <p-chips id="responsibility" [(ngModel)]="workExperience.responsibility"></p-chips>
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="workExperience.location" />
+        <div class="p-col-4 mb-2">
+            <label for="benefit" class="mb-0">Benefit</label>
+            <p-chips id="benefit" [(ngModel)]="workExperience.benefit"></p-chips>
         </div>
-        <div class="p-col-4">
-            <label for="color">Responsibility</label>
-        </div>
-        <div class="p-col-8">
-            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
-            <p-chips [(ngModel)]="workExperience.responsibility"></p-chips>
-        </div>
-        <div class="p-col-4">
-            <label for="color">Benefit</label>
-        </div>
-        <div class="p-col-8">
-            <!-- <input pInputText id="color" [(ngModel)]="workExperience.benefit" /> -->
-            <p-chips [(ngModel)]="workExperience.benefit"></p-chips>
-        </div>
-        <div class="p-col-4">
-            <label for="color">Reason Leave</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="workExperience.reason" />
+        <div class="p-col-4 mb-2">
+            <label for="reason" class="mb-0">Reason Leave</label>
+            <input pInputText id="reason" [(ngModel)]="workExperience.reason" />
         </div>
     </div>
     <p-footer>

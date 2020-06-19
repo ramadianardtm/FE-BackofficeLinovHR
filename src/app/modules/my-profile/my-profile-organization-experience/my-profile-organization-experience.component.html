@@ -27,21 +27,19 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Organization Experience" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '400px'}">
     <div class="p-grid ui-fluid" *ngIf="orgExperience">
-        <div class="p-col-4">
-            <label for="vin">Organization Name</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="orgExperience.name" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="name" class="mb-0">Organization Name</label>
+            <input pInputText id="name" [(ngModel)]="orgExperience.name" autofocus />
         </div>
         <div class="ui-g">
-            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+            <div class="row ui-g-12 mb-0" style="height: 4vh; width: 110%;">
                 <label for="year" class="ui-g-6">Start Date</label>
                 <label for="brand" class="ui-g-6">End Date</label>
             </div>
-            <div class="row ui-g-12 mb-0">
+            <div class="row ui-g-12 mb-0" style="width: 110%;">
                 <div class="ui-g-6">
                     <input pInputText id="year" [(ngModel)]="orgExperience.start" />
                 </div>
@@ -50,18 +48,13 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-4">
-            <label for="color">Role</label>
+        <div class="p-col-4 mb-2">
+            <label for="role" class="mb-0">Role</label>
+            <input pInputText id="role" [(ngModel)]="orgExperience.role" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="orgExperience.role" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Description</label>
-        </div>
-        <div class="p-col-8">
-            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
-            <p-chips [(ngModel)]="orgExperience.description"></p-chips>
+        <div class="p-col-4 mb-2">
+            <label for="description" class="mb-0">Description</label>
+            <p-chips id="description" [(ngModel)]="orgExperience.description"></p-chips>
         </div>
     </div>
     <p-footer>

@@ -20,9 +20,10 @@
   }
 
 /* Style buttons */
-.btn {
+.btn-myapplication{
     background-color: white; /* Blue background */
     border: 1px solid black; /* Remove borders */
+    border-radius: 6px;
     color: black; /* White text */
     padding: 5px 18px; /* Some padding */
     font-size: 10px; /* Set a font size */
@@ -32,6 +33,7 @@
   .btn:hover {
     background-color:  #007bffe5;
   }
+
 
 .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
     border: 1px solid #b3c2ca;

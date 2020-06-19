@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { jobModel } from '../jobVacancyModel';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-job-vacancy-detail',
@@ -9,6 +10,8 @@ import { jobModel } from '../jobVacancyModel';
 export class JobVacancyDetailComponent implements OnInit {
 
   cars: any[];
+  saveStatus: boolean;
+  applyStatus: boolean;
 
   responsiveOptions;
   jobVacancy:jobModel[] = [
@@ -25,7 +28,7 @@ export class JobVacancyDetailComponent implements OnInit {
   },
 ];
 
-  constructor() { 
+  constructor(private messageService: MessageService) { 
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -46,6 +49,21 @@ export class JobVacancyDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onSave(){
+    if(this.saveStatus){
+      this.saveStatus = false;
+      this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Unsaved'});
+    } else {
+      this.saveStatus = true;
+      this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved!'});
+    }
+  }
+
+  onApply(){
+    this.applyStatus = true;
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Apply Success!'});
   }
 
 }

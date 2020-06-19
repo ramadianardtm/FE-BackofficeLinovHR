@@ -56,44 +56,32 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Document Input" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '300px'}">
     <div class="p-grid ui-fluid" *ngIf="document">
-        <div class="p-col-4">
-            <label for="vin">Type</label>
+        <div class="p-col-4 mb-2">
+            <label for="type" class="mb-0">Type</label>
+            <input pInputText id="type" [(ngModel)]="document.type" autofocus />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="document.type" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="name" class="mb-0">Name</label>
+            <input pInputText id="name" [(ngModel)]="document.name" />
         </div>
-        <div class="p-col-4">
-            <label for="year">Name</label>
+        <div class="p-col-4 mb-2">
+            <label for="expDate" class="mb-0">Expire Date</label>
+            <input pInputText id="expDate" [(ngModel)]="document.exp" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="year" [(ngModel)]="document.name" />
+        <div class="p-col-4 mb-2">
+            <label for="document" class="mb-0">Document</label>
+            <input pInputText id="document" [(ngModel)]="document.document" />
         </div>
-        <div class="p-col-4">
-            <label for="brand">Expire Date</label>
+        <div class="p-col-4 mb-2">
+            <label for="size" class="mb-0">Size</label>
+            <input pInputText id="size" [(ngModel)]="document.size" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="document.exp" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Document</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="document.document" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Size</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="document.size" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Upload Time</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="document.uploadTime" />
+        <div class="p-col-4 mb-2">
+            <label for="uploadTime" class="mb-0">Upload Time</label>
+            <input pInputText id="uploadTime" [(ngModel)]="document.uploadTime" />
         </div>
     </div>
     <p-footer>

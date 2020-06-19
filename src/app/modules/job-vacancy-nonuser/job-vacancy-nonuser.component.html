@@ -4,62 +4,80 @@
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search for Job Vacancy Title, Company or Location " aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
+          <button pButton  class="ui-button-primary" icon="pi pi-search" type="button" label="&nbsp;Search"></button>
         </div>
       </div>
     </div>
 
     <div class="detail-job ui-g-12 p-0">
       <div class="ui-g-12 p-0">
-        <p-multiSelect [options]="citys" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCity" [defaultLabel]="'Location'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
-        &nbsp;
-        <p-multiSelect [options]="company" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedCompany" [defaultLabel]="'Company'"></p-multiSelect>
-        &nbsp;
-        <div class="row" style="margin: 1px; margin-top: 12px;">
-          <p-splitButton class="split-color split-font split-height split-height2 drop-height align-left font-color icon-color" 
-          [style]="{width: '103px'}" styleClass="ui-button-info" label="Salary" 
-          (onDropdownClick)="salaryClick()" [model]="items">
-          </p-splitButton>
-          <p-card [style]="{width: '260px'}" *ngIf="salaShow">
-            <div>
-              <div class="row" style="font-size: small;">
-                <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
-                </div>
-                <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
-                </div>
-                <div class="col ui-g-4">
-                  <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
-                </div> 
-              </div>
-              <div>
-                <div class="row">
-                  <div class="col ui-g-1">
-                    <p-dropdown [style]="{width: '2px'}" [options]="salary" [(ngModel)]="selectedSalary"></p-dropdown>
-                  </div>
-                  <div class="ui-g-11">
-                    <div class="p-field">
-                      <input id="fieldId" type="text" pInputText><br>
-                  </div>
-                  <div class="pull-right" style="margin-top: 15px; margin-bottom: 0;">
-                    <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
-                  </div>
-                  </div>
-                </div>
-              </div>  
+        <div class="ui-g-1" style="width: 10%;" #locationCombo>
+          <p-multiSelect styleClass="ui-multiselect-location" (onClick)="location.toggle($event)" [displaySelectedLabel]=false [defaultLabel]="'Location'"></p-multiSelect>
+          <p-overlayPanel #location appendTo="locationCombo" [style]="{width: '260px', 'z-index': '3'}">
+            <div class="row mb-2" style="font-size: small; margin-left: 1%;">
+              <p-autoComplete [style]="{'z-index':'5'}" inputStyleClass="inputLocation" [(ngModel)]="selectedCity" [suggestions]="filteredCity" (completeMethod)="filterCity($event)" placeholder="Enter a Location"></p-autoComplete>
             </div>
-          </p-card>
+            <div class="row mb-2" style="margin-left: 1%;">
+              <p style="font-size: small; font-weight: bold;">TOP LOCATION</p>
+            </div>
+            <div class="row mb-2" *ngFor="let city of citys" style="font-size: small; margin-left: 1%;">
+              <p-checkbox name="location" [(ngModel)]="selectedCity" value="{{city.value}}" label="{{city.label}}" (onChange)="changeCity($event)"></p-checkbox>
+            </div>
+            <hr style="border-top: 1px solid lightslategrey;">
+            <div class="row mt-2 mb-2" *ngFor="let style of style" style="font-size: small; margin-left: 1%;">
+              <p-checkbox name="work-style" [(ngModel)]="selectedCity" value="{{style.value}}" label="{{style.label}}" (onChange)="changeCity($event)"></p-checkbox>
+            </div>
+            <div class="row mt-3">
+              <button pButton class="mx-auto" style="border:none; background: transparent; color: black;" type="button" icon="pi pi-angle-right" label="VIEW ALL LOCATION" iconPos="right"></button>
+            </div>
+          </p-overlayPanel>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 15%;">
+          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 12%;">
+          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
+        </div>
+        <div class="ui-g-2" style="width: 10%;">
+          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
+        </div>
+        <div class="ui-g-1" style="width: 10%;" #salaryCombo>
+          <p-multiSelect styleClass="ui-multiselect-salary" (onClick)="op.toggle($event)" [displaySelectedLabel]=false [defaultLabel]="'Salary'"></p-multiSelect>
+          <p-overlayPanel #op appendTo="salaryCombo" [style]="{width: '260px', 'z-index': '3'}">
+            <div class="row" style="font-size: small;">
+              <div class="col ui-g-4">
+                <p-radioButton name="group1" value="Hourly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
+              </div>
+              <div class="col ui-g-4">
+                <p-radioButton name="group1" value="Monthly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
+              </div>
+              <div class="col ui-g-4">
+                <p-radioButton name="group1" value="Yearly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col ui-g-3">
+                <p-dropdown styleClass="ui-dropdown-salary" [style]="{width: '2px'}" [options]="salary" (onChange)="changeCity($event)" [(ngModel)]="selectedSalary" ></p-dropdown>
+                <!-- {{selectedSalary}} -->
+              </div>
+              <div class="ui-g-9">
+                <div class="p-field">
+                  <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal" (keyup.enter)="changeCity($event)"><br>
+                </div>
+              </div>
+            </div> 
+            <div class="row">
+              <div class="ui-g-12">
+                <button class="ui-button-secondary pull-right" style="background-color: gainsboro;" pButton type="button" label="Apply" (click)="changeCity($event)"></button>
+              </div>
+            </div>
+          </p-overlayPanel>
         </div>
       </div>
       <div class="ui-g-12">
@@ -116,7 +134,7 @@
           <div class="col-12">
               <span><small>1-10 of 33 job vacancy matches</small></span>
               <span style="float:right;">
-                <span style="color: rgb(37, 51, 241);">
+                <span style="color: rgb(37, 241, 48);">
                     <a><small>Applied Date&nbsp;</small><i class="fa fa-sort-amount-asc"></i></a>
                 </span>
                 <span>
@@ -162,12 +180,12 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; "
-                              label="{{infoSaved}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
-                              label="{{infoApplied}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
@@ -189,12 +207,12 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; "
-                              label="{{infoSaved2}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
-                              label="{{infoApplied2}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
@@ -216,12 +234,12 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; "
-                              label="{{infoSaved3}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
-                              label="{{infoApplied3}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
@@ -243,12 +261,12 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; "
-                              label="{{infoSaved4}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
-                              label="{{infoApplied4}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>
@@ -270,12 +288,12 @@
                               <br><span><small>appy before 25 feb</small></span>
                               <br><br>
                               <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; "
-                              label="{{infoSaved5}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
 
                               <button type="button" pButton icon="pi pi-check" 
                               style="border-color: black; font-size: 10px; "
-                              label="{{infoApplied5}}" class="ui-button-secondary" (click)="onApply()"></button>
+                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
                           </span>
                       </td>
                     </tr>

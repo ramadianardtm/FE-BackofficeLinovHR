@@ -113,55 +113,39 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Reference" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '400px'}">
     <div class="p-grid ui-fluid" *ngIf="reference">
-        <div class="p-col-4">
-            <label for="vin">Reference Type</label>
+        <div class="p-col-4 mb-2">
+            <label for="type" class="mb-0">Reference Type</label>
+            <input pInputText id="type" [(ngModel)]="reference.reference" autofocus />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="reference.reference" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="name" class="mb-0">Name</label>
+            <input pInputText id="name" [(ngModel)]="reference.name" />
         </div>
-        <div class="p-col-4">
-            <label for="color">Name</label>
+        <div class="p-col-4 mb-2">
+            <label for="relationship" class="mb-0">Relationship</label>
+            <input pInputText id="relationship" [(ngModel)]="reference.relationship" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.name" />
+        <div class="p-col-4 mb-2">
+            <label for="occupation">Occupation</label>
+            <input pInputText id="occupation" [(ngModel)]="reference.occupation" />
         </div>
-        <div class="p-col-4">
-            <label for="color">Relationship</label>
+        <div class="p-col-4 mb-2">
+            <label for="phone" class="mb-0">Phone</label>
+            <input pInputText id="phone" [(ngModel)]="reference.phone" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.relationship" />
+        <div class="p-col-4 mb-2">
+            <label for="email" class="mb-0">Email</label>
+            <input pInputText id="email" [(ngModel)]="reference.email" />
         </div>
-        <div class="p-col-4">
-            <label for="color">Occupation</label>
+        <div class="p-col-4 mb-2">
+            <label for="company" class="mb-0">Company</label>
+            <input pInputText id="company" [(ngModel)]="reference.company" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.occupation" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Phone</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.phone" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Email</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.email" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Company</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="reference.company" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Description</label>
-        </div>
-        <div class="p-col-8">
+        <div class="p-col-4 mb-2">
+            <label for="description" class="mb-0">Description</label>
             <input pInputText id="color" [(ngModel)]="reference.description" />
         </div>
     </div>

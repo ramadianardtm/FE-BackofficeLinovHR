@@ -50,57 +50,33 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Family Queries" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '300px'}">
     <div class="p-grid ui-fluid" *ngIf="family">
-        <div class="p-col-4">
-            <label for="vin">Name</label>
+        <div class="p-col-4 mb-2">
+            <label for="name" class="mb-0">Name</label>
+            <input pInputText id="name" [(ngModel)]="family.name" autofocus />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="family.name" autofocus />
-        </div>
-        <div class="p-col-4">
-            <label for="year">Relationship</label>
-        </div>
-        <div class="p-col-8">
+        <div class="p-col-4 mb-2">
+            <label for="year" class="mb-0">Relationship</label>
             <input pInputText id="year" [(ngModel)]="family.relationship" />
         </div>
-        <div class="p-col-4">
-            <label for="brand">Gender</label>
+        <div class="p-col-4 mb-2">
+            <label for="gender" class="mb-0">Gender</label>
+            <input pInputText id="gender" [(ngModel)]="family.gender" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="family.gender" />
+        <div class="p-col-4 mb-2">
+            <label for="dob" class="mb-0">Date of Birth</label>
+            <input pInputText id="dob" [(ngModel)]="family.birthdate" />
         </div>
-        <!-- <div class="p-col-4">
-            <label for="color">Phone</label>
+        <div class="p-col-4 mb-2">
+            <label for="education" class="mb-0">Education</label>
+            <input pInputText id="education" [(ngModel)]="family.education" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="family.phone" />
-        </div> -->
-        <div class="p-col-4">
-            <label for="color">Date of Birth</label>
+        <div class="p-col-4 mb-2">
+            <label for="occupation" class="mb-0">Occupation</label>
+            <input pInputText id="occupation" [(ngModel)]="family.occupation" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="family.birthdate" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Education</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="family.education" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Occupation</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="family.occupation" />
-        </div>
-        <!-- <div class="p-col-4">
-            <label for="color">Note</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="family.note" />
-        </div> -->
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">

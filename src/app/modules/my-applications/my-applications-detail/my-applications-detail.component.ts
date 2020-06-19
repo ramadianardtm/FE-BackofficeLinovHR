@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-my-applications-detail',
@@ -8,10 +9,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class MyApplicationsDetailComponent implements OnInit {
   cars: any[];
+  saveStatus: boolean;
 
     responsiveOptions;
 
-    constructor() { 
+    constructor(private messageService: MessageService) { 
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -35,6 +37,16 @@ export class MyApplicationsDetailComponent implements OnInit {
         // this.carService.getCarsSmall().then(cars => {
         //     this.cars = cars
         // });
+    }
+
+    onSave(){
+        if(this.saveStatus){
+            this.saveStatus = false;
+            this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Unsaved'});
+        } else {
+            this.saveStatus = true;
+            this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+        }
     }
 
 }

@@ -3,9 +3,71 @@
         min-width: 12.5em;
         width: 100%;
     }
+
+    .ui-autocomplete {
+        border: none;
+    }
+
+    .ui-autocomplete > .ui-autocomplete-input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    body > .ui-autocomplete > .ui-autocomplete-input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
 </style>
 
 <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+    <p-header>
+        <div *ngIf="editModeHeader; else viewSkillHeader">
+            <p-button type="button" class="m-2 pull-right" label="Save" icon="pi pi-save" (click)="onSave()"></p-button>
+        </div>
+        <ng-template #viewSkillHeader>
+            <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="edit()"></p-button>
+        </ng-template>
+    </p-header>
+    <div *ngIf="editMode; else viewSkill">
+        <div class="chip" *ngFor="let item of skills; let index">
+            <label style="vertical-align: middle; padding-bottom: 8px;"> {{item}} </label>
+            <button class="btn" style="margin-top: -15px;" (click)="delete(index)"><i class="fa fa-times"></i></button>
+        </div>
+        <hr>
+        <div class="row mt-3" style="margin-left: 0%;">
+            <div style="margin-right: 2%;">
+                <p-autoComplete inputStyleClass="inputSkill" [(ngModel)]="selectedSkillList" [suggestions]="filteredSkillList" (completeMethod)="filterSkillList($event)" placeholder="Input a skill"></p-autoComplete>
+                <!-- <p-dropdown [options]="skillList" [(ngModel)]="selectedSkillList" placeholder="Select a Skill"></p-dropdown> -->
+            </div>
+            <div style="margin-right: 2%;">
+                <p-dropdown [options]="skillLevel" [(ngModel)]="selectedSkillLevel" placeholder="Select Level"></p-dropdown>
+            </div>
+            <div>
+                <button pButton type="button" (click)="addSkill()" style="background: transparent; border: none; color: black;" icon="pi pi-angle-double-right"></button>
+            </div>
+            <div style="position: absolute; right: 2%;">
+                <button pButton style="background:transparent; color: black; border-color: black;" label="Count: {{skillCount}}"></button>
+            </div>
+        </div>
+    </div>
+    <ng-template #viewSkill>
+        <div class="chip-view" *ngFor="let item of skills; let index">
+            <label style="vertical-align: middle; padding-bottom: 8px;"> {{item}} </label>
+            <!-- <button class="btn" style="margin-top: -15px;" (click)="delete(index)"><i class="fa fa-times"></i></button> -->
+        </div>
+        <hr>
+        <div>
+            <button pButton style="background:transparent; color: black; border-color: black;" label="Count: {{skillCount}}"></button>
+        </div>
+    </ng-template>
+    <p-footer *ngIf="editModeFooter">
+        
+    </p-footer>
+</p-card>
+
+<!-- <p-card header="{{ 'Skills' }}" styleClass="ui-card--workforce mb-3" class="border-title">
     <p-header>
         <p-button type="button" class="m-2 pull-right" label="Add" icon="pi pi-plus" (click)="addSkill()"></p-button>
     </p-header>
@@ -13,16 +75,8 @@
         <div class="ui-g-12 p-0">
             <p-table [columns]="skillColumns" [value]="skills" [scrollable]="true"
                 [style]="{ minWidth: '100%' }">
-                  <!-- <ng-template pTemplate="colgroup" let-columns>
-                    <colgroup>
-                        <col *ngFor="let col of columns" style="width: 250px" />
-                    </colgroup>
-                </ng-template> -->
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <!-- <th *ngFor="let column of columns">
-                            {{ column.label }}
-                        </th> -->
                         <th style="width: 10%;">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
@@ -57,7 +111,7 @@
             </p-table>
         </div>
     </div>
-</p-card>
+</p-card> -->
 
 <!-- <p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '300px'}">

@@ -24,24 +24,22 @@ export class JobVacancyComponent implements OnInit {
   cols: any[];
   display: boolean = false;
   nominal: number;
-  // jobVacancy:jobModel[] = [
-  //   {jobName:'Java Programmer', 
-  //   jobCompany:'Lawencon', 
-  //   jobLocation:'Jakarta, Indonesia', 
-  //   jobSalary:'IDR 5.000.000',
-  //   jobInfo:'Posted 1 month ago',
-  //   jobBenefit:'',
-  //   jobDescription:'',
-  //   jobQualification:'',
-  //   jobRequiredSkill:'',
-  //   jobSummary:'',
-  // },
-  // ];
+  saveStatus: boolean[] = [];
+  infoSaved: string[] = []
+  applyStatus: boolean[] = [];
+  infoApplied: string[] = [];
+
+  //Search with inquiry
+  inquiry: string[] = [];
 
   // dropdown location
   citys: SelectItem[];
   selectedCity: string[] = [];
   cityItems: SelectItem[];
+
+  filteredCity: any[] = [];
+
+  style: SelectItem[];
 
   // dropdown Job Level
   jobLevel: SelectItem[];
@@ -92,6 +90,10 @@ export class JobVacancyComponent implements OnInit {
   selectedDate: string = "Monthly";
   
   constructor(private messageService: MessageService) { 
+    this.saveStatus = [false, false, false, false, false];
+    this.infoSaved = ["SAVE", "SAVE", "SAVE", "SAVE", "SAVE"];
+    this.applyStatus = [false, false, false, false, false];
+    this.infoApplied = ["APPLY", "APPLY", "APPLY", "APPLY", "APPLY"];
     this.myAppDetailsColumn = onConstructTableHeader([
       'Logo',
       'Job',
@@ -146,6 +148,9 @@ export class JobVacancyComponent implements OnInit {
       {label: 'Yogyakarta', value: 'Location| Yogyakarta |'},
       {label: 'Surabaya', value: 'Location| Surabaya |'},
       {label: 'Medan', value: 'Location| Medan |'},
+    ];
+
+    this.style = [
       {label: 'Work Abroad', value: 'Location| Work Abroad |'},
       {label: 'Work From Home', value: 'Location| Work From Home |'},
     ];
@@ -273,22 +278,21 @@ changeCity(event){
   console.log('event',event);
   
   this.selChip =[]
-  console.log('employment', this.selectedEmployement);
-  console.log('salary ', this.selectedSalary);
   
-  console.log("asas",this.selectedSalary);
-  
-  this.selChip = this.selChip.concat(this.selectedCity,
+  this.selChip = this.selChip.concat(
+    this.inquiry,
+    this.selectedCity,
     this.selectedCompany,
     this.selectedEducation,
     this.selectedEmployement,
     this.selectedJobFunction,
     this.selectedJobLevel,
-    this.selectedJobType)
-    for(let i of this.selectedSalary){
-      let b = this.selectedDate  + "|" + i + "|" + this.nominal
-      this.selChip.push(b)
-    }
+    this.selectedJobType,
+    this.selectedDate + "|" + this.selectedSalary + "|" + this.nominal)
+    // for(let i of this.selectedSalary){
+    //   let b = this.selectedDate  + "|" + i + "|" + this.nominal
+    //   this.selChip.push(b)
+    // }
 }
 
 
@@ -332,66 +336,50 @@ removeChip(){
   this.selChip.splice(0, this.selChip.length);
 
 }
-salaShow:boolean = false
-salaryClick(){
-this.salaShow = !this.salaShow
-}
+  salaShow:boolean = false
+  salaryClick(){
+    this.salaShow = !this.salaShow
+  }
 
   showDialog() {
     this.display = true;
   }
-  
-  showInfo() {
-    this.infoApplied='APPLIED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
-  }
-  showSaved() {
-    this.infoSaved='SAVED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+
+  onSave(index){    
+    console.log("saveStatusTotal : " + this.saveStatus.length);
+    
+    if(this.saveStatus[index]){
+      this.saveStatus[index] = false;
+      this.infoSaved[index] = "SAVE";
+      this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Unsaved'});
+    } else {
+      this.infoSaved[index] = "SAVED"
+      this.saveStatus[index] = true;
+      this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+    }
   }
 
-  showInfo2() {
-    this.infoApplied2='APPLIED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
+  onApply(index){
+    console.log("applyStatusTotal : " + this.applyStatus.length);
+    
+    this.infoApplied[index] = "APPLIED"
+    this.applyStatus[index] = true;
+    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit Successed'});
   }
-  showSaved2() {
-    this.infoSaved2='SAVED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
+
+  filterCity(event){
+    console.log("event : " + event);
+    
+    this.filteredCity = [];
+    for(let i=0; i < this.citys.length; i++){
+      let city = this.citys[i].label;
+      console.log("for masuk");
+      if(city.toLowerCase().indexOf(event.query.toLowerCase())==0){
+        console.log("if masuk");
+        this.filteredCity.push(city);
+      }
+    }
   }
-  showInfo3() {
-    this.infoApplied3='APPLIED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
-  }
-  showSaved3() {
-    this.infoSaved3='SAVED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
-  }
-  showInfo4() {
-    this.infoApplied4='APPLIED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
-  }
-  showSaved4() {
-    this.infoSaved4='SAVED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
-  }
-  showInfo5() {
-    this.infoApplied5='APPLIED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Submit is Successed'});
-  }
-  showSaved5() {
-    this.infoSaved5='SAVED';
-    this.messageService.add({severity:'info', summary: 'Info Message', detail:'Job Saved'});
-  }
-  infoApplied: string = "APPLY";
-  infoSaved: string = "SAVE";
-  infoApplied2: string = "APPLY";
-  infoSaved2: string = "SAVE";
-  infoApplied3: string = "APPLY";
-  infoSaved3: string = "SAVE";
-  infoApplied4: string = "APPLY";
-  infoSaved4: string = "SAVE";
-  infoApplied5: string = "APPLY";
-  infoSaved5: string = "SAVE";
 
 }
 

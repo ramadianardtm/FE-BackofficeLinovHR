@@ -64,16 +64,19 @@
                     </div>
                 </div>
                 <div class="ui-g-4" style="font-size: 0.75rem;">
-                    <div class="ui-g-6">
+                    <div class="ui-g-6" style="position: relative;">
                         <div class="ui-grid-row my-1">
                             <p-chart type="doughnut" [options]="options" [data]="completion" width="10rem" height="10rem"></p-chart>
+                            <div class="mx-auto" style="position: absolute; text-align: center; transform: translate(-50%, -50%); top: 50%; left: 50%; height: 32%;">
+                                <h5>{{isDone}}%</h5>
+                            </div>
                         </div>
                         <div class="ui-grid-row my-0 mx-auto" style="text-align: center;">
-                            <h5>Completion</h5>
+                            <h5 style="font-size: 0.9rem; margin-top: 4vh;">PROFILE COMPLETION</h5>
                         </div>
-                        <div class="ui-grid-row my-0" style="text-align: center;">
+                        <!-- <div class="ui-grid-row my-0" style="text-align: center;">
                             <h5>{{isDone}}%</h5>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="ui-g-6">
                         <div class="p-0" *ngFor="let complete of completed">

@@ -52,44 +52,36 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Education Input" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '300px'}">
     <div class="p-grid ui-fluid" *ngIf="education">
-        <div class="p-col-4">
-            <label for="vin">Degree</label>
+        <div class="p-col-4 mb-2">
+            <label for="degree" class="mb-0">Degree</label>
+            <input pInputText id="degree" [(ngModel)]="education.degree" autofocus />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="education.degree" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="institution" class="mb-0">Institution</label>
+            <input pInputText id="institution" [(ngModel)]="education.institution" />
         </div>
-        <div class="p-col-4">
-            <label for="year">Institution</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="year" [(ngModel)]="education.institution" />
-        </div>
-        <div class="p-col-4">
-            <label for="brand">Grade Type</label>
-        </div>
-        <div class="p-col-8">
+        <div class="p-col-4 mb-2">
+            <label for="gradeType" class="mb-0">Grade Type</label>
             <input pInputText id="brand" [(ngModel)]="education.gradeType" />
         </div>
-        <div class="p-col-4">
-            <label for="brand">Grade</label>
+        <div class="p-col-4 mb-2">
+            <label for="grade" class="mb-0">Grade</label>
+            <input pInputText id="grade" [(ngModel)]="education.grade" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="brand" [(ngModel)]="education.grade" />
+        <div class="row ui-g-12 mb-0" style="width: 110%; height: 3vh;">
+            <label for="start" class="ui-g-6">Start</label>
+            <label for="end" class="ui-g-6">End</label>
         </div>
-        <div class="p-col-4">
-            <label for="color">Begin Year</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="education.beginYear" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">End Year</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="education.endYear" />
+        <div class="row ui-g-12 mb-0" style="width: 110%;">
+            <div class="ui-g-6">
+                <input pInputText id="start" [(ngModel)]="education.beginYear" />
+            </div>
+            <div class="ui-g-6">
+                <input class="ui-g-6" pInputText id="brand" [(ngModel)]="education.endYear" />
+            </div>
         </div>
     </div>
     <p-footer>

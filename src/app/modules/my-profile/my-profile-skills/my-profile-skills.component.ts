@@ -16,22 +16,19 @@ export interface skills{
 })
 export class MyProfileSkillsComponent implements OnInit {
 
-  skillColumns: TableColumn[];
-  displayDialog: boolean;
-  newSkill;
   skillLevel: SelectItem[] = [];
   skillList: SelectItem[] = [];
   selectedSkillList: string;
   selectedSkillLevel: string;
-  skills : skills[] = [];
-  skill: skills;
+  skills : any[] = [];
+  // skill: skills;
+  editMode: boolean;
+  editModeHeader: boolean;
+  editModeFooter: boolean;
+  skillCount: number;
+  filteredSkillList: any[];
 
   constructor() { 
-    this.skillColumns = onConstructTableHeader([
-      'Option',
-      'Skill',
-      'Level',
-    ]);
 
     this.skillList = [
       {label: 'Java', value: 'Java'},
@@ -46,59 +43,55 @@ export class MyProfileSkillsComponent implements OnInit {
       {label: 'Intermediate', value: 'Intermediate'},
       {label: 'Advanced', value: 'Advanced'},
     ];
+    // for(let i of this.skills){
+    //   let b = this.selectedSkillList  + "|" + i + "|" + this.selectedSkillLevel
+    //   this.selChip.push(b)
+    // }
+    // this.skills = this.skills.concat(this.skillList, this.skillLevel);
+    this.skillCount = this.skills.length
   }
 
   ngOnInit() {
   }
 
-  // cloneSkill(s: skill): skill {
-  //   let skill : skill = {
-  //     level: '',
-  //     skill: '',
-  //   };
-  //   for(let prop in s){
-  //     skill[prop]=s[prop]
-  //   }
-  //   return skill;
-  // }
+  filterSkillList(event){
+    this.filteredSkillList = [];
+    for(let i=0; i < this.skillList.length; i++){
+      let skill = this.skillList[i].value;
+      if(skill.toLowerCase().indexOf(event.query.toLowerCase())==0){
+        this.filteredSkillList.push(skill);
+      }
+    }
+  }
+
+  edit(){
+    this.editMode = true;
+    this.editModeHeader = true;
+    this.editModeFooter = true;
+  }
+
+  delete(index){
+    let event:string = this.skills[index]
+    console.log("event ", index);
+
+    this.skills.splice(index,1);
+    
+    this.skillCount = this.skills.length
+  }
 
   addSkill(){
-    // this.newSkill = true;
-    // this.skill = {
-    //   level: '',
-    //   skill: '',
-    // };
-    // this.skills.push(null);
-    // this.displayDialog = true;
-    this.skill = {
-      skill : '',
-      level : '',
-    };
-    this.skills.push(this.skill);
+    this.skills.push([this.selectedSkillList + " | " + this.selectedSkillLevel]);
+    this.selectedSkillLevel = '';
+    this.selectedSkillList = '';
+    this.skillCount = this.skills.length;
   }
 
   onSave() {
-    // let skills = [...this.skills];
-    // if(this.newSkill){
-    //   skills.push(this.skill);
-    // } else {
-    //   skills[this.skills.indexOf(this.selectedSkill)]=this.skill;
-    // }
-    // this.skills = skills;
-    // this.skill = null;
-    // this.displayDialog = false;
+    this.skillCount = this.skills.length
+      this.editMode = false;
+      this.editModeHeader = false;
+      this.editModeFooter = false;
+      this.selectedSkillLevel = '';
+      this.selectedSkillList = '';
   }
-
-  onDelete() {
-    // let index = this.skills.indexOf(this.selectedSkill);
-    // this.skills = this.skills.filter((val, i) => i != index);
-    // this.skill = null;
-    // this.displayDialog = false;
-  }
-
-  // onRowSelect(event){
-  //   this.newSkill = false;
-  //   this.skill = this.cloneSkill(event.data);
-  //   this.displayDialog = true;
-  // }
 }

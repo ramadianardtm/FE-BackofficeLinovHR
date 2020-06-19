@@ -46,9 +46,15 @@
                     <small>applied 3 month ago </small>
                   </div>
                   <div class="row">
-                      <button type="button" pButton icon="pi pi-share-alt" style="border-color: black; font-size: 10px; "label="SHARE" class="ui-button-secondary"></button>
-                      <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; "label="SAVE" class="ui-button-secondary"></button>
-                      <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; "label="APPLY" class="ui-button-secondary"></button>
+                      <button type="button" pButton icon="pi pi-share-alt" style="border-color: black; font-size: 10px; " label="SHARE" class="ui-button-secondary"></button>
+                      <button *ngIf="saveStatus; else notSaved" type="button" pButton icon="fa fa-heart" style="border-color: black; font-size: 10px; " label="SAVED" class="ui-button-secondary" (click)="onSave()"></button>
+                      <ng-template #notSaved>
+                        <button type="button" pButton icon="pi pi-heart" style="border-color: black; font-size: 10px; " label="SAVE" class="ui-button-secondary" (click)="onSave()"></button>
+                      </ng-template>
+                      <button *ngIf="applyStatus; else notApplied" type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLIED" class="ui-button-secondary" (click)="onApply()"></button>
+                      <ng-template #notApplied>
+                        <button type="button" pButton icon="pi pi-check" style="border-color: black; font-size: 10px; " label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
+                      </ng-template>
                   </div>                   
               </div>
           </div>
@@ -110,16 +116,24 @@
                             <div class="chip">
                                 Free gym membership 
                             </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="chip">
+                                Free launch
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="chip">
+                                Housing allowance
+                            </div>
                     </div>
                     <br>
                    <div class="col-12">
-                    <div class="chip">
+                    <!-- <div class="chip">
                         Free launch
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="chip">
+                    </div> -->
+                    <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                    <!-- <div class="chip">
                         Housing allowance
-                    </div>
+                    </div> -->
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="chip">
                         Free shuttle bus
@@ -155,13 +169,17 @@
                             <div class="chip">
                                 Oracle Database | Beginner
                             </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="chip">
+                                Java Android | Advanced
+                            </div>
                            
                     </div>
                     <br>
                    <div class="col-12">
-                    <div class="chip">
+                    <!-- <div class="chip">
                         Java Android | Advanced
-                    </div>
+                    </div> -->
                    </div>
                     
                 </p-panel>

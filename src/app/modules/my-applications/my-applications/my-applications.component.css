@@ -1,0 +1,117 @@
+.fit-picture {
+  width: 150px;
+}
+.detail-job {
+  font-size: small;
+  font-weight: bolder;
+}
+.btn-myapp {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  padding: -1px 0px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+hr.new2 {
+  border-top: 1px dashed black;
+}
+.steps {
+  font-size: 25px;
+  color: gray;
+  margin-bottom: 10px;
+  font-weight: normal;
+  text-align: right;
+}
+.fieldlabels {
+  color: gray;
+  text-align: left;
+}
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgrey;
+}
+#progressbar .active {
+  color: #25f130;
+}
+#progressbar li {
+  list-style-type: none;
+  font-size: 15px;
+  width: 15%;
+  float: left;
+  position: relative;
+  font-weight: 400;
+}
+#progressbar #application:before {
+  font-family: FontAwesome;
+  content: "\f0f6";
+}
+#progressbar #assesment:before {
+  font-family: FontAwesome;
+  content: "\f046";
+}
+#progressbar #interview:before {
+  font-family: FontAwesome;
+  content: "\f1d7";
+}
+#progressbar #offer:before {
+  font-family: FontAwesome;
+  content: "\f2b5";
+}
+#progressbar #onboarding:before {
+  font-family: FontAwesome;
+  content: "\f135";
+}
+#progressbar #hired:before {
+  font-family: FontAwesome;
+  content: "\f2c2";
+}
+#progressbar li:before {
+  width: 34px;
+  height: 25px;
+  display: inline-block;
+  font-size: 20px;
+  color: lightgray;
+  margin: 0 auto 10px auto;
+  padding: 2px;
+}
+#progressbar li:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: -1;
+}
+#progressbar li.active:before {
+  color: #25f130;
+}
+.fit-image {
+  width: 100%;
+  object-fit: cover;
+}
+.ui-steps .ui-steps-item {
+  width: 25%;
+}
+.ui-steps.steps-custom {
+  margin-bottom: 30px;
+}
+.ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+  padding: 0 1em;
+  overflow: visible;
+}
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+  background-color: #0081c2;
+  color: #ffffff;
+  display: inline-block;
+  width: 36px;
+  border-radius: 50%;
+  margin-top: -14px;
+  margin-bottom: 10px;
+}
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+  color: #555555;
+}

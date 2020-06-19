@@ -27,21 +27,19 @@
     </div>
 </p-card>
 
-<p-dialog [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
+<p-dialog [(visible)]="displayDialog" header="Project Queries" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true" [style]="{
     width: '400px'}">
     <div class="p-grid ui-fluid" *ngIf="projectExperience">
-        <div class="p-col-4">
-            <label for="vin">Project Name</label>
-        </div>
-        <div class="p-col-8">
-            <input pInputText id="vin" [(ngModel)]="projectExperience.name" autofocus />
+        <div class="p-col-4 mb-2">
+            <label for="name" class="mb-0">Project Name</label>
+            <input pInputText id="name" [(ngModel)]="projectExperience.name" autofocus />
         </div>
         <div class="ui-g">
-            <div class="row ui-g-12 mb-0" style="height: 4vh;">
+            <div class="row ui-g-12 mb-0" style="height: 4vh; width: 110%;">
                 <label for="year" class="ui-g-6">Start Date</label>
                 <label for="brand" class="ui-g-6">End Date</label>
             </div>
-            <div class="row ui-g-12 mb-0">
+            <div class="row ui-g-12 mb-0" style="width: 110%;">
                 <div class="ui-g-6">
                     <input pInputText id="year" [(ngModel)]="projectExperience.start" />
                 </div>
@@ -50,18 +48,13 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-4">
-            <label for="color">Project URL</label>
+        <div class="p-col-4 mb-2">
+            <label for="url" class="mb-0">Project URL</label>
+            <input pInputText id="url" [(ngModel)]="projectExperience.url" />
         </div>
-        <div class="p-col-8">
-            <input pInputText id="color" [(ngModel)]="projectExperience.url" />
-        </div>
-        <div class="p-col-4">
-            <label for="color">Description</label>
-        </div>
-        <div class="p-col-8">
-            <!-- <input pInputText id="color" [(ngModel)]="workExperience.responsibility" /> -->
-            <p-chips [(ngModel)]="projectExperience.description"></p-chips>
+        <div class="p-col-4 mb-2">
+            <label for="description" class="mb-0">Description</label>
+            <p-chips id="description" [(ngModel)]="projectExperience.description"></p-chips>
         </div>
     </div>
     <p-footer>

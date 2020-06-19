@@ -3,7 +3,8 @@ body
 
 .chip
     display: inline-block
-    padding: 0 25px
+    padding: 0
+    padding-left: 1%
     height: 25px
     font-size: 12px
     line-height: 25px
@@ -58,24 +59,125 @@ body
                 .ui-multiselect-trigger
                         background: transparent
                         border: none
-
+                .ui-multiselect-filter-container
+                        display: none
+                .ui-inputtext
+                        display: none
+                .ui-multiselect-filter-icon
+                        display: none
+                .ui-multiselect-close
+                        display: none
+                .ui-multiselect-panel
+                        min-width: 150%
+                        
 :host ::ng-deep
-        .ui-button
+        .ui-multiselect-jobvacancy-filter
                 background: transparent
                 border: none
-                .ui-button:trigger
+                .ui-multiselect-trigger
                         background: transparent
                         border: none
-                .ui-button:enabled:hover
+                .ui-multiselect-filter-container
+                        border-top: none
+                        border-left: none
+                        border-right: none
+                .ui-inputtext
+                        border-top: none
+                        border-left: none
+                        border-right: none
+                        width: 140%
+                        padding: 0px !important
+                .ui-multiselect-filter-icon
+                        display: none
+                .ui-chkbox
+                        display: none
+                .ui-multiselect-panel
+                        width: 200%
+                .ui-multiselect-close
+                        display: none
+
+:host ::ng-deep
+        .ui-multiselect-location
+                background: transparent
+                border: none
+                .ui-multiselect-trigger
                         background: transparent
                         border: none
-                        
-                .ui-button:enabled:active
+                .ui-multiselect-items-wrapper
+                        display: none
+                .ui-multiselect-panel
+                        display: none
+                .ui-multiselect-header
+                        display: none  
+
+:host ::ng-deep .ui-autocomplete .ui-autocomplete-input
+    border-top: none
+    border-left: none
+    border-right: none
+    width: 220px
+
+:host ::ng-deep
+        .ui-multiselect-salary
+                background: transparent
+                border: none
+                .ui-multiselect-trigger
                         background: transparent
                         border: none
-                        
-                .ui-button-text
-                        font-size: 14px
+                .ui-multiselect-items-wrapper
+                        display: none
+                .ui-multiselect-panel
+                        display: none
+                .ui-multiselect-header
+                        display: none
+
+:host ::ng-deep
+        .ui-dropdown-salary
+                min-width: 4.5em
+
+:host ::ng-deep
+        .ui-button-fiterJobVacancy
+                .ui-button
+                        background: transparent
+                        border: none
+                        color: #333333
+                        .ui-button:trigger
+                                background: transparent
+                                border: none
+                        .ui-button:enabled:hover
+                                background: transparent
+                                border: none
+                                color: #333333
+                        .ui-button:enabled:active
+                                background: transparent
+                                border: none
+                                color: #333333
+                        .ui-button-text
+                                font-size: 14px
+                                color: #333333
+
+:host ::ng-deep
+        .ui-button-saved
+                .ui-button-text-icon-left
+                        .ui-button-icon-left
+                                color: blue
+                .ui-button-icon-left
+                        .ui-clickable
+                                .fa
+                                        .fa-heart
+                                                color: blue
+                .ui-button
+                        .ui-button-icon
+                                color: blue
+                        .ui-button-text-icon-left
+                                .ui-button-icon-left
+                                        color: blue
+                        .ui-button-icon-left
+                                .ui-clickable
+                                        .fa
+                                                .fa-heart
+                                                        color: blue
+                        .icon-color
+                                color: blue
 
 \:host ::ng-deep
     .align-left .ui-menu ul

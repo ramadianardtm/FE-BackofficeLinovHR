@@ -6,7 +6,7 @@ import { SelectItemGroup } from 'primeng/components/common/selectitemgroup';
 import { onConstructTableHeader } from 'app/shared/utils/construct-table-header';
 import {SelectItem} from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-job-vacancy-nonuser',
@@ -35,6 +35,7 @@ export class JobVacancyNonuserComponent implements OnInit {
   selectedCity: string[] = [];
   cityItems: SelectItem[];
 
+  selectedLocation: string[] = [];
   filteredCity: any[] = [];
   style: SelectItem[];
 
@@ -85,7 +86,12 @@ export class JobVacancyNonuserComponent implements OnInit {
 
   selectedDate: string = "Monthly";
 
-  constructor(private messageService: MessageService, private router: Router){}
+  constructor(private messageService: MessageService, private router: Router, private route: ActivatedRoute){
+    this.route.queryParams.subscribe(params => {
+      this.inquiry = params.inquiry;
+    });
+    this.selChip.push(this.inquiry);
+  }
 
   ngOnInit() {
     this.myAppDetailsColumn = onConstructTableHeader([
@@ -135,20 +141,20 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.citys = [
-      {label: 'Jakarta', value: 'Location| Jakarta |'},
-      {label: 'Tanggerang', value: 'Location| Tanggerang |'},
-      {label: 'Banten', value: 'Location| Banten |'},
-      {label: 'Bandung', value: 'Location| Bandung |'},
-      {label: 'Yogyakarta', value: 'Location| Yogyakarta |'},
-      {label: 'Surabaya', value: 'Location| Surabaya |'},
-      {label: 'Medan', value: 'Location| Medan |'},
-      {label: 'Work Abroad', value: 'Location| Work Abroad |'},
-      {label: 'Work From Home', value: 'Location| Work From Home |'},
+      {label: 'Jakarta', value: 'Location | Jakarta'},
+      {label: 'Tanggerang', value: 'Location | Tanggerang'},
+      {label: 'Banten', value: 'Location | Banten'},
+      {label: 'Bandung', value: 'Location | Bandung'},
+      {label: 'Yogyakarta', value: 'Location | Yogyakarta'},
+      {label: 'Surabaya', value: 'Location | Surabaya'},
+      {label: 'Medan', value: 'Location | Medan'},
+      {label: 'Work Abroad', value: 'Location | Work Abroad'},
+      {label: 'Work From Home', value: 'Location | Work From Home'},
     ];
 
     this.style = [
-      {label: 'Work Abroad', value: 'Location| Work Abroad |'},
-      {label: 'Work From Home', value: 'Location| Work From Home |'},
+      {label: 'Work Abroad', value: 'Location | Work Abroad'},
+      {label: 'Work From Home', value: 'Location | Work From Home'},
     ];
 
     this.cityItems = [];
@@ -170,8 +176,8 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.jobType = [
-      {label: 'Full Time', value: 'Job Type| Full Time |'},
-      {label: 'Part Time', value: 'Job Type| Part Time |'},
+      {label: 'Full Time', value: 'Job Type | Full Time'},
+      {label: 'Part Time', value: 'Job Type | Part Time'},
     ];
 
     this.jobTypesItems = [];
@@ -180,9 +186,9 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.employment = [
-      {label: 'Permanent', value: 'Employment| Permanent |'},
-      {label: 'Contract', value: 'Employment| Contract |'},
-      {label: 'Probation', value: 'Employment| Probation |'},
+      {label: 'Permanent', value: 'Employment | Permanent'},
+      {label: 'Contract', value: 'Employment | Contract'},
+      {label: 'Probation', value: 'Employment | Probation'},
     ];
 
     this.employmentItems = [];
@@ -191,29 +197,29 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.jobFunction = [
-      {label: 'Accounting and Finance', value: 'Job Function| Accounting and Finance |'},
-      {label: 'Administration and Coordination', value: 'Job Function| Administration and Coordination |'},
-      {label: 'Architecture and Engineering', value: 'Job Function| Architecture and Engineering |'},
-      {label: 'Arts and Sports', value: 'Job Function| Arts and Sports |'},
-      {label: 'Customer Service', value: 'Job Function| Customer Service |'},
-      {label: 'Education and Training', value: 'Job Function| Education and Training |'},
-      {label: 'General Service', value: 'Job Function| General Service |'},
-      {label: 'Health and Medical', value: 'Job Function| Health and Medical |'},
-      {label: 'Hospitality and Tourism', value: 'Job Function| Hospitality and Tourism |'},
-      {label: 'Human Resources', value: 'Job Function| Human Resources |'},
-      {label: 'IT and Software', value: 'Job Function| IT and Software |'},
-      {label: 'Legal', value: 'Job Function| Legal |'},
-      {label: 'Management and Consultancy', value: 'Job Function| Management and Consultancy |'},
-      {label: 'Manufacturing and Production', value: 'Job Function| Manufacturing and Production |'},
-      {label: 'Media and Creatives', value: 'Job Function| Media and Creatives |'},
-      {label: 'Mining & Energy', value: 'Job Function| Mining & Energy |'},
-      {label: 'Oil & Gas', value: 'Job Function| Oil & Gas |'},
-      {label: 'Public Service and NGOs', value: 'Job Function| Public Service and NGOs |'},
-      {label: 'Safety and Security', value: 'Job Function| Safety and Security |'},
-      {label: 'Sales and Marketing', value: 'Job Function| Sales and Marketing |'},
-      {label: 'Sciences', value: 'Job Function| Sciences |'},
-      {label: 'Supply Chain', value: 'Job Function| Supply Chain |'},
-      {label: 'Writing and Content', value: 'Job Function| Writing and Content |'},
+      {label: 'Accounting and Finance', value: 'Job Function | Accounting and Finance'},
+      {label: 'Administration and Coordination', value: 'Job Function | Administration and Coordination'},
+      {label: 'Architecture and Engineering', value: 'Job Function | Architecture and Engineering'},
+      {label: 'Arts and Sports', value: 'Job Function | Arts and Sports'},
+      {label: 'Customer Service', value: 'Job Function | Customer Service'},
+      {label: 'Education and Training', value: 'Job Function | Education and Training'},
+      {label: 'General Service', value: 'Job Function | General Service'},
+      {label: 'Health and Medical', value: 'Job Function | Health and Medical'},
+      {label: 'Hospitality and Tourism', value: 'Job Function | Hospitality and Tourism'},
+      {label: 'Human Resources', value: 'Job Function | Human Resources'},
+      {label: 'IT and Software', value: 'Job Function | IT and Software'},
+      {label: 'Legal', value: 'Job Function | Legal'},
+      {label: 'Management and Consultancy', value: 'Job Function | Management and Consultancy'},
+      {label: 'Manufacturing and Production', value: 'Job Function | Manufacturing and Production'},
+      {label: 'Media and Creatives', value: 'Job Function | Media and Creatives'},
+      {label: 'Mining & Energy', value: 'Job Function | Mining & Energy'},
+      {label: 'Oil & Gas', value: 'Job Function | Oil & Gas'},
+      {label: 'Public Service and NGOs', value: 'Job Function | Public Service and NGOs'},
+      {label: 'Safety and Security', value: 'Job Function | Safety and Security'},
+      {label: 'Sales and Marketing', value: 'Job Function | Sales and Marketing'},
+      {label: 'Sciences', value: 'Job Function | Sciences'},
+      {label: 'Supply Chain', value: 'Job Function | Supply Chain'},
+      {label: 'Writing and Content', value: 'Job Function | Writing and Content'},
     ];
 
     this.jobFunctionItems = [];
@@ -222,14 +228,14 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.education = [
-      {label: 'Diploma 4', value: 'Education| Diploma 4 |'},
-      {label: 'Bachelor', value: 'Education| Bachelor |'},
-      {label: 'Master', value: 'Education| Master |'},
-      {label: 'Doctor', value: 'Education| Doctor |'},
-      {label: 'Elementary School', value: 'Education| Elementary School |'},
-      {label: 'Junior High School', value: 'Education| Junior High School |'},
-      {label: 'Senior High School', value: 'Education| Senior High School |'},
-      {label: 'Vocational High School', value: 'Education| Vocational High School |'},
+      {label: 'Diploma 4', value: 'Education | Diploma 4'},
+      {label: 'Bachelor', value: 'Education | Bachelor'},
+      {label: 'Master', value: 'Education | Master'},
+      {label: 'Doctor', value: 'Education | Doctor'},
+      {label: 'Elementary School', value: 'Education | Elementary School'},
+      {label: 'Junior High School', value: 'Education | Junior High School'},
+      {label: 'Senior High School', value: 'Education | Senior High School'},
+      {label: 'Vocational High School', value: 'Education | Vocational High School'},
     ];
 
     this.educationItems = [];
@@ -238,12 +244,12 @@ export class JobVacancyNonuserComponent implements OnInit {
     }
 
     this.company = [
-      {label: 'Lawencon', value: 'Company| Lawencon |'},
-      {label: 'Linov Rocket Prestasi', value: 'Company| Linov Rocket Prestasi |'},
-      {label: 'Tokopedia', value: 'Company| Tokopedia |'},
-      {label: 'Shopee', value: 'Company| Shopee |'},
-      {label: 'Grab', value: 'Company| Grab |'},
-      {label: 'Gojek', value: 'Company| Gojek |'},
+      {label: 'Lawencon', value: 'Company | Lawencon'},
+      {label: 'Linov Rocket Prestasi', value: 'Company | Linov Rocket Prestasi'},
+      {label: 'Tokopedia', value: 'Company | Tokopedia'},
+      {label: 'Shopee', value: 'Company | Shopee'},
+      {label: 'Grab', value: 'Company | Grab'},
+      {label: 'Gojek', value: 'Company | Gojek'},
     ];
 
     this.companyItems = [];
@@ -268,14 +274,18 @@ changeCity(event){
   
   this.selChip = this.selChip.concat(
     this.inquiry,
+    this.selectedLocation,
     this.selectedCity,
     this.selectedCompany,
     this.selectedEducation,
     this.selectedEmployement,
     this.selectedJobFunction,
     this.selectedJobLevel,
-    this.selectedJobType,
-    this.selectedDate + "|" + this.selectedSalary + "|" + this.nominal)
+    this.selectedJobType)
+}
+
+changeSalary(){
+  this.selChip.push("Salary | " + this.selectedDate + " " + this.selectedSalary + " " + this.nominal);
 }
 
 delete(i){

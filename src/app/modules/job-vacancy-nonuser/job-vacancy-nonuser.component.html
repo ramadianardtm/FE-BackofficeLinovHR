@@ -15,7 +15,7 @@
           <p-multiSelect styleClass="ui-multiselect-location" (onClick)="location.toggle($event)" [displaySelectedLabel]=false [defaultLabel]="'Location'"></p-multiSelect>
           <p-overlayPanel #location appendTo="locationCombo" [style]="{width: '260px', 'z-index': '3'}">
             <div class="row mb-2" style="font-size: small; margin-left: 1%;">
-              <p-autoComplete [style]="{'z-index':'5'}" inputStyleClass="inputLocation" [(ngModel)]="selectedCity" [suggestions]="filteredCity" (completeMethod)="filterCity($event)" placeholder="Enter a Location"></p-autoComplete>
+              <p-autoComplete [style]="{'z-index':'5'}" inputStyleClass="inputLocation" [(ngModel)]="selectedLocation" [suggestions]="filteredCity" (completeMethod)="filterCity($event)" placeholder="Enter a Location" (keyup.enter)="changeCity($event)"></p-autoComplete>
             </div>
             <div class="row mb-2" style="margin-left: 1%;">
               <p style="font-size: small; font-weight: bold;">TOP LOCATION</p>
@@ -52,29 +52,29 @@
           <p-overlayPanel #op appendTo="salaryCombo" [style]="{width: '260px', 'z-index': '3'}">
             <div class="row" style="font-size: small;">
               <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Hourly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
+                <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
               </div>
               <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Monthly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
+                <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
               </div>
               <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Yearly" (onClick)="changeCity($event)" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
+                <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
               </div> 
             </div>
             <div class="row">
               <div class="col ui-g-3">
-                <p-dropdown styleClass="ui-dropdown-salary" [style]="{width: '2px'}" [options]="salary" (onChange)="changeCity($event)" [(ngModel)]="selectedSalary" ></p-dropdown>
+                <p-dropdown styleClass="ui-dropdown-salary" [style]="{width: '2px'}" [options]="salary" [(ngModel)]="selectedSalary" ></p-dropdown>
                 <!-- {{selectedSalary}} -->
               </div>
               <div class="ui-g-9">
                 <div class="p-field">
-                  <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal" (keyup.enter)="changeCity($event)"><br>
+                  <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal" (keyup.enter)="changeSalary()"><br>
                 </div>
               </div>
             </div> 
             <div class="row">
               <div class="ui-g-12">
-                <button class="ui-button-secondary pull-right" style="background-color: gainsboro;" pButton type="button" label="Apply" (click)="changeCity($event)"></button>
+                <button class="ui-button-secondary pull-right" style="background-color: gainsboro;" pButton type="button" label="Apply" (click)="changeSalary()"></button>
               </div>
             </div>
           </p-overlayPanel>

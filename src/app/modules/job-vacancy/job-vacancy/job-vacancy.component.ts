@@ -37,8 +37,8 @@ export class JobVacancyComponent implements OnInit {
   selectedCity: string[] = [];
   cityItems: SelectItem[];
 
+  selectedLocation: string[] = [];
   filteredCity: any[] = [];
-
   style: SelectItem[];
 
   // dropdown Job Level
@@ -271,29 +271,30 @@ export class JobVacancyComponent implements OnInit {
   }
 
   ngOnInit() {
-}
-selChip:any[] = [];
+  }
 
-changeCity(event){
-  console.log('event',event);
-  
-  this.selChip =[]
-  
-  this.selChip = this.selChip.concat(
-    this.inquiry,
-    this.selectedCity,
-    this.selectedCompany,
-    this.selectedEducation,
-    this.selectedEmployement,
-    this.selectedJobFunction,
-    this.selectedJobLevel,
-    this.selectedJobType,
-    this.selectedDate + "|" + this.selectedSalary + "|" + this.nominal)
-    // for(let i of this.selectedSalary){
-    //   let b = this.selectedDate  + "|" + i + "|" + this.nominal
-    //   this.selChip.push(b)
-    // }
-}
+  selChip:any[] = [];
+
+  changeCity(event){
+    console.log('event',event);
+    
+    this.selChip =[]
+    
+    this.selChip = this.selChip.concat(
+      this.inquiry,
+      this.selectedLocation,
+      this.selectedCity,
+      this.selectedCompany,
+      this.selectedEducation,
+      this.selectedEmployement,
+      this.selectedJobFunction,
+      this.selectedJobLevel,
+      this.selectedJobType)
+  }
+
+  changeSalary(){
+    this.selChip.push("Salary | " + this.selectedDate + " " + this.selectedSalary + " " + this.nominal);
+  }
 
 
 delete(i){

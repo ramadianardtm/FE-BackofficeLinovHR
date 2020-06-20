@@ -19,7 +19,7 @@
     </div>
     <div class="ui-grid-row mx-auto" align="center" style="height: 15vh;">
         <form (ngSubmit)="search()">
-            <input pInputText type="text" placeholder="Search for Job Vacancy Title, Company or Location" style="width: 40vw;">
+            <input pInputText type="text" [(ngModel)]="inquiry" name="inquiry" placeholder="Search for Job Vacancy Title, Company or Location" style="width: 40vw;">
             <button pButton type="submit" icon="pi pi-search" label="&nbsp; Search"></button>
         </form>
     </div>
@@ -28,25 +28,25 @@
     </div>
     <div class="row" align="center" style="font-size: 2.5em; height: 20vh">
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'IT & Software'}" style="color: black;">
                 <i class="pi pi-desktop"></i>
                 <br><p class="detail">IT & Software</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Sales & Marketing'}" style="color: black;">
                 <i class="fa fa-bullhorn"></i>
                 <br><p class="detail">Sales & Marketing</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Media & Creatives'}" style="color: black;">
                 <i class="pi pi-images"></i>
                 <br><p class="detail">Media & Creatives</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Human Resources'}" style="color: black;">
                 <i class="pi pi-users"></i>
                 <br><p class="detail">Human Resources</p>
             </a>
@@ -54,25 +54,25 @@
     </div>
     <div class="row" align="center" style="font-size: 2.5em;">
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Administration & Coordination'}" style="color: black;">
                 <i class="fa fa-cogs"></i>
                 <br><p class="detail">Administration & Coordination</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'General Services'}" style="color: black;">
                 <i class="fa fa-wrench"></i>
                 <br><p class="detail">General Services</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Management & Consultancy'}" style="color: black;">
                 <i class="fa fa-building"></i>
                 <br><p class="detail">Management & Consultancy</p>
             </a>
         </div>
         <div class="col-lg-3">
-            <a [routerLink]="'/home/job-vacancy-nonuser'" style="color: black;">
+            <a [routerLink]="'/home/job-vacancy-nonuser'" [queryParams]="{inquiry: 'Accounting & Finance'}" style="color: black;">
                 <i class="fa fa-balance-scale"></i>
                 <br><p class="detail">Accounting & Finance</p>
             </a>

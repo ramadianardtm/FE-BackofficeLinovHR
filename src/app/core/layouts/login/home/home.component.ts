@@ -8,13 +8,17 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  inquiry: string = '';
+
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   search() {
-    this.router.navigate(['/home/job-vacancy-nonuser']);
+    this.router.navigate(['/home/job-vacancy-nonuser'], {queryParams: {inquiry: this.inquiry}});
+    console.log(this.inquiry);
+    
   }
 
 }

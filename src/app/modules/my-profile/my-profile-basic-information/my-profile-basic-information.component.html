@@ -3,275 +3,295 @@
         border: none;
         opacity: 1;
     } */
-    .ui-widget:disabled{
+    .ui-widget:disabled {
         border: none;
         opacity: 1;
     }
-    .ui-widget:enabled{
+
+    .ui-widget:enabled {
         border-top: none;
         border-right: none;
         border-left: none;
     }
+
 </style>
-<p-card
-            header="{{ 'Basic Information' }}"
-            styleClass="ui-card--workforce mb-3"
-            class="border-title"
-        >
-        <p-header class="pull-right">
-            <div *ngIf="editMode; else onEdit">
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil" (click)="edit()"></p-button>
+<p-card header="{{ 'Basic Information' }}" styleClass="ui-card--workforce mb-3" class="border-title">
+    <p-header class="pull-right">
+        <div *ngIf="editMode; else onEdit">
+            <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-pencil"
+                (click)="edit()"></p-button>
+        </div>
+        <ng-template #onEdit>
+            <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-check"
+                (click)="edit()"></p-button>
+            <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-undo"
+                (click)="edit()"></p-button>
+        </ng-template>
+    </p-header>
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Name
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.name" />
+                </div>
             </div>
-            <ng-template #onEdit>
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-check" (click)="edit()"></p-button>
-                <p-button type="button" class="m-2 pull-right" styleClass="ui-button-secondary" icon="pi pi-undo" (click)="edit()"></p-button>
-            </ng-template>
-        </p-header>
-            <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Name
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.name"/>
-                        </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        NIK
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.nik" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Email
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.email" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Phone
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.phone" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Nationality
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.nationality" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Birth Place
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.birthPlace" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Birth Date
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.birthDate" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Gender
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.gender" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Marital Status
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.maritalStatus" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Religion
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.religion" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Blood Type
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.bloodType" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Social Media
+                    </label>
+                </div>
+                <div class="ui-grid-col-3">
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none pad-4" style="padding-left: 0.4em">
+                            LinkedIn
+                        </span>
+                    </div>
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none">
+                            <a href="">
+                                <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                                    [(ngModel)]="bInfo.socialMedia[0]" />
+                            </a>
+                        </span>
                     </div>
                 </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                NIK
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.nik"/>
-                        </div>
+                <div class="ui-grid-col-3">
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none pad-4" style="padding-left: 0.4em">
+                            Facebook
+                        </span>
+                    </div>
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none pad-4">
+                            <a href="">
+                                <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                                    [(ngModel)]="bInfo.socialMedia[1]" />
+                            </a>
+                        </span>
                     </div>
                 </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Email
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.email"/>
-                        </div>
+                <div class="ui-grid-col-3">
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none pad-4" style="padding-left: 0.4em">
+                            Instagram
+                        </span>
                     </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Phone
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.phone"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Nationality
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.nationality"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Birth Place
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.birthPlace"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Birth Date
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.birthDate"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Gender
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.gender"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Marital Status
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.maritalStatus"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Religion
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.religion"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Blood Type
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.bloodType"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Social Media
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-3">
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    LinkedIn
-                                </span>    
-                            </div>
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    <a href="">
-                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[0]"/>
-                                    </a>
-                                </span>    
-                            </div>
-                        </div>
-                        <div class="ui-grid-col-3">
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    Facebook
-                                </span>    
-                            </div>
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    <a href="">
-                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[1]"/>
-                                    </a>
-                                </span>    
-                            </div>
-                        </div>
-                        <div class="ui-grid-col-3">
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    Instagram
-                                </span>    
-                            </div>
-                            <div class="ui-grid-row my-1">
-                                <span class="border-none pad-4">
-                                    <a href="">
-                                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.socialMedia[2]"/>
-                                    </a>
-                                </span>    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Hobbies
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <span class="border-none pad-4">
-                                <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.hobbies"/>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Strength
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.strength"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Weakness
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.weakness"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Experience
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.experience"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui-grid-row my-1">
-                    <div class="ui-grid-col-12 p-0">
-                        <div class="ui-grid-col-2">
-                            <label class="margin-4">
-                                Salary Expectations
-                            </label>
-                        </div>
-                        <div class="ui-grid-col-10">
-                            <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode" [(ngModel)]="bInfo.salaryExpect"/>
-                        </div>
+                    <div class="ui-grid-row my-1">
+                        <span class="border-none pad-4">
+                            <a href="">
+                                <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                                    [(ngModel)]="bInfo.socialMedia[2]" />
+                            </a>
+                        </span>
                     </div>
                 </div>
             </div>
-        </p-card>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Hobbies
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span class="border-none pad-4">
+                        <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                            [(ngModel)]="bInfo.hobbies" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Strength
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.strength" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Weakness
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.weakness" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Experience
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.experience" />
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row my-1">
+            <div class="ui-grid-col-12 p-0">
+                <div class="ui-grid-col-2">
+                    <label class="margin-4">
+                        Salary Expectations
+                    </label>
+                </div>
+                <div class="ui-grid-col-10">
+                    <input id="disabled-input" type="text" size="30" pInputText [disabled]="editMode"
+                        [(ngModel)]="bInfo.salaryExpect" />
+                </div>
+            </div>
+        </div>
+    </div>
+</p-card>

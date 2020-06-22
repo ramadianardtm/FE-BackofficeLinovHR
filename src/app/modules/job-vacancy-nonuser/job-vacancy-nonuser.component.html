@@ -1,310 +1,303 @@
 <div class="ui-g-12" style="background-color: gainsboro;border-radius: 2%;">
-  <div class="container">
-    <div class="img-fluid"> 
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search for Job Vacancy Title, Company or Location " aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button pButton  class="ui-button-primary" icon="pi pi-search" type="button" label="&nbsp;Search"></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="detail-job ui-g-12 p-0">
-      <div class="ui-g-12 p-0">
-        <div class="ui-g-1" style="width: 10%;" #locationCombo>
-          <p-multiSelect styleClass="ui-multiselect-location" (onClick)="location.toggle($event)" [displaySelectedLabel]=false [defaultLabel]="'Location'"></p-multiSelect>
-          <p-overlayPanel #location appendTo="locationCombo" [style]="{width: '260px', 'z-index': '3'}">
-            <div class="row mb-2" style="font-size: small; margin-left: 1%;">
-              <p-autoComplete [style]="{'z-index':'5'}" inputStyleClass="inputLocation" [(ngModel)]="selectedLocation" [suggestions]="filteredCity" (completeMethod)="filterCity($event)" placeholder="Enter a Location" (keyup.enter)="changeCity($event)"></p-autoComplete>
-            </div>
-            <div class="row mb-2" style="margin-left: 1%;">
-              <p style="font-size: small; font-weight: bold;">TOP LOCATION</p>
-            </div>
-            <div class="row mb-2" *ngFor="let city of citys" style="font-size: small; margin-left: 1%;">
-              <p-checkbox name="location" [(ngModel)]="selectedCity" value="{{city.value}}" label="{{city.label}}" (onChange)="changeCity($event)"></p-checkbox>
-            </div>
-            <hr style="border-top: 1px solid lightslategrey;">
-            <div class="row mt-2 mb-2" *ngFor="let style of style" style="font-size: small; margin-left: 1%;">
-              <p-checkbox name="work-style" [(ngModel)]="selectedCity" value="{{style.value}}" label="{{style.label}}" (onChange)="changeCity($event)"></p-checkbox>
-            </div>
-            <div class="row mt-3">
-              <button pButton class="mx-auto" style="border:none; background: transparent; color: black;" type="button" icon="pi pi-angle-right" label="VIEW ALL LOCATION" iconPos="right"></button>
-            </div>
-          </p-overlayPanel>
-        </div>
-        <div class="ui-g-2" style="width: 10%;">
-          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobLevel" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel" [defaultLabel]="'Job Level'"></p-multiSelect>
-        </div>
-        <div class="ui-g-2" style="width: 10%;">
-          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobType" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType" [defaultLabel]="'Job Type'"></p-multiSelect>
-        </div>
-        <div class="ui-g-2" style="width: 15%;">
-          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="employment" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement" [defaultLabel]="'Employment Type'"></p-multiSelect>
-        </div>
-        <div class="ui-g-2" style="width: 12%;">
-          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobFunction" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction" [defaultLabel]="'Job Function'"></p-multiSelect>
-        </div>
-        <div class="ui-g-2" style="width: 10%;">
-          <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="education" (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation" [defaultLabel]="'Education'"></p-multiSelect>
-        </div>
-        <div class="ui-g-1" style="width: 10%;" #salaryCombo>
-          <p-multiSelect styleClass="ui-multiselect-salary" (onClick)="op.toggle($event)" [displaySelectedLabel]=false [defaultLabel]="'Salary'"></p-multiSelect>
-          <p-overlayPanel #op appendTo="salaryCombo" [style]="{width: '260px', 'z-index': '3'}">
-            <div class="row" style="font-size: small;">
-              <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1" label="Hourly"></p-radioButton>
-              </div>
-              <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate" inputId="preopt1" label="Monthly"></p-radioButton>
-              </div>
-              <div class="col ui-g-4">
-                <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1" label="Yearly"></p-radioButton>
-              </div> 
-            </div>
-            <div class="row">
-              <div class="col ui-g-3">
-                <p-dropdown styleClass="ui-dropdown-salary" [style]="{width: '2px'}" [options]="salary" [(ngModel)]="selectedSalary" ></p-dropdown>
-                <!-- {{selectedSalary}} -->
-              </div>
-              <div class="ui-g-9">
-                <div class="p-field">
-                  <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal" (keyup.enter)="changeSalary()"><br>
+    <div class="container">
+        <div class="img-fluid">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for Job Vacancy Title, Company or Location "
+                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button pButton class="ui-button-primary" icon="pi pi-search" type="button"
+                        label="&nbsp;Search"></button>
                 </div>
-              </div>
-            </div> 
-            <div class="row">
-              <div class="ui-g-12">
-                <button class="ui-button-secondary pull-right" style="background-color: gainsboro;" pButton type="button" label="Apply" (click)="changeSalary()"></button>
-              </div>
             </div>
-          </p-overlayPanel>
         </div>
-      </div>
-      <div class="ui-g-12">
-        <div class="chip" *ngFor="let item of selChip; let i = index">
-          <label style="vertical-align: middle; padding-bottom: 8px;"> {{item}} </label>
-          <button class="btn" style="margin-top: -15px;" (click)="delete(i)"><i class="fa fa-times"></i></button>
+
+        <div class="detail-job ui-g-12 p-0">
+            <div class="ui-g-12 p-0">
+                <div class="ui-g-1" style="width: 10%;" #locationCombo>
+                    <p-multiSelect styleClass="ui-multiselect-location" (onClick)="location.toggle($event)"
+                        [displaySelectedLabel]=false [defaultLabel]="'Location'"></p-multiSelect>
+                    <p-overlayPanel #location appendTo="locationCombo" [style]="{width: '260px', 'z-index': '3'}">
+                        <div class="row mb-2" style="font-size: small; margin-left: 1%;">
+                            <p-autoComplete [style]="{'z-index':'5'}" inputStyleClass="inputLocation"
+                                [(ngModel)]="selectedLocation" [suggestions]="filteredCity"
+                                (completeMethod)="filterCity($event)" placeholder="Enter a Location"
+                                (keyup.enter)="changeCity($event)"></p-autoComplete>
+                        </div>
+                        <div class="row mb-2" style="margin-left: 1%;">
+                            <p style="font-size: small; font-weight: bold;">TOP LOCATION</p>
+                        </div>
+                        <div class="row mb-2" *ngFor="let city of citys" style="font-size: small; margin-left: 1%;">
+                            <p-checkbox name="location" [(ngModel)]="selectedCity" value="{{city.value}}"
+                                label="{{city.label}}" (onChange)="changeCity($event)"></p-checkbox>
+                        </div>
+                        <hr style="border-top: 1px solid lightslategrey;">
+                        <div class="row mt-2 mb-2" *ngFor="let style of style"
+                            style="font-size: small; margin-left: 1%;">
+                            <p-checkbox name="work-style" [(ngModel)]="selectedCity" value="{{style.value}}"
+                                label="{{style.label}}" (onChange)="changeCity($event)"></p-checkbox>
+                        </div>
+                        <div class="row mt-3">
+                            <button pButton class="mx-auto" style="border:none; background: transparent; color: black;"
+                                type="button" icon="pi pi-angle-right" label="VIEW ALL LOCATION"
+                                iconPos="right"></button>
+                        </div>
+                    </p-overlayPanel>
+                </div>
+                <div class="ui-g-2" style="width: 10%;">
+                    <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobLevel"
+                        (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobLevel"
+                        [defaultLabel]="'Job Level'"></p-multiSelect>
+                </div>
+                <div class="ui-g-2" style="width: 10%;">
+                    <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobType"
+                        (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobType"
+                        [defaultLabel]="'Job Type'"></p-multiSelect>
+                </div>
+                <div class="ui-g-2" style="width: 15%;">
+                    <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="employment"
+                        (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEmployement"
+                        [defaultLabel]="'Employment Type'"></p-multiSelect>
+                </div>
+                <div class="ui-g-2" style="width: 12%;">
+                    <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="jobFunction"
+                        (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedJobFunction"
+                        [defaultLabel]="'Job Function'"></p-multiSelect>
+                </div>
+                <div class="ui-g-2" style="width: 10%;">
+                    <p-multiSelect [showHeader]="false" styleClass="ui-multiselect-jobvacancy" [options]="education"
+                        (onChange)="changeCity($event)" [displaySelectedLabel]=false [(ngModel)]="selectedEducation"
+                        [defaultLabel]="'Education'"></p-multiSelect>
+                </div>
+                <div class="ui-g-1" style="width: 10%;" #salaryCombo>
+                    <p-multiSelect styleClass="ui-multiselect-salary" (onClick)="op.toggle($event)"
+                        [displaySelectedLabel]=false [defaultLabel]="'Salary'"></p-multiSelect>
+                    <p-overlayPanel #op appendTo="salaryCombo" [style]="{width: '260px', 'z-index': '3'}">
+                        <div class="row" style="font-size: small;">
+                            <div class="col ui-g-4">
+                                <p-radioButton name="group1" value="Hourly" [(ngModel)]="selectedDate" inputId="preopt1"
+                                    label="Hourly"></p-radioButton>
+                            </div>
+                            <div class="col ui-g-4">
+                                <p-radioButton name="group1" value="Monthly" [(ngModel)]="selectedDate"
+                                    inputId="preopt1" label="Monthly"></p-radioButton>
+                            </div>
+                            <div class="col ui-g-4">
+                                <p-radioButton name="group1" value="Yearly" [(ngModel)]="selectedDate" inputId="preopt1"
+                                    label="Yearly"></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col ui-g-3">
+                                <p-dropdown styleClass="ui-dropdown-salary" [style]="{width: '2px'}" [options]="salary"
+                                    [(ngModel)]="selectedSalary"></p-dropdown>
+                                <!-- {{selectedSalary}} -->
+                            </div>
+                            <div class="ui-g-9">
+                                <div class="p-field">
+                                    <input onlyNumber id="fieldId" type="text" pInputText [(ngModel)]="nominal"
+                                        (keyup.enter)="changeSalary()"><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ui-g-12">
+                                <button class="ui-button-secondary pull-right" style="background-color: gainsboro;"
+                                    pButton type="button" label="Apply" (click)="changeSalary()"></button>
+                            </div>
+                        </div>
+                    </p-overlayPanel>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="chip" *ngFor="let item of selChip; let i = index">
+                    <label style="vertical-align: middle; padding-bottom: 8px;"> {{item}} </label>
+                    <button class="btn" style="margin-top: -15px;" (click)="delete(i)"><i
+                            class="fa fa-times"></i></button>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="pull-right">
+            <button pButton type="button" label="Clear" (click)="removeChip(); selChipRemove($event)"
+                class="ui-button-rounded ui-button-danger"></button>
+        </div>
     </div>
-    <div class="pull-right">
-      <button pButton 
-      type="button" label="Clear" (click)="removeChip(); selChipRemove($event)"
-      class="ui-button-rounded ui-button-danger"></button>
-    </div>
-  </div>
 </div>
 
 <div class="ui-g-12">
-  <div class="container">
-  <div class="ui-g-6">
-    <div>
-      <a style="margin-left: 20px;"><strong>RECOMMENDED JOBS</strong></a>
+    <div class="container">
+        <div class="ui-g-6">
+            <div>
+                <a style="margin-left: 20px;"><strong>RECOMMENDED JOBS</strong></a>
+            </div>
+        </div>
+        <div class="col ui-g-6" style="text-align: right;">
+            <button type="button" (click)="showDialog()" pButton icon="pi pi-bell" style="font-size: 12px;"
+                label="Create Job Alert"></button>
+            <!-- <button (click)="showDialog()"><i class="pi pi-bell" style="font-size: 12px;">Create Job Alert</i></button> -->
+        </div>
     </div>
-  </div>
-  <div class="col ui-g-6" style="text-align: right;">
-    <button type="button" (click)="showDialog()" 
-              pButton icon="pi pi-bell" style="font-size: 12px;" label="Create Job Alert"></button>
-              <!-- <button (click)="showDialog()"><i class="pi pi-bell" style="font-size: 12px;">Create Job Alert</i></button> -->
-  </div>
-</div>
 </div>
 
-<p-dialog header="Create Search Alert" 
-              [(visible)]="display" [style]="{width: '40vw'}" [baseZIndex]="10000">
-                <p><strong><small>Programmer</small></strong></p>
-                <p><small>Jakarta, Indonesia</small></p>
-                <br>
-                <p><small>Receive Alert</small></p>
-                <p-dropdown [options]="alert" [(ngModel)]="selectedAlert" placeholder="Weekly" [style]="{'width':'50px'}"></p-dropdown>
-                <br><br>
-                <p><small>Get Notified Via</small></p>
-                <p-dropdown [options]="getNotified" [(ngModel)]="selectedNotified" placeholder="Email and Notification"></p-dropdown>
-                <p-footer>
-                  <button type="button" pButton icon="pi pi-undo" (click)="display=false" label="Cancel"></button>
-                  <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save" class="ui-button-secondary"></button>
-                </p-footer>
-              </p-dialog>
+<p-dialog header="Create Search Alert" [(visible)]="display" [style]="{width: '40vw'}" [baseZIndex]="10000">
+    <p><strong><small>Programmer</small></strong></p>
+    <p><small>Jakarta, Indonesia</small></p>
+    <br>
+    <p><small>Receive Alert</small></p>
+    <p-dropdown [options]="alert" [(ngModel)]="selectedAlert" placeholder="Weekly" [style]="{'width':'50px'}">
+    </p-dropdown>
+    <br><br>
+    <p><small>Get Notified Via</small></p>
+    <p-dropdown [options]="getNotified" [(ngModel)]="selectedNotified" placeholder="Email and Notification">
+    </p-dropdown>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-undo" (click)="display=false" label="Cancel"></button>
+        <button type="button" pButton icon="pi pi-save" (click)="display=false" label="Save"
+            class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>
 
 <div class="ui-g-12">
-  <div class="row" style="margin-left: 6px;">
-    <div class="ui-g-12 mt-3">
-      <div class="container-fluid">
-        <div class="row clearfix">
-          <div class="col-12">
-              <span><small>1-10 of 33 job vacancy matches</small></span>
-              <span style="float:right;">
-                <span style="color: rgb(37, 241, 48);">
-                    <a><small>Applied Date&nbsp;</small><i class="fa fa-sort-amount-asc"></i></a>
-                </span>
-                <span>
-                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Alphabet&nbsp;</small> <i class="fa fa-sort-alpha-asc"></i></a>
-                </span>
-                <span>
-                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Salary&nbsp;</small>  <i class="fa fa-sort-amount-asc"></i></a>
-                </span>
-                <span>
-                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Expiry Date&nbsp;</small> <i class="fa fa-sort-amount-asc"></i></a>
-                </span>
-                <span>
-                    <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Posting Date&nbsp; </small> <i class="fa fa-sort-amount-asc"></i></a>
-                </span> 
-                <span style="font-size: x-large;">
-                  <a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-bars"></i></a>
-                </span> 
-                <span style="font-size: x-large;">
-                  <a>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-th-list"></i></a>
-              </span> 
-          </span>
-          </div>
-          <div class="col-12">
-              <div class="card">
-                <div class="table-responsive">
-                  <table class="table table-hover table-striped table-vcenter mb-0">
-                    <tbody>
-                    <tr>
-                      <td style="width: 20%;">
-                          <img class="fit-picture"
-                          src="./assets/images/gallery/defaultLogo.jpg"
-                          alt="Company Logo">
-                      </td>
-                      <td colspan="12" >
-                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Java Programmer</u></a>
-                          <br><span><small>Lawencon International</small></span>
-                          <br><span><small>Jakarta, Indonesia</small></span>
-                          <br><span><small> IDR 5,000,000-10,000,000</small></span>
-                      </td>
-                      <td colspan="4" style="text-align: right;">
-                          <span>
-                              <br><span><small>Posted 1 Month ago</small></span>
-                              <br><span><small>appy before 25 feb</small></span>
-                              <br><br>
-                              <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
-                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
+    <div class="row" style="margin-left: 6px;">
+        <div class="ui-g-12 mt-3">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-12">
+                        <span><small>1-10 of 33 job vacancy matches</small></span>
+                        <span style="float:right;">
+                            <span style="color: rgb(37, 241, 48);">
+                                <a><small>Applied Date&nbsp;</small><i class="fa fa-sort-amount-asc"></i></a>
+                            </span>
+                            <span>
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Alphabet&nbsp;</small> <i
+                                        class="fa fa-sort-alpha-asc"></i></a>
+                            </span>
+                            <span>
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Salary&nbsp;</small> <i
+                                        class="fa fa-sort-amount-asc"></i></a>
+                            </span>
+                            <span>
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Expiry Date&nbsp;</small> <i
+                                        class="fa fa-sort-amount-asc"></i></a>
+                            </span>
+                            <span>
+                                <a>&nbsp;&nbsp;&nbsp;&nbsp;<small>Posting Date&nbsp; </small> <i
+                                        class="fa fa-sort-amount-asc"></i></a>
+                            </span>
+                            <span style="font-size: x-large;">
+                                <button pButton type="button" *ngIf="tableView; else table"
+                                    style="border: none; background: transparent; color: black; font-size: 1.5rem;"
+                                    icon="fas fa-bars" (click)="listView()"></button>
+                                <ng-template #table>
+                                    <button pButton type="button" style="border: none; background: transparent; color: rgb(37, 241, 48);
+                                        font-size: 1.5rem;" icon="fas fa-bars" (click)="listView()"></button>
+                                </ng-template>
+                            </span>
+                            <span style="font-size: x-large;">
+                                <button pButton type="button" *ngIf="tableView; else list" style="border: none; background: transparent; color: rgb(37, 241, 48); font-size:
+                                    1.5rem;" icon="fas fa-th-list"></button>
+                                <ng-template #list>
+                                    <button pButton type="button" style="border: none; background: transparent; color: black; font-size:
+                                    1.5rem;" icon="fas fa-th-list" (click)="viewTable()"></button>
+                                </ng-template>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="table-responsive">
+                                <p-table *ngIf="tableView; else viewList" [scrollable]="true" [value]="jobList"
+                                    [style]="{ minWidth: '100%' }" (onRowSelect)="onRowSelect($event)"
+                                    selectionMode="single">
+                                    <ng-template pTemplate="header">
+                                        <tr style="text-align: center;">
+                                            <th>JOB VACANCY</th>
+                                            <th>COMPANY</th>
+                                            <th>LOCATION</th>
+                                            <th>SALARY</th>
+                                            <th>POSTING DATE</th>
+                                            <th>EXPIRY DATE</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-job>
+                                        <tr>
+                                            <td>
+                                                {{job.jobVacancy}}
+                                            </td>
+                                            <td>
+                                                {{job.company}}
+                                            </td>
+                                            <td>
+                                                {{job.location}}
+                                            </td>
+                                            <td>
+                                                {{job.salary}}
+                                            </td>
+                                            <td>
+                                                {{job.postingDate}}
+                                            </td>
+                                            <td>
+                                                {{job.expDate}}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <button type="button" pButton icon="pi pi-heart"
+                                                    style="border: none; font-size: 1rem; margin-right: 1vw; background: none;"
+                                                    class="ui-button-secondary" (click)="onApply()"></button>
+                                                <button type="button" pButton icon="pi pi-check"
+                                                    style="border: none; font-size: 1rem; background: none;"
+                                                    class="ui-button-secondary" (click)="onApply()"></button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage" let-columns>
+                                        <tr>
+                                            <td class="text-center" [attr.colspan]="9">
+                                                {{'No Records Found'}}
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                <ng-template #viewList>
+                                    <table class="table table-hover table-striped table-vcenter mb-0">
+                                        <tbody *ngFor="let job of jobList">
+                                            <tr>
+                                                <td style="width: 20%;">
+                                                    <img class="fit-picture"
+                                                        src="./assets/images/gallery/defaultLogo.jpg"
+                                                        alt="Company Logo">
+                                                </td>
+                                                <td colspan="12">
+                                                    <a [routerLink]="'/home/user-detail'"
+                                                        class="detail-job"><u>{{job.jobVacancy}}</u></a>
+                                                    <br><span><small>{{job.company}}</small></span>
+                                                    <br><span><small>{{job.location}}</small></span>
+                                                    <br><span><small> {{job.salary}}</small></span>
+                                                </td>
+                                                <td colspan="4" style="text-align: right;">
+                                                    <span>
+                                                        <br><span><small>Posted {{job.postingDate}}</small></span>
+                                                        <br><span><small>apply before {{job.expDate}}</small></span>
+                                                        <br><br>
+                                                        <button type="button" pButton icon="pi pi-heart"
+                                                            style="border-color: black; font-size: 10px; margin-right: 1vw;"
+                                                            label="SAVE" class="ui-button-secondary"
+                                                            (click)="onApply()"></button>
 
-                              <button type="button" pButton icon="pi pi-check" 
-                              style="border-color: black; font-size: 10px; "
-                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
-                          </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="width: 20%;">
-                          <img class="fit-picture"
-                          src="./assets/images/gallery/defaultLogo.jpg"
-                          alt="Company Logo">
-                      </td>
-                      <td colspan="12">
-                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Bussiness Analyst</u></a>
-                          <br><span><small>Lawencon International</small></span>
-                          <br><span><small>Jakarta, Indonesia</small></span>
-                          <br><span><small> IDR 5,000,000-10,000,000</small></span>
-                      </td>
-                      <td colspan="4" style="text-align: right;">
-                          <span>
-                              <br><span><small>Posted 1 Month ago</small></span>
-                              <br><span><small>appy before 25 feb</small></span>
-                              <br><br>
-                              <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
-                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
-
-                              <button type="button" pButton icon="pi pi-check" 
-                              style="border-color: black; font-size: 10px; "
-                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
-                          </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="width: 20%;">
-                          <img class="fit-picture"
-                          src="./assets/images/gallery/defaultLogo.jpg"
-                          alt="Company Logo">
-                      </td>
-                      <td colspan="12">
-                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Full-Stack Developer</u></a>
-                          <br><span><small>Lawencon International</small></span>
-                          <br><span><small>Jakarta, Indonesia</small></span>
-                          <br><span><small> IDR 5,000,000-10,000,000</small></span>
-                      </td>
-                      <td colspan="4" style="text-align: right;">
-                          <span>
-                              <br><span><small>Posted 1 Month ago</small></span>
-                              <br><span><small>appy before 25 feb</small></span>
-                              <br><br>
-                              <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
-                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
-
-                              <button type="button" pButton icon="pi pi-check" 
-                              style="border-color: black; font-size: 10px; "
-                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
-                          </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="width: 20%;">
-                          <img class="fit-picture"
-                          src="./assets/images/gallery/defaultLogo.jpg"
-                          alt="Company Logo">
-                      </td>
-                      <td colspan="12">
-                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Angular Developer</u></a>
-                          <br><span><small>Lawencon International</small></span>
-                          <br><span><small>Jakarta, Indonesia</small></span>
-                          <br><span><small> IDR 5,000,000-10,000,000</small></span>
-                      </td>
-                      <td colspan="4" style="text-align: right;">
-                          <span>
-                              <br><span><small>Posted 1 Month ago</small></span>
-                              <br><span><small>appy before 25 feb</small></span>
-                              <br><br>
-                              <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
-                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
-
-                              <button type="button" pButton icon="pi pi-check" 
-                              style="border-color: black; font-size: 10px; "
-                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
-                          </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="width: 20%;">
-                          <img class="fit-picture"
-                          src="./assets/images/gallery/defaultLogo.jpg"
-                          alt="Company Logo">
-                      </td>
-                      <td colspan="12">
-                          <a [routerLink]="'/home/user-detail'" class="detail-job"><u>Backend Developer</u></a>
-                          <br><span><small>Lawencon International</small></span>
-                          <br><span><small>Jakarta, Indonesia</small></span>
-                          <br><span><small> IDR 5,000,000-10,000,000</small></span>
-                      </td>
-                      <td colspan="4" style="text-align: right;">
-                          <span>
-                              <br><span><small>Posted 1 Month ago</small></span>
-                              <br><span><small>appy before 25 feb</small></span>
-                              <br><br>
-                              <button type="button" pButton icon="pi pi-heart" 
-                              style="border-color: black; font-size: 10px; margin-right: 1vw;"
-                              label="SAVE" class="ui-button-secondary" (click)="onApply()"></button>
-
-                              <button type="button" pButton icon="pi pi-check" 
-                              style="border-color: black; font-size: 10px; "
-                              label="APPLY" class="ui-button-secondary" (click)="onApply()"></button>
-                          </span>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
+                                                        <button type="button" pButton icon="pi pi-check"
+                                                            style="border-color: black; font-size: 10px; " label="APPLY"
+                                                            class="ui-button-secondary" (click)="onApply()"></button>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <router-outlet></router-outlet>

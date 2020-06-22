@@ -21,7 +21,9 @@
                         </div>
                         <div class="ui-g-7 mx-3" style="font-size: 0.75rem;">
                             <div class="ui-grid-row my-0">
-                                <p>John Doe</p>
+                                <p
+                                    style="font-weight: bold; font-size: 1.25rem; font-weight: bold; margin-bottom: 0rem;">
+                                    John Doe</p>
                             </div>
                             <div class="ui-grid-row ui-g-12 my-0" style="height: 18vh;">
                                 <div class="ui-g-6">
@@ -59,15 +61,17 @@
                             </div>
                             <div class="ui-grid-row my-0" style="font-size: 0.75rem;">
                                 <p>Salary Expectations : IDR 6,000,000</p>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="ui-g-4" style="font-size: 0.75rem;">
                     <div class="ui-g-6" style="position: relative;">
                         <div class="ui-grid-row my-1">
-                            <p-chart type="doughnut" [options]="options" [data]="completion" width="10rem" height="10rem"></p-chart>
-                            <div class="mx-auto" style="position: absolute; text-align: center; transform: translate(-50%, -50%); top: 50%; left: 50%; height: 32%;">
+                            <p-chart type="doughnut" [options]="options" [data]="completion" width="10rem"
+                                height="10rem"></p-chart>
+                            <div class="mx-auto"
+                                style="position: absolute; text-align: center; transform: translate(-50%, -50%); top: 50%; left: 50%; height: 32%;">
                                 <h5>{{isDone}}%</h5>
                             </div>
                         </div>
@@ -83,7 +87,7 @@
                             <div class="ui-grid-col-1" *ngIf="complete.done; else notDone">
                                 <i class="fa fa-check"></i>
                             </div>
-                            <ng-template #notDone> 
+                            <ng-template #notDone>
                                 <div class="ui-grid-col-1">
                                     <i class="fa fa-minus"></i>
                                 </div>
@@ -99,42 +103,84 @@
     </div>
 </div>
 
-<div class="ui-g">
+<!-- TabView -->
+<p-tabView>
+    <p-tabPanel header="B.Info">
+        <app-my-profile-basic-information id="bInfo"></app-my-profile-basic-information>
+    </p-tabPanel>
+
+    <p-tabPanel header="Family">
+        <app-my-profile-family-members id="familyMembers"></app-my-profile-family-members>
+    </p-tabPanel>
+
+    <p-tabPanel header="Address">
+        <app-my-profile-address-information id="addressInfo"></app-my-profile-address-information>
+    </p-tabPanel>
+
+    <p-tabPanel header="Education">
+        <app-my-profile-education id="education"></app-my-profile-education>
+    </p-tabPanel>
+
+    <p-tabPanel header="Skills">
+        <app-my-profile-skills id="skills"></app-my-profile-skills>
+    </p-tabPanel>
+
+    <p-tabPanel header="Languages">
+        <app-my-profile-languages id="languages"></app-my-profile-languages>
+    </p-tabPanel>
+
+    <p-tabPanel header="Experiences">
+        <app-my-profile-working-experience id="workExperience"></app-my-profile-working-experience>
+    </p-tabPanel>
+
+    <p-tabPanel header="Projects">
+        <app-my-profile-project-experience id="projectExperience"></app-my-profile-project-experience>
+    </p-tabPanel>
+
+    <p-tabPanel header="Organizations">
+        <app-my-profile-organization-experience id="orgExperience"></app-my-profile-organization-experience>
+    </p-tabPanel>
+
+    <p-tabPanel header="Training">
+        <app-my-profile-training id="training"></app-my-profile-training>
+    </p-tabPanel>
+
+    <p-tabPanel header="Documents">
+        <app-my-profile-documents id="documents"></app-my-profile-documents>
+    </p-tabPanel>
+
+    <p-tabPanel header="References">
+        <app-my-profile-reference id="reference"></app-my-profile-reference>
+    </p-tabPanel>
+
+</p-tabView>
+
+<!-- Old View -->
+<!-- <div class="ui-g">
     <div class="ui-g-12">
-        <!-- Basic Information -->
+
         <app-my-profile-basic-information id="bInfo"></app-my-profile-basic-information>
 
-        <!-- Family Members -->
         <app-my-profile-family-members id="familyMembers"></app-my-profile-family-members>
 
-        <!-- Address -->
         <app-my-profile-address-information id="addressInfo"></app-my-profile-address-information>
 
-        <!-- Education -->
         <app-my-profile-education id="education"></app-my-profile-education>
 
-        <!-- Skills -->
         <app-my-profile-skills id="skills"></app-my-profile-skills>
 
-        <!-- Languages -->
         <app-my-profile-languages id="languages"></app-my-profile-languages>
 
-        <!-- Working Experience -->
         <app-my-profile-working-experience id="workExperience"></app-my-profile-working-experience>
 
-        <!-- Project Experience -->
         <app-my-profile-project-experience id="projectExperience"></app-my-profile-project-experience>
 
-        <!-- Organization Experience -->
         <app-my-profile-organization-experience id="orgExperience"></app-my-profile-organization-experience>
 
-        <!-- Training -->
         <app-my-profile-training id="training"></app-my-profile-training>
 
-        <!-- Documents -->
         <app-my-profile-documents id="documents"></app-my-profile-documents>
 
-        <!-- Reference -->
         <app-my-profile-reference id="reference"></app-my-profile-reference>
     </div>
-</div>
+</div> -->

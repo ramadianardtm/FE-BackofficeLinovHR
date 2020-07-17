@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "skillName":"Java Programming",
+            "createdBy":"17654 - Riella",
+            "createdTime":"13-JUL-2019 12:00PM"
+        },
+        {
+            "skillName":"HTML",
+            "createdBy":"17654 - Riella",
+            "createdTime":"13-JUL-2019 12:00PM"
+        },
+        {
+            "skillName":"PHP",
+            "createdBy":"17654 - Riella",
+            "createdTime":"13-JUL-2019 12:00PM"
+        },
+        {
+            "skillName":"Oracle Database",
+            "createdBy":"17654 - Riella",
+            "createdTime":"13-JUL-2019 12:00PM"
+        }
+    ]
+}

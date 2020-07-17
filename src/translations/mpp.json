@@ -1,0 +1,100 @@
+{
+    "data": [{
+        "mppCode":"MPP04",
+        "requestNo":"REQ004",
+        "requestDate":"1-Apr-2020",
+        "Period":"MPP2020",
+        "year":2020,
+        "year20":2020,
+        "unit":"ITDEV- IT DEPARTEMENT",
+        "jobName":"ZYT-Progammer",
+        "positioCount":"3",
+        "effectiveDate":"7-Apr-2020",
+        "status":"APPROVED",
+        "statusPending":"PENDING-USER MGR",
+        "description":"Manpower Planning for the year 2020",
+        "period":"Monthly",
+        "name":"Manpower Planning year 2020",
+        "month":"January",
+        "reject":"REJECTED",
+        "startDate":"01-January-2020",
+        "endDate":"31-January-2020",
+        "periodMPP20":"MPP2020"
+        
+        },
+         
+        {
+        "mppCode":"MPP03",
+        "requestNo":"REQ003",
+        "requestDate":"1-Mar-2020",
+        "Period":"MPP2019",
+        "year":2019,
+        "year20":2020,
+        "unit":"MKTS - MARKETING STRATEGIC",
+        "jobName":"KTR - Marketing",
+        "positioCount":"3",
+        "effectiveDate":"7-Mar-2020",
+        "status":"APPROVED",
+        "statusPending":"HR-USER MGR",
+        "description":"Manpower Planning for the year 2019",
+        "period":"Monthly",
+        "name":"Manpower Planning year 2019",
+        "month":"February",
+        "reject":"REJECTED",
+        "bayu":"Bachtiar",
+        "jam":"16.00",
+        "startDate":"01-February-2020",
+        "endDate":"29-February-2020",
+        "periodMPP20":"MPP2020"
+
+        }, 
+        
+        {
+        "mppCode":"MPP02",
+        "requestNo":"REQ002",
+        "requestDate":"1-Feb-2020",
+        "Period":"MPP2018",
+        "year":2018,
+        "year20":2020,
+        "unit":"FINC - FINANCE DEPARTMENT",
+        "jobName":"MGR- MANAGER",
+        "positioCount":"3",
+        "effectiveDate":"7-Feb-2020",
+        "status":"APPROVED",
+        "statusPending":"PENDING-USER MGR",
+        "description":"Manpower Planning for the year 2018",
+        "period":"Monthly",
+        "name":"Manpower Planning year 2018",
+        "month":"March",
+        "reject":"REJECTED",
+        "startDate":"01-March-2020",
+        "endDate":"31-March-2020",
+        "periodMPP20":"MPP2020"
+     
+        },
+        {
+        "mppCode":"MPP01",
+        "requestNo":"REQ001",
+        "requestDate":"1-Jan-2020",
+        "Period":"MPP2017",
+        "year":2017,
+        "year20":2020,
+        "unit":"HRDS - HR DEPARTMENT",
+        "jobName":"ACG - Supervisor",
+        "positioCount":"3",
+        "effectiveDate":"7-Jan-2020",
+        "status":"APPROVED",
+        "statusPending":"PENDING-USER MGR",
+        "description":"Manpower Planning for the year 2017",
+        "period":"Monthly",
+        "name":"Manpower Planning year 2017",
+        "month":"April",
+        "reject":"REJECTED",
+        "startDate":"01-April-2020",
+        "endDate":"30-April-2020",
+        "periodMPP20":"MPP2020"
+        
+        
+        }
+    ]
+}

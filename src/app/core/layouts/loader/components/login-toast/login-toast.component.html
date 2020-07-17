@@ -1,0 +1,29 @@
+<p-toast
+    [showTransitionOptions]="'0ms'"
+    [hideTransitionOptions]="'0ms'"
+    [baseZIndex]="5000"
+    [modal]="true"
+    position="center"
+    key="loggedin"
+    styleClass="login-toast"
+>
+    <ng-template let-message pTemplate="message">
+        <div class="d-flex flex-column text-center">
+            <div class="ml-loader mx-auto">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="text-white">{{ message.detail }}</div>
+        </div>
+    </ng-template>
+</p-toast>

@@ -1,0 +1,167 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-fixed">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">
+        <img src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30"
+            class="d-inline-block align-top" alt="">
+        <span class="menu-collapsed">My Bar</span>
+    </a> -->
+    <a [routerLink]="'/dashboard'" class="navbar-brand ml-2rem-mr-7rem">
+        <img class="logo" src="assets/images/logo.svg" />
+        <!-- Linov<strong>HR</strong> -->
+    </a>
+    <div class="ui-g-12">
+        <p-autoComplete [(ngModel)]="searchValue" [suggestions]="searchResult" (completeMethod)="onMenuSearch()"
+            field="search" [size]="30" placeholder="{{ 'search' | translate }}" [minLength]="1"
+            (keyup.enter)="onMenuEnter(searchValue)">
+            <ng-template let-result pTemplate="item">
+                <div class="ui-helper-clearfix">
+                    <div [innerHTML]="result.result" [routerLink]="result.path">
+                    </div>
+                </div>
+            </ng-template>
+        </p-autoComplete>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <p-dropdown (onChange)="onChange($event)" [(ngModel)]="selectedCompany" [options]="companies"
+                    class="dropdown-company"></p-dropdown>
+            </li>
+            <li class="nav-item" style="padding-right: 12px;padding-left: 0px;">
+                <!-- <select class="lang" (change)="changeLang(langSelect.value)" #langSelect>
+                    <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                        [selected]="lang === translate.currentLang">
+                        {{ lang }}
+                    </option>
+                </select> -->
+                <p-dropdown class="dropdown-language" [options]="language" [(ngModel)]="selectedLang"></p-dropdown>
+            </li>
+
+            <li class="nav-item">
+                <div class="notification d-flex">
+                    <div class="dropdown d-flex dropdown-custom" id="myDropdown">
+                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"
+                            style="padding-right: 15px"><i class="fa fa-bell"></i><span
+                                *ngIf="notifCount$ | async as notif"
+                                class="badge badge-yellow nav-unread">{{notif}}</span></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow p-0"
+                            style="width: 345px;height: 300px;">
+                            <div class="w-100 list-box" id="myFilter2">
+                                <div class="ui-g" style="height: 35px;width: 344px; border-left: 1px solid #7EA6E0;
+                                    border-right: 1px solid #7EA6E0;
+                                    border-bottom: 1px solid #7EA6E0;">
+                                    <div class="ui-g-10 notif-info">information</div>
+                                    <div class="ui-g-2" style="font-size: 12px; cursor: pointer;text-align: right;"
+                                        (click)="openFilter()">
+                                        <i class="material-icons w3-xxxlarge">menu</i>
+                                    </div>
+                                </div>
+                                <p-listbox [options]="notifList$ | async" class="border-0"
+                                    (onClick)="onSelect($event.option)">
+                                    <ng-template let-notif pTemplate="item" class="cont-space">
+                                        <div class="ui-g">
+                                            <div class="ui-g-2">
+                                                <img class="img-thumbnail p-2" src="assets/icons8-folder-40.png">
+                                            </div>
+                                            <div class="ui-g-10">
+                                                <span class="ui-g-12 p-0 title-notif">{{notif.messageTitle}}</span>
+                                                <span class="ui-g-12 p-0 desc-notif">{{notif.messageContent}}</span>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-listbox>
+
+
+                                <p-dialog *ngIf="notification" header="Notification" [(visible)]="display"
+                                    [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+                                    [maximizable]="true">
+                                    <label>Info</label>
+                                    <p>{{notification.messageTitle}}</p>
+                                    <p>{{notification.messageContent}}</p>
+                                    <p-footer>
+                                        <button type="button" pButton icon="pi pi-check" (click)="loadData()"
+                                            label="OK"></button>
+                                    </p-footer>
+                                </p-dialog>
+
+                                <div class="more">
+                                    <a (click)="showMore()">Show More
+                                    </a>
+                                </div>
+                            </div>
+
+                            <form [formGroup]="formGroup" (ngSubmit)="closeFilter()">
+                                <div class="w-100 list-box" id="myFilter">
+                                    <div class="ui-g" style="height: 35px; border-left: 1px solid #7EA6E0;
+                                    border-right: 1px solid #7EA6E0;
+                                    border-bottom: 1px solid #7EA6E0;">
+                                        <div class="ui-g-1"
+                                            style="font-size: 12px; cursor: pointer;text-align: right;padding: 10px 0;"
+                                            (click)="closeFilter()">
+                                            <i class="fas fa-chevron-left trigger_button"></i>
+                                        </div>
+                                        <div class="ui-g-11" style="color: #333333;
+                                    font-weight: 400;">Filter</div>
+                                    </div>
+                                    <div class="ui-g-12" style="border-bottom: solid 1px #999999;
+                                padding: 0;">
+                                        <div class="ui-g-6">
+                                            <!-- <p-checkbox name="group1" value="Received Date" label="Received Date"
+                                                [(ngModel)]="selectedDate" inputId="ny"
+                                                [ngModelOptions]="{standalone: true}"></p-checkbox> -->
+                                            <p-checkbox [(ngModel)]="checked" binary="true" label="Received Date"
+                                                [ngModelOptions]="{standalone: true}">
+                                            </p-checkbox>
+                                        </div>
+                                        <div class="ui-g-6">
+                                            <!-- <p-calendar class="width-calendar-header" [showIcon]="true"
+                                                [ngModel]="date3">
+                                            </p-calendar> -->
+                                            <p-calendar class="width-calendar-header" [showIcon]="true"
+                                                formControlName="receivedDate">
+                                            </p-calendar>
+                                        </div>
+                                        <!-- <button pButton type="submit" label="{{'save' | translate}}"
+                                            (click)="onSubmit()"></button> -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="dropdown d-flex dropdown-custom">
+                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-1"
+                            data-toggle="dropdown"><i class="fa fa-user img-circle"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item"><i class="dropdown-icon fe fe-user"></i>
+                                {{userName}}</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" routerLink="/login" (click)="doLogout()"><i
+                                    class="dropdown-icon fe fe-log-out"></i> Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- This menu is hidden in bigger devices with d-sm-none.
+             The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+            <li class="nav-item dropdown d-sm-block d-md-none">
+                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                    <a class="dropdown-item" href="#">Dashboard</a>
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Tasks</a>
+                    <a class="dropdown-item" href="#">Etc ...</a>
+                </div>
+            </li>
+            <!-- Smaller devices menu END -->
+        </ul>
+    </div>
+</nav>
+<!-- NavBar END -->

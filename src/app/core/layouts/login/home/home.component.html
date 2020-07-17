@@ -1,0 +1,52 @@
+<style>
+    p {
+        text-align: center;
+    }
+
+    .detail {
+        font-size: 1rem;
+    }
+
+</style>
+
+
+<div class="ui-g-12 mt-4">
+    <div class="container">
+        <p-tabView>
+            <p-tabPanel header="Create Tenant">
+                <ng-template pTemplate="content">
+                    <app-tenant-create></app-tenant-create>
+
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="Tenant Management">
+                <div></div>
+            </p-tabPanel>
+        </p-tabView>
+
+    </div>
+</div>
+
+
+<p-dialog header="Your Account" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+    <div class="ui-g-12">
+        <div class="ui-g-4 ">
+            <label>USERNAME</label>
+        </div>
+        <div class="ui-g-7">
+            <label>{{user?.username || "-"}}</label>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-4 ">
+            <label>PASSWORD</label>
+        </div>
+        <div class="ui-g-7">
+            <label>{{user?.password || "-"}}</label>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="doLogin()" label="login"></button>
+        <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="close"></button>
+    </p-footer>
+</p-dialog>

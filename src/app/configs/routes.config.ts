@@ -2,8 +2,6 @@
  * List of menu code in application
  */
 import { Routes } from '@angular/router';
-import { JobPortalModule } from 'app/modules/job-portal/job-portal.module';
-
 export const MENU_CODE = {
     userSetting: '',
 };
@@ -17,10 +15,10 @@ export const MENU_CODE = {
 export const MODULE_ROUTES: Routes = [
 
     {
-        path: '',
+        path: 'dashboard',
         loadChildren: () =>
-            import('app/modules/job-portal/job-portal.module').then(
-                m => m.JobPortalModule
+            import('app/modules/tenant-management/tenant-management.module').then(
+                m => m.TenantManagementModule
             ),
     },
 

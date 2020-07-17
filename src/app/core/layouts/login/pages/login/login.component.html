@@ -1,46 +1,35 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-fixed">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a [routerLink]="'/home'" class="navbar-brand ml-2rem-mr-7rem">
-        <img class="logo" src="assets/images/logo.svg" style="height: 35px;" />
-        <!-- Linov<strong>HR</strong> -->
-    </a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item" style="padding-right: 12px;padding-left: 0px;">
-                <p-dropdown class="dropdown-language" [options]="language" [(ngModel)]="selectedLang"></p-dropdown>
-            </li>
-        </ul>
-    </div>
-    <a [routerLink]="'/home/register'" class="navbar-brand ml-2rem-mr-7rem" style="width: 5px; font-size:1rem;">
-        <i class="pi pi-user-plus"></i>
-        Sign Up
-    </a>
-    <a [routerLink]="'/home/login'" class="navbar-brand ml-2rem-mr-7rem" style="width: 5px; font-size: 1rem;">
-        <i class="pi pi-sign-in"></i>
-        Sign In
-    </a>
-</nav>
+<p-toast position="top-right"></p-toast>
+<div class="ui-g-12 p-0" style="position: absolute;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-fixed">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a [routerLink]="'/home'" class="navbar-brand ml-2rem-mr-7rem">
+            <img class="logo" src="assets/images/logo.svg" style="height: 35px;" />
+            <!-- Linov<strong>HR</strong> -->
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="padding-right: 12px;padding-left: 0px;">
+                </li>
+            </ul>
+        </div>
 
+    </nav>
 
-<div class="login-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 p-0">
-                <router-outlet *ngIf="isDesktop"></router-outlet>
+</div>
 
-                <p-card
-                    *ngIf="isTablet || isMobile"
-                    class="logos-card text-center"
-                >
-                    <h2>Sorry, unavailable for mobile browser.</h2>
-                    <p>Please contact our support team.</p>
+<div class="ui-g-12 p-5" style="position: absolute;">
+    <router-outlet *ngIf="isDesktop"></router-outlet>
 
-                    <!--TODO: enable for ESS-->
-                    <!--<a href="" class="btn btn-link">
+    <p-card *ngIf="isTablet || isMobile" class="logos-card text-center">
+        <h2>Sorry, unavailable for mobile browser.</h2>
+        <p>Please contact our support team.</p>
+
+        <!--TODO: enable for ESS-->
+        <!--<a href="" class="btn btn-link">
                         <img
                             src="assets/app-store-badge.svg"
                             alt="Our app is now available on Apple Store."
@@ -52,8 +41,5 @@
                             alt="Our app is now available on Google Play."
                         />
                     </a>-->
-                </p-card>
-            </div>
-        </div>
-    </div>
+    </p-card>
 </div>

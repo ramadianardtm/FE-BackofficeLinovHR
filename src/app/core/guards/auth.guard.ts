@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService
-    ) {}
+    ) { }
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -37,7 +37,6 @@ export class AuthGuard implements CanActivate {
 
             return false;
         }
-
         return isLoggedIn;
     }
 }

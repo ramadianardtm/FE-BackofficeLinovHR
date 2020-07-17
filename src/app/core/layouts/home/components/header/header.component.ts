@@ -185,7 +185,6 @@ export class HeaderComponent implements OnInit {
         // this._connect();
 
 
-        document.getElementById('myFilter').style.display = 'none';
         this.userName = this.authService.getSession().user.person ?
             this.authService.getSession().user.person.firstName : "admin";
         this.url = this.constName.baseImage.file_img_url;

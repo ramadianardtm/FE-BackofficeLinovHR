@@ -8,13 +8,13 @@ import { MessageService } from 'primeng/api';
 import { AppConstant } from 'app/configs/app.config';
 import { AuthenticationService } from 'app/core/authentication/authentication.service';
 import { ApiService } from 'app/core/http/api.service';
-
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-tenant-create',
+  templateUrl: './tenant-create.component.html',
+  styleUrls: ['./tenant-create.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class TenantCreateComponent implements OnInit {
+
   login = false
   inquiry: string = '';
   formReady: FormGroup;

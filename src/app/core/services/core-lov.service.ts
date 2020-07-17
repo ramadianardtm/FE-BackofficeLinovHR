@@ -7,14 +7,14 @@ import { HttpParams } from '@angular/common/http';
     providedIn: 'root',
 })
 export class CoreLovService {
-    constructor(private api: ApiService) {}
+    constructor(private api: ApiService) { }
 
     /**
      *  Api get Lov Core
      *  @param  uri Uri for Core Lov
      */
     getAll(uri: string) {
-        return this.api.get('lov/' + uri);
+        return this.api.get(uri);
     }
     // getSearch(uri: string, job: string, inquiry: string) {
     //     const param = new HttpParams().set('job', job).set('inquiry', inquiry);

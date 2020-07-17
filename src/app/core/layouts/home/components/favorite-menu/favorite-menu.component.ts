@@ -12,12 +12,12 @@ export class FavoriteMenuComponent implements AfterViewInit {
 
     favMenus: Menu[] = [];
 
-    constructor() {}
+    constructor() { }
 
     ngAfterViewInit() {
-        this.modules.forEach(item => {
-            this.onConstructFavMenu(item.parentMenu);
-        });
+        // this.modules.forEach(item => {
+        //     this.onConstructFavMenu(item.parentMenu);
+        // });
     }
 
     /**

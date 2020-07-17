@@ -12,11 +12,7 @@ declare var $: any;
 })
 export class MenuComponent implements OnInit {
     @Input() modules: any[] = [
-        {name:"Job Vacancy",icon:"fas fa-toolbox",path:"/job-vacancy"},
-        {name:"My Profile",icon:"fas fa-user",path:"/my-profile"},
-        {name:"My Application",icon:"fas fa-file-text",path:"/my-applications"},
-        {name:"Saved Jobs",icon:"fas fa-heart",path:"/saved-jobs"},
-        {name:"Job Alert",icon:"fas fa-bell",path:"/job-alert"},
+        { name: "tenant-management", icon: "fas fa-toolbox", path: "/dashboard" },
     ]
 
     isActive = false;

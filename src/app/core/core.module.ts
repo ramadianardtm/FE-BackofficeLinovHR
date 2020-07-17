@@ -108,8 +108,7 @@ import {
 } from '@effects/notification.effect';
 import { RecruitmentMppService } from '@core-service/recruitment-mpp.service';
 import { RecruitmentMainJobVacancyAllService } from '@core-service/recruitment-main-jobvacancy-all.service';
-import { JobPortalModule } from 'app/modules/job-portal/job-portal.module';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 
 // TODO: optimize later or remove later
 export {
@@ -125,7 +124,7 @@ export {
     // TODO: optimize later, Core->Moduleservice
 
     // Organization Service
-    
+
 
 
     HeaderService,
@@ -134,7 +133,7 @@ export {
     // Recruitment Service
     RecruitmentMainJobVacancyAllService,
     RecruitmentMppService,
-    };
+};
 
 export const interceptorProviders = [{
     provide: HTTP_INTERCEPTORS,
@@ -177,7 +176,7 @@ export const interceptorProviders = [{
             NotificationEffect,
             // UM Service
             UserEffect,
-            
+
         ]),
 
         StoreDevtoolsModule.instrument({
@@ -193,7 +192,6 @@ export const interceptorProviders = [{
         ErrorModule,
         LoginModule,
         HomeModule,
-        JobPortalModule,
     ],
     declarations: [],
     providers: [LoaderService, MessageService, interceptorProviders],

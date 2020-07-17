@@ -1053,6 +1053,29 @@ input.input-text-style[readonly] {
     background-color: #eaeaea
 }
 
+
+.input-text-style {
+    border: none;
+    background: transparent;
+    display: block;
+    position: relative;
+    top: 4px;
+}
+
+.bd-none {
+    .ui-inputtext {
+        border: none;
+        display: block;
+        position: relative;
+        background: transparent;
+        font-size: 14px;
+    }
+
+
+}
+
+
+
 lov-payroll[ng-reflect-readonly="true"] {
     p-dropdown {
         background-color: #eaeaea;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Form } from '@angular/forms';
 import { RegisterTenantService } from '../shared/register-tenant-service';
@@ -8,19 +8,21 @@ import { MessageService } from 'primeng/api';
 import { AppConstant } from 'app/configs/app.config';
 import { AuthenticationService } from 'app/core/authentication/authentication.service';
 import { ApiService } from 'app/core/http/api.service';
+import { modules_radio } from './json-modules';
 @Component({
   selector: 'app-tenant-create',
   templateUrl: './tenant-create.component.html',
-  styleUrls: ['./tenant-create.component.scss']
+  styleUrls: ['./tenant-create.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TenantCreateComponent implements OnInit {
-
+  value:boolean
   login = false
   inquiry: string = '';
   formReady: FormGroup;
   modules: any[] = [];
   selected: any[] = ["0e907e82-f24d-4180-81fd-7fb5d30f9663", "f0ab790a-dda5-4357-baf5-1eba2f2a540f", "bdc2663d-cf88-4255-ac13-16ff44a00a4d"];
-  uri: any[] = [{ url: 'register/languages', label: 'Default Languages' }, { url: 'register/date-formats', label: 'Date Format' }, { url: 'register/currencies', label: "Currency" }]
+  uri: any[] = [{ url: 'languages', label: 'Default Languages' }, { url: 'date-formats', label: 'Date Format' }, { url: 'currencies', label: "Currency" }]
 
   constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService,
     private messageService: MessageService,
@@ -29,11 +31,20 @@ export class TenantCreateComponent implements OnInit {
   ) {
     this.createFormGroup()
   }
+  onKeyUp(event){
+    let formS = this.formReady.controls['companies'] as FormArray
+    let gs = formS.controls[0] as FormGroup;
+    gs.get("company").get("name").patchValue(this.formReady.get("tenantName").value)
+
+    
+  }
+  removeCompany(i){
+    let delFOrm = this.formReady.controls['companies'] as FormArray
+    delFOrm.removeAt(i);
+  }
 
   ngOnInit() {
-    this.regis.getLovModules().subscribe(res => {
-      this.modules = res;
-    })
+    this.modules = modules_radio
   }
   createFormGroup() {
     this.formReady = this.formBuilder.group({
@@ -79,7 +90,6 @@ export class TenantCreateComponent implements OnInit {
       })
 
   }
-
   createFormCompanies() {
     return this.formBuilder.group({
       company: this.formBuilder.group({

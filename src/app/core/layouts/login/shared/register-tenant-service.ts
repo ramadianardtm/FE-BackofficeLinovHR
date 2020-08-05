@@ -16,7 +16,7 @@ export class RegisterTenantService {
     constructor(private api: ApiService) { }
 
     getLovModules() {
-        return this.api.get("register/modules");
+        return this.api.get("modules");
     }
 
     saveTenat(data) {

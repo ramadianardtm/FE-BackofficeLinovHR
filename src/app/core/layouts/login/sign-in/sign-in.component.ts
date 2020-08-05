@@ -99,7 +99,7 @@ export class SignInComponent implements OnInit {
     loginForm.isEss = false;
     loginForm.applicationId = AppConstant.applicationId;
 
-    this.apiService.postLogin('login', loginForm).subscribe(
+    this.apiService.postLogin('developer/login', loginForm).subscribe(
       (resp: Session) => {
         this.authService.createSession(resp);
         console.log('resp login', resp);

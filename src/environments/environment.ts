@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://api-dev4.linovhr.com:8080/linov/api/v1/',
-    // apiUrl: 'http://localhost:8080/api/v1/',
+    // apiUrl: 'http://api-dev4.linovhr.com:8080/linov/api/v1/',
+    apiUrl: 'http://192.168.15.174:8080/api/v1/',
 
     mockApiUrl: 'http://localhost:3000/',
     reportUrl: 'http://api-dev.linovhr.com:7080/report/',

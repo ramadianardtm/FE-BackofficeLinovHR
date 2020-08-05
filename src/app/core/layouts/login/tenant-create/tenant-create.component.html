@@ -3,14 +3,8 @@
         <app-component-logger-form [storeItem]="null" [formValue]="formReady">
         </app-component-logger-form>
     </div>
-    <div class="ui-g-12 border-line" style="text-align: right;">
-        <div class="ui-g-12">
-            <button (click)="saveTenant()" pButton type="button" label="{{ 'save' | translate }}"
-                class="btn-add"></button>
-        </div>
-    </div>
     <div class="ui-g-12" [formGroup]="formReady">
-        <div class="ui-g-6">
+        <div class="ui-g-12">
             <div class="ui-g-12">
                 <div class="ui-g-12 border-line text-center">
                     <h6>TENANT</h6>
@@ -22,7 +16,7 @@
                                 <label>Tenant Name</label>
                             </div>
                             <div class="ui-g-7 border-line">
-                                <input class="input-text-style" type="text" size="30" formControlName="tenantName"
+                                <input class="input-text-style" type="text" size="30" formControlName="tenantName" (keyup)="onKeyUp($event)"
                                     placeholder="Input Tenant Name" pattern="[a-zA-Z0-9 ]*" />
                             </div>
                         </div>
@@ -61,17 +55,50 @@
                         </div>
                     </div>
                     <div class="ui-g-12">
-                        <div class="ui-g-4" *ngFor="let item of modules">
-                            <p-checkbox name="group1" value={{item.key}} label="{{item.value}}"
-                                [formControl]="formReady.controls['modules']" inputId="ny">
-                            </p-checkbox>
+                        <div class="ui-g-2" style="margin-left: 7px;">
+                            <label>Paket</label>
+                        </div>
 
+                        <div class="ui-g-9 border-line">
+
+                            <div class="ui-g-3">
+                                <p-checkbox label="Paket Hemat">
+
+                                </p-checkbox>
+                            </div>
+                            <div class="ui-g-3">
+                                <p-checkbox label="Paket Panas">
+
+                                </p-checkbox>
+                            </div>
+                            <div class="ui-g-3">
+                                <p-checkbox label="Paket Super Panas">
+
+                                </p-checkbox>
+                            </div>
+                            <div class="ui-g-3">
+                                <p-checkbox label="Custom" [ngModelOptions]="{standalone: true}" [(ngModel)]="value" [binary]="true">
+
+                                </p-checkbox>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="ui-g-12" *ngIf=value>
+                        <div class="ui-g-2" style="margin-left: 7px;">
+                        </div>
+                        <div class="ui-g-9 ">
+                            <div class="ui-g-3 " *ngFor="let item of modules">
+                                <p-checkbox name="group1" value={{item.id}} label="{{item.name}}"
+                                    [formControl]="formReady.controls['modules']" inputId="ny">
+                                </p-checkbox>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui-g-6">
+        <div class="ui-g-12">
             <div class="ui-g-12">
                 <div class="ui-g-12 border-line text-center">
                     <h6>COMPANY</h6>
@@ -79,57 +106,63 @@
             </div>
             <div class="ui-g-12">
                 <button (click)="addCompany()" pButton type="button" label="{{ 'Add' | translate }}"
-                    class="btn-add"></button> </div>
-            <p-accordion>
-                <div class="ui-g-12" formArrayName="companies">
-                    <div class="ui-g-12"
-                        *ngFor="let item of formReady['controls'].companies['controls']; let i = index">
-                        <ng-container [formGroupName]="i">
-                            <div formGroupName="company">
-
-                                <p-accordionTab header="Company {{i+1}}" [selected]="true">
-                                    <div class="ui-g-12">
-                                        <div class="ui-g-4">
-                                            <label>Company Name</label>
-                                        </div>
-                                        <div class="ui-g-7 border-line">
-                                            <input type="text" class="custom-input-text" formControlName="name"
-                                                placeholder="Input Company Name" pattern="[a-zA-Z0-9 ]*" />
-                                        </div>
-                                    </div>
-                                    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
-                                        <div class="ui-g-12">
-                                            <div class="ui-g-4">
-                                                <label>Tax Number</label>
-                                            </div>
-                                            <div class="ui-g-7 border-line">
-                                                <p-inputMask mask="99.999.999.9-999.999" class="bd-none" [unmask]="true"
-                                                    formControlName="companyTaxNumber"
-                                                    placeholder="Input Company Tax Number">
-                                                </p-inputMask>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
-                                        <div class="ui-g-12" *ngFor="let url of uri; let j=index">
-                                            <div class="ui-g-4">
-                                                <label>{{url?.label}}</label>
-                                            </div>
-                                            <div class="ui-g-7 border-line">
-                                                <lov-core [value]="formReady.value.companies[i].lovGnty[j].id"
-                                                    line="none" (selected)="onSelectRef1($event,i,j)"
-                                                    [withLabel]="false" [style]="{ width: '100%' }" [required]="true"
-                                                    [uri]="url.url" label=" Select {{ url?.label }}">
-                                                </lov-core>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </p-accordionTab>
-                            </div>
-                        </ng-container>
-                    </div>
+                    class="btn-add"></button> 
+                <div style="display: inline; float:right">
+                        
+                    
+                    <button (click)="saveTenant()" pButton type="button" label="{{ 'save' | translate }}"
+                class="btn-add" style="text-align: right;"></button>
+            </div>
                 </div>
-            </p-accordion>
+            <p-tabView>
+                <p-tabPanel *ngFor="let item of formReady['controls'].companies['controls']; let i = index;last as isFirst" [selected]="isFirst"  header="Company {{i+1}}">
+                    <div class="ui-g-12">
+                        <i class="fa fa-close" (click)="removeCompany(i)"></i>
+                    </div>
+                    <div formArrayName="companies">
+                      <ng-container [formGroupName]="i">
+                          <div formGroupName="company">
+                      <div class="ui-g-12">
+                          <div class="ui-g-4">
+                              <label>Company Name</label>
+                          </div>
+                          <div class="ui-g-7 border-line">
+                              <input type="text" class="custom-input-text" formControlName="name"
+                                  placeholder="Input Company Name" pattern="[a-zA-Z0-9 ]*" />
+                          </div>
+                      </div>
+                      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
+                          <div class="ui-g-12">
+                              <div class="ui-g-4">
+                                  <label>Tax Number</label>
+                              </div>
+                              <div class="ui-g-7 border-line">
+                                  <p-inputMask mask="99.999.999.9-999.999" class="bd-none" [unmask]="true"
+                                      formControlName="companyTaxNumber"
+                                      placeholder="Input Company Tax Number">
+                                  </p-inputMask>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid p-0">
+                          <div class="ui-g-12" *ngFor="let url of uri; let j=index">
+                              <div class="ui-g-4">
+                                  <label>{{url?.label}}</label>
+                              </div>
+                              <div class="ui-g-7 border-line">
+                                  <lov-core [value]="formReady.value.companies[i].lovGnty[j].id"
+                                      line="none" (selected)="onSelectRef1($event,i,j)"
+                                      [withLabel]="false" [style]="{ width: '100%' }" [required]="true"
+                                      [uri]="url.url" label=" Select {{ url?.label }}">
+                                  </lov-core>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                  </ng-container>
+                    </div>
+                  </p-tabPanel>         
+            </p-tabView>
         </div>
     </div>
 </div>

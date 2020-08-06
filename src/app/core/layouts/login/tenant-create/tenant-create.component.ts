@@ -20,9 +20,15 @@ export class TenantCreateComponent implements OnInit {
   login = false
   inquiry: string = '';
   formReady: FormGroup;
+  index: number = 0;
+
+   
   modules: any[] = [];
   selected: any[] = ["0e907e82-f24d-4180-81fd-7fb5d30f9663", "f0ab790a-dda5-4357-baf5-1eba2f2a540f", "bdc2663d-cf88-4255-ac13-16ff44a00a4d"];
   uri: any[] = [{ url: 'languages', label: 'Default Languages' }, { url: 'date-formats', label: 'Date Format' }, { url: 'currencies', label: "Currency" }]
+  categoriesWeb: any[] = [{name: 'Paket Web Hemat', key: 'A'}, {name: 'Paket Web Reguler', key: 'M'}, {name: 'Paket Web Panas', key: 'P'}];
+  categoriesMobileEss :any[] = [{name: 'Paket Mobile Hemat', key: 'A'}, {name: 'Paket Mobile Reguler', key: 'M'}, {name: 'Paket Mobile Panas', key: 'P'}];
+  categoriesWebEss:any[] = [{name: 'Paket WebEss Hemat', key: 'A'}, {name: 'Paket WebEss Reguler', key: 'M'}, {name: 'Paket WebEss Panas', key: 'P'}];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService,
     private messageService: MessageService,
@@ -38,6 +44,13 @@ export class TenantCreateComponent implements OnInit {
 
     
   }
+  openNext() {
+    this.index = (this.index === 2) ? 0 : this.index + 1;
+}
+
+openPrev() {
+    this.index = (this.index === 0) ? 2 : this.index - 1;
+}
   removeCompany(i){
     let delFOrm = this.formReady.controls['companies'] as FormArray
     delFOrm.removeAt(i);

@@ -16,7 +16,9 @@ import { modules_radio } from './json-modules';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TenantCreateComponent implements OnInit {
+  valueWeb:any
   value:boolean
+  valuePaket:any
   login = false
   inquiry: string = '';
   formReady: FormGroup;
@@ -26,9 +28,12 @@ export class TenantCreateComponent implements OnInit {
   modules: any[] = [];
   selected: any[] = ["0e907e82-f24d-4180-81fd-7fb5d30f9663", "f0ab790a-dda5-4357-baf5-1eba2f2a540f", "bdc2663d-cf88-4255-ac13-16ff44a00a4d"];
   uri: any[] = [{ url: 'languages', label: 'Default Languages' }, { url: 'date-formats', label: 'Date Format' }, { url: 'currencies', label: "Currency" }]
-  categoriesWeb: any[] = [{name: 'Paket Web Hemat', key: 'A'}, {name: 'Paket Web Reguler', key: 'M'}, {name: 'Paket Web Panas', key: 'P'}];
-  categoriesMobileEss :any[] = [{name: 'Paket Mobile Hemat', key: 'A'}, {name: 'Paket Mobile Reguler', key: 'M'}, {name: 'Paket Mobile Panas', key: 'P'}];
-  categoriesWebEss:any[] = [{name: 'Paket WebEss Hemat', key: 'A'}, {name: 'Paket WebEss Reguler', key: 'M'}, {name: 'Paket WebEss Panas', key: 'P'}];
+  categoriesWeb: any[] = [{id:'123rasyid',name: 'Paket Web Hemat', key: 'A'}, 
+  {id:'123rasy1212121id',name: 'Paket Web Reguler', key: 'M'},{id:'111111',name: 'Paket Web Panas', key: 'P'},{name: 'Costum', key: 'Costum'}];
+  categoriesMobileEss :any[] = [{id:'1234agus',name: 'Paket Mobile Hemat', key: 'A'}, 
+  {id:'4444444',name: 'Paket Mobile Reguler', key: 'M'}, {id:'555555',name: 'Paket Mobile Panas', key: 'P'},{name: 'Costum', key: 'Costum'}];
+  categoriesWebEss:any[] = [{id:'1234george',name: 'Paket WebEss Hemat', key: 'A'}, 
+  {id:'222222',name: 'Paket WebEss Reguler', key: 'M'}, {id:'33333333',name: 'Paket WebEss Panas', key: 'P'},{name: 'Costum', key: 'Costum'}];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService,
     private messageService: MessageService,
@@ -103,6 +108,34 @@ openPrev() {
       })
 
   }
+  onChangeWeb(event){
+    console.log("halo",event);
+    this.valuePaket = event
+    console.log(this.valuePaket)
+    this.formReady.get('modules').patchValue(event)
+    
+  }
+  onClickWeb(event){
+    console.log("ini event loh",event)
+    this.valueWeb = event
+    console.log(this.valueWeb);
+    
+  }
+
+  onClickWebEss(event){
+    console.log("ini event loh",event)
+    this.valueWeb = event
+    console.log(this.valueWeb);
+    
+  }
+
+  onClickMobileEss(event){
+    console.log("ini event loh",event)
+    this.valueWeb = event
+    console.log(this.valueWeb);
+    
+  }
+
   createFormCompanies() {
     return this.formBuilder.group({
       company: this.formBuilder.group({

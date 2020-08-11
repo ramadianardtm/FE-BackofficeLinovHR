@@ -10,6 +10,8 @@ import { LoginPageComponent } from './core/layouts/login/pages/login/login.compo
 import { AuthGuard } from './core/guards/auth.guard';
 import { HomeComponent } from './core/layouts/login/home/home.component';
 import { SignInComponent } from './core/layouts/login/sign-in/sign-in.component';
+import { DetailTenantComponent } from './core/layouts/login/detail-tenant/detail-tenant.component';
+import { TenantCreateComponent } from './core/layouts/login/tenant-create/tenant-create.component';
 
 
 
@@ -24,7 +26,16 @@ const routes: Routes = [
         children: [{
             path: '',
             component: HomeComponent
-        }]
+        },
+        {
+            path: ':uuid/detail',
+            component: DetailTenantComponent
+        },
+        {
+            path: 'Add/create-tenant',
+            component: TenantCreateComponent
+        }
+    ]
 
     },
     {

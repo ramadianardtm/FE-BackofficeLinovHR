@@ -35,6 +35,10 @@
 
     </div>
     <div class="ui-g-2" style="margin-top: 3px;">
+        <button  pButton type="button" label="{{ 'Add' | translate }}" class="btn-add" [routerLink] ="['/home/Add/create-tenant']"
+            icon="pi pi-plus" iconPos="left"></button>
+    </div>
+    <div class="ui-g-2" style="margin-top: 3px;">
         <button (click)="onRefresh()" pButton type="button" label="{{ 'Refresh' | translate }}" class="btn-add"
             icon="pi pi-refresh" iconPos="left"></button>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { format as formatTgl, subYears } from 'date-fns';
 
 @Component({
   selector: 'app-search',
@@ -12,10 +13,14 @@ export class SearchComponent implements OnInit {
   status: boolean = true;
   formSearch: FormGroup
   @Input() isActive: boolean;
+  @Input() isStartDate: boolean;
+  @Input() isEndDate: boolean;
   constructor(private formBuilder: FormBuilder) {
     this.formSearch = this.formBuilder.group({
-      inquiry: ['', Validators.required],
+      inquiry: [''],
       isActive: [true],
+      startDate: [formatTgl(subYears(new Date(), 1), 'yyyy-MM-dd')],
+      endDate: [formatTgl(new Date(), 'yyyy-MM-dd')]
     });
     this.searchStatus = [
       {
@@ -31,11 +36,17 @@ export class SearchComponent implements OnInit {
   @Output() searchDrop = new EventEmitter<FormGroup>();
 
   ngOnInit() {
-    this.searchValue = ""
+    this.searchValue = "";
   }
 
   onRefresh() {
     this.refresh.emit(true);
+    this.formSearch.patchValue({
+      inquiry: "",
+      isActive: true,
+      startDate: formatTgl(subYears(new Date(), 1), 'yyyy-MM-dd'),
+      endDate: formatTgl(new Date(), 'yyyy-MM-dd')
+    })
   }
 
   onPosSearch() {
@@ -43,6 +54,10 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
+    this.search.emit(this.formSearch);
+  }
+
+  onSelect(event: any) {
     this.search.emit(this.formSearch);
   }
 

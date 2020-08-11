@@ -6,22 +6,41 @@
     .detail {
         font-size: 1rem;
     }
-
 </style>
 
 
 <div class="ui-g-12 mt-4">
     <div class="container">
         <p-tabView>
-            <p-tabPanel header="Create Tenant">
-                <ng-template pTemplate="content">
-                    <app-tenant-create></app-tenant-create>
-
-                </ng-template>
-            </p-tabPanel>
             <p-tabPanel header="Tenant Management">
-                <div></div>
+                <app-search (refresh)='onRefresh()' (search)='onTypeSearch($event)' isActive=true></app-search>
+                <div>
+
+                    <p-table [value]="product" [(selection)]="selectedTenantTypes" dataKey="code" selectionMode="single"
+                        [paginator]="true" [rows]="5"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [rowsPerPageOptions]="[10,25,50]" dataKey="id" (onRowSelect)="arrow($event)">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr [pSelectableRow]="product">
+                                <td>{{product.code}}</td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.category}}</td>
+                                <td>{{product.quantity}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
             </p-tabPanel>
+
         </p-tabView>
 
     </div>

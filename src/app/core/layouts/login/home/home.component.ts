@@ -1,33 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit , ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Form } from '@angular/forms';
 import { RegisterTenantService } from '../shared/register-tenant-service';
 import { database } from 'faker';
 import { Session } from 'app/shared/models/session.interface';
+import { select, Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { AppConstant } from 'app/configs/app.config';
 import { AuthenticationService } from 'app/core/authentication/authentication.service';
 import { ApiService } from 'app/core/http/api.service';
-
-
+import { onConstructTableHeader } from 'app/shared/utils';
+import { TableColumn } from 'app/shared/models/table.interface';
+import { SearchComponent } from 'app/global-all/search/search.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+  tenantManagementColumn: TableColumn[];
+  selectedTenantTypes: any[];
+  searchForm: FormGroup
   login = false
+  product: any[] = [{ code: "12", name: "asd", category: "test", quantity: 'blabla' }, { code: "12", name: "bbbb", category: "test", quantity: 'blabla' },
+   { code: "12", name: "aaa", category: "test", quantity: 'blabla' }, { code: "12", name: "test", category: "test", quantity: 'blabla' },]
   inquiry: string = '';
   formReady: FormGroup;
   modules: any[] = [];
+  term:string;
   selected: any[] = ["0e907e82-f24d-4180-81fd-7fb5d30f9663", "f0ab790a-dda5-4357-baf5-1eba2f2a540f", "bdc2663d-cf88-4255-ac13-16ff44a00a4d"];
   uri: any[] = [{ url: 'register/languages', label: 'Default Languages' }, { url: 'register/date-formats', label: 'Date Format' }, { url: 'register/currencies', label: "Currency" }]
+  @ViewChild(SearchComponent, { static: false }) dataku: SearchComponent;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService,
+  constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService, private route:ActivatedRoute,
     private messageService: MessageService,
     private authService: AuthenticationService,
     private apiService: ApiService,
   ) {
-    this.createFormGroup()
+    this.createFormGroup(),
+      this.tenantManagementColumn = onConstructTableHeader([
+        'code',
+        'name',
+        'workingMonth',
+        'numberFormat',
+        'active',
+      ]);
+  }
+  formlist: FormGroup;
+  createFormlist() {
+    this.formlist = this.formBuilder.group({
+      selected: [[]]
+    })
   }
 
   ngOnInit() {
@@ -114,10 +136,31 @@ export class HomeComponent implements OnInit {
 
   }
 
+   onTypeSearch($event) {
+        if ($event.value) {
+            this.searchForm = $event
+            const searchBody = this.searchForm.getRawValue();
+            console.log('searchBody', searchBody);
+        }
+    }
+
+  onRowSelect() {
+    this.formlist.get('selected').patchValue(this.tenantManagementColumn)
+  }
+  onHeadSelect() {
+    this.formlist.get('selected').patchValue(this.tenantManagementColumn)
+
+  }
+  onRowUnselect() {
+    this.formlist.get('selected').patchValue(this.tenantManagementColumn)
+  }
+
   addCompany() {
     let comp = this.formReady.controls.companies as FormArray
     comp.push(this.createFormCompanies())
   }
+
+  
 
   onSelectRef1(event, i, j) {
     console.log("haiaia", event);
@@ -128,6 +171,10 @@ export class HomeComponent implements OnInit {
     let general0 = general.controls[j] as FormGroup
     general0.get("id").patchValue(event.key)
 
+  }
+
+  arrow(event){
+    this.router.navigate(["gjhgjhg/detail"],{relativeTo:this.route})
   }
 
 }

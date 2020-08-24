@@ -5,8 +5,8 @@
 
                 <div class="ui-g-12 px-3">
                     <div class="button" style="float: right;text-align: right;">
-                        <button class="btn action-button  btn-danger btn-sm" [routerLink]="['/home']">Cancel</button>
-                        <button label="Edit" pButton class="btn-add ml-2 mr-2"></button>
+                        <button class="btn btn-back  btn-danger btn-sm" [routerLink]="['/home']">Back</button>
+                        <button label="Edit" pButton class="btn-add  mr-2"></button>
                         <button (click)="saveTenant()" pButton type="button" label="{{ 'save' | translate }}"
                         class="btn-add"></button>
                     </div>
@@ -81,12 +81,6 @@
                                                             (onClick)="onClickWeb(pilihan.id || pilihan.key)" [formControl]="formReady.controls['modules']" [label]="pilihan.name">
                                                         </p-radioButton>
                                                     </div>
-                                                    <!-- <div class="ui-g-6">
-                                                        <p-radioButton name="city"
-                                                            [(ngModel)] ="valueWeb"></p-radioButton>
-                                                        <label for="city4">Costum</label>
-
-                                                    </div> -->
                                                 </div>
 
                                             </p-tabPanel>
@@ -198,8 +192,3 @@
         </p-tabView>
     </div>
 </div>
-<style scoped>
-    .action-button {
-        border-radius: 10px;
-    }
-</style>

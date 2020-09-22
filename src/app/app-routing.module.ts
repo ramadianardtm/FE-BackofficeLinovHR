@@ -12,7 +12,7 @@ import { HomeComponent } from './core/layouts/login/home/home.component';
 import { SignInComponent } from './core/layouts/login/sign-in/sign-in.component';
 import { DetailTenantComponent } from './core/layouts/login/detail-tenant/detail-tenant.component';
 import { TenantCreateComponent } from './core/layouts/login/tenant-create/tenant-create.component';
-
+import { TenantDetailComponent } from './core/layouts/login/tenant-detail/tenant-detail.component';
 
 
 const routes: Routes = [
@@ -28,8 +28,8 @@ const routes: Routes = [
             component: HomeComponent
         },
         {
-            path: ':uuid/detail',
-            component: DetailTenantComponent
+            path: 'detail/:uuid',
+            component: TenantDetailComponent
         },
         {
             path: 'Add/create-tenant',

@@ -13,27 +13,32 @@
     <div class="container">
         <p-tabView>
             <p-tabPanel header="Tenant Management">
-                <app-search (refresh)='onRefresh()' (search)='onTypeSearch($event)' isActive=true></app-search>
+                <app-search (search)='onTypeSearch($event)' isActive=true></app-search>
                 <div>
 
-                    <p-table [value]="product" [(selection)]="selectedTenantTypes" dataKey="code" selectionMode="single"
-                        [paginator]="true" [rows]="5"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                        [rowsPerPageOptions]="[10,25,50]" dataKey="id" (onRowSelect)="arrow($event)">
+                    <p-table 
+                        [value]="tenants" 
+                        [(selection)]="selectedTenantTypes" 
+                        dataKey="code" 
+                        selectionMode="single" 
+                        [paginator]="true" 
+                        [rows]="10" 
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+                        [rowsPerPageOptions]="[10,25,50]" 
+                        dataKey="id"
+                        (onRowSelect)="arrow($event)">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Code</th>
+                                <th>id</th>
                                 <th>Name</th>
-                                <th>Category</th>
-                                <th>Quantity</th>
+                                <th>Code</th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" let-product>
-                            <tr [pSelectableRow]="product">
-                                <td>{{product.code}}</td>
-                                <td>{{product.name}}</td>
-                                <td>{{product.category}}</td>
-                                <td>{{product.quantity}}</td>
+                        <ng-template pTemplate="body" let-tenant>
+                            <tr [pSelectableRow]="tenant">
+                                <td>{{tenant.id}}</td>
+                                <td>{{tenant.name}}</td>
+                                <td>{{tenant.code}}</td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -45,27 +50,3 @@
 
     </div>
 </div>
-
-
-<p-dialog header="Your Account" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-    <div class="ui-g-12">
-        <div class="ui-g-4 ">
-            <label>USERNAME</label>
-        </div>
-        <div class="ui-g-7">
-            <label>{{user?.username || "-"}}</label>
-        </div>
-    </div>
-    <div class="ui-g-12">
-        <div class="ui-g-4 ">
-            <label>PASSWORD</label>
-        </div>
-        <div class="ui-g-7">
-            <label>{{user?.password || "-"}}</label>
-        </div>
-    </div>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="doLogin()" label="login"></button>
-        <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="close"></button>
-    </p-footer>
-</p-dialog>

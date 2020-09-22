@@ -15,6 +15,7 @@ import { GlobalAllModule } from 'app/global-all/global-all.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { DetailTenantComponent } from './detail-tenant/detail-tenant.component';
+import { TenantDetailComponent } from './tenant-detail/tenant-detail.component';
 // import { MyappDetailComponent } from './my-applications/myapp-detail/myapp-detail.component';
 // import { MyappListComponent } from './my-applications/myapp-list/myapp-list.component';
 @NgModule({
@@ -25,6 +26,7 @@ import { DetailTenantComponent } from './detail-tenant/detail-tenant.component';
         SignInComponent,
         TenantCreateComponent,
         DetailTenantComponent,
+        TenantDetailComponent,
         
     ],
     providers: [],

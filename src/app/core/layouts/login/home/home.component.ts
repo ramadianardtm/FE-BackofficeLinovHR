@@ -12,11 +12,16 @@ import { ApiService } from 'app/core/http/api.service';
 import { onConstructTableHeader } from 'app/shared/utils';
 import { TableColumn } from 'app/shared/models/table.interface';
 import { SearchComponent } from 'app/global-all/search/search.component';
+import { TenantService } from '../../../services/tenant.service';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+  tenants:any[];
+
   tenantManagementColumn: TableColumn[];
   selectedTenantTypes: any[];
   searchForm: FormGroup
@@ -35,6 +40,7 @@ export class HomeComponent implements OnInit {
     private messageService: MessageService,
     private authService: AuthenticationService,
     private apiService: ApiService,
+    private tenantService: TenantService,
   ) {
     this.createFormGroup(),
       this.tenantManagementColumn = onConstructTableHeader([
@@ -55,8 +61,17 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.regis.getLovModules().subscribe(res => {
       this.modules = res;
-    })
+    });
+    this.tenantService.sendGetTenantServices().subscribe((data: any)=>{
+      console.log('data tenantService: ', data)
+      this.tenants = data.data;
+    },
+      res=>{
+        console.log('RESPONSE', res)
+      }
+    )  
   }
+  
   createFormGroup() {
     this.formReady = this.formBuilder.group({
       tenantName: [''],
@@ -170,11 +185,10 @@ export class HomeComponent implements OnInit {
     let general = companies.controls.lovGnty as FormArray
     let general0 = general.controls[j] as FormGroup
     general0.get("id").patchValue(event.key)
-
   }
 
   arrow(event){
-    this.router.navigate(["gjhgjhg/detail"],{relativeTo:this.route})
+    this.router.navigate([`${event.data.id}/detail`],{relativeTo:this.route})
   }
 
 }

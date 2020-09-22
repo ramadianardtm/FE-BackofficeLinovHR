@@ -6,12 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class TenantService {
-  private REST_API_SERVER = "https://f1fd5ca16219.ngrok.io/api/v1/tenants?page=1&limit=0";
+  private TENANT_LIST = "https://eeec170f8c58.ngrok.io/api/v1/tenants?page=1&limit=0";
+  private TENANT_DETAIL = "https://eeec170f8c58.ngrok.io/api/v1/tenan-detail/";
   constructor(private httpClient: HttpClient) { }
 
   public sendGetTenantServices(){
     console.log('data tenantService: ')
-    return this.httpClient.get(this.REST_API_SERVER);
+    return this.httpClient.get(this.TENANT_LIST);
+  }
+
+  public sendGetTenantDetailServices(uuid){
+    console.log('data tenantService: ')
+    return this.httpClient.get(`${this.TENANT_DETAIL}${uuid}`);
   }
 
 }

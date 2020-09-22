@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
       }
     )  
   }
-  
+
   createFormGroup() {
     this.formReady = this.formBuilder.group({
       tenantName: [''],
@@ -178,7 +178,6 @@ export class HomeComponent implements OnInit {
   
 
   onSelectRef1(event, i, j) {
-    console.log("haiaia", event);
 
     let recCompanies = this.formReady.controls.companies as FormArray
     let companies = recCompanies.controls[i] as FormGroup
@@ -188,7 +187,7 @@ export class HomeComponent implements OnInit {
   }
 
   arrow(event){
-    this.router.navigate([`${event.data.id}/detail`],{relativeTo:this.route})
+    this.router.navigate([`tenant/detail/${event.data.id}`],{relativeTo:this.route})
   }
 
 }

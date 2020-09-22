@@ -1,1 +1,85 @@
-<p>tenant-detail works!</p>
+
+
+
+<div class="container">
+    <div class="row">
+        <button type="button" [routerLink]="['/home']" class="btn btn-primary ml-2 mb-2">Back</button>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1>{{tenantDetail.name}}</h1>
+            <p>
+                Code : {{tenantDetail.code}} <br/>
+                Date : {{tenantDetail.startDate}} - {{tenantDetail.endDate}} <br/>
+                Version : {{tenantDetail.version}} <br/>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="alert alert-info col-md-12" role="alert">
+            PLANS PACKAGE
+        </div>
+        <div class="col-md-12 mb-4">
+            <p-panel  header={{tempNameCode}} [toggleable]="true">
+                <div class="col-md-12">
+                    <!-- nanti diisi nama2 modul -->
+                    <p-table [value]="menuActionList">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Name</th>
+                                <th>Menu</th>  
+                                <th>Module</th>      
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-menuAction>
+                            <tr>
+                                <td>{{menuAction.name}} </td>
+                                <td>{{menuAction.menu.name}}</td>
+                                <td>{{menuAction.menu.module.name}}</td>     
+                            </tr>
+                        </ng-template>
+                      </p-table>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="alert alert-info col-md-12" role="alert">
+            TENANT COMPANY
+        </div>
+        <div *ngFor="let item of companyTenant" class="col-md-12 mb-4">
+            <p-panel  header={{item.name}} [toggleable]="true">
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <th style="width:20%">Name</th>
+                        <td>{{item.name}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:20%">Code</th>
+                        <td>{{item.code}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:20%">Tax Number</th>
+                        <td>{{item.companyTaxNumber}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:20%">Status</th>
+                        <td>{{item.isActive}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:20%">Last Update</th>
+                        <td>{{item.updatedAt}}</td>
+                      </tr>
+                      <tr>
+                        <th style="width:20%">Version</th>
+                        <td>{{item.version}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </p-panel>
+        </div>
+    </div>
+</div>

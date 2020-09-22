@@ -1,0 +1,22 @@
+.lawen-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:10px;
+  }
+  @media (min-width: 768px) {
+    .lawen-container {
+      width: 650px;
+    }
+  }
+  @media (min-width: 992px) {
+    .lawen-container {
+      width: 770px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .lawen-container {
+      width: 970px;
+    }
+  }

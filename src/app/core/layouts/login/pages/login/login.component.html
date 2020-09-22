@@ -1,25 +1,39 @@
 <p-toast position="top-right"></p-toast>
-<div class="ui-g-12 p-0" style="position: absolute;">
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-fixed">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-            aria-label="Toggle navigation">
+
+
+<nav class="navbar shadow-sm p-3 bg-white rounded navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <a  [routerLink]="'/home'" class="navbar-brand">
+            <img src="assets/Linov-header.png" style="height: 35px;" alt="" loading="lazy">
+        </a>    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a [routerLink]="'/home'" class="navbar-brand ml-2rem-mr-7rem">
-            <img class="logo" src="assets/images/logo.svg" style="height: 35px;" />
-            <!-- Linov<strong>HR</strong> -->
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="padding-right: 12px;padding-left: 0px;">
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="'/home'">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="'/home/tenant'">Tenants Management </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="'/home/package'">Packages Management </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="'/home/report'">Report</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  [routerLink]="'/home/dashboard'">Dashboard </a>
                 </li>
             </ul>
         </div>
+    </div>
+</nav>
 
-    </nav>
 
-</div>
+
 
 <div class="ui-g-12 p-5" style="position: absolute;">
     <router-outlet *ngIf="isDesktop"></router-outlet>

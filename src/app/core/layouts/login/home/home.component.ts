@@ -5,14 +5,14 @@ import { RegisterTenantService } from '../shared/register-tenant-service';
 import { database } from 'faker';
 import { Session } from 'app/shared/models/session.interface';
 import { select, Store } from '@ngrx/store';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { AppConstant } from 'app/configs/app.config';
 import { AuthenticationService } from 'app/core/authentication/authentication.service';
-import { ApiService } from 'app/core/http/api.service';
 import { onConstructTableHeader } from 'app/shared/utils';
 import { TableColumn } from 'app/shared/models/table.interface';
 import { SearchComponent } from 'app/global-all/search/search.component';
 import { TenantService } from '../../../services/tenant.service';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -21,6 +21,7 @@ import { TenantService } from '../../../services/tenant.service';
 })
 export class HomeComponent implements OnInit {
   tenants:any[];
+  public currentPage = 0;
 
   tenantManagementColumn: TableColumn[];
   selectedTenantTypes: any[];
@@ -35,11 +36,12 @@ export class HomeComponent implements OnInit {
   selected: any[] = ["0e907e82-f24d-4180-81fd-7fb5d30f9663", "f0ab790a-dda5-4357-baf5-1eba2f2a540f", "bdc2663d-cf88-4255-ac13-16ff44a00a4d"];
   uri: any[] = [{ url: 'register/languages', label: 'Default Languages' }, { url: 'register/date-formats', label: 'Date Format' }, { url: 'register/currencies', label: "Currency" }]
   @ViewChild(SearchComponent, { static: false }) dataku: SearchComponent;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  rowsPerPage:any[];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService, private route:ActivatedRoute,
     private messageService: MessageService,
-    private authService: AuthenticationService,
-    private apiService: ApiService,
+    private confirmationService: ConfirmationService,
     private tenantService: TenantService,
   ) {
     this.createFormGroup(),
@@ -58,18 +60,39 @@ export class HomeComponent implements OnInit {
     })
   }
 
+
   ngOnInit() {
     this.regis.getLovModules().subscribe(res => {
       this.modules = res;
     });
-    this.tenantService.sendGetTenantServices().subscribe((data: any)=>{
-      console.log('data tenantService: ', data)
+      
+  }
+  getPage(event:LazyLoadEvent){
+    let page = (event.first/ event.rows +1)
+    let rows = event.rows
+    this.tenantService.sendGetTenantServices(page,rows).subscribe((data: any)=>{ 
       this.tenants = data.data;
-    },
-      res=>{
-        console.log('RESPONSE', res)
+      this.rowsPerPage = data.count;
+    }) 
+  }
+
+  updateTenant(params){
+    this.messageService.add({ severity: 'info', summary: 'Maaf', detail: 'Fitur ini Belum Tersedia' });
+  }
+
+  detailTenant(params){
+    this.router.navigate([`tenant/detail/${params}`],{relativeTo:this.route})
+  }
+
+  deleteTenant(params){
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        this.tenantService.tenantServicesDelete(params).subscribe((data: any)=>{ 
+          console.log(data)
+        }) 
       }
-    )  
+  });
   }
 
   createFormGroup() {
@@ -87,35 +110,35 @@ export class HomeComponent implements OnInit {
     this.messageService.add({ severity: 'success', summary: 'Success Message', detail: message });
   }
 
-  doLogin() {
+  // doLogin() {
 
-    this.user.isEss = false;
-    this.user.applicationId = AppConstant.applicationId;
+  //   this.user.isEss = false;
+  //   this.user.applicationId = AppConstant.applicationId;
 
-    this.apiService.postLogin('login', this.user).subscribe(
-      (resp) => {
-        this.authService.createSession(resp);
-        console.log('resp login', resp);
-        // this._connect();
-        // this.socket.connect.subscribe((res) => {
-        //     this._connect()
-        // }
-        // );
-        // this.socket.disconnect.subscribe((res) => {
-        //     this._disconnect();
-        // })
+  //   this.apiService.postLogin('login', this.user).subscribe(
+  //     (resp) => {
+  //       this.authService.createSession(resp);
+  //       console.log('resp login', resp);
+  //       // this._connect();
+  //       // this.socket.connect.subscribe((res) => {
+  //       //     this._connect()
+  //       // }
+  //       // );
+  //       // this.socket.disconnect.subscribe((res) => {
+  //       //     this._disconnect();
+  //       // })
 
-        //get general setting
-        const currCompanyId = this.authService.getSession().selectedCompanyId;
-        this.apiService.get('company/' + currCompanyId).subscribe((resp) => {
-          console.log("company", resp);
-          this.authService.createGeneralSetting(resp);
-        })
+  //       //get general setting
+  //       const currCompanyId = this.authService.getSession().selectedCompanyId;
+  //       this.apiService.get('company/' + currCompanyId).subscribe((resp) => {
+  //         console.log("company", resp);
+  //         this.authService.createGeneralSetting(resp);
+  //       })
 
-        this.router.navigate(['/dashboard']);
-      })
+  //       this.router.navigate(['/dashboard']);
+  //     })
 
-  }
+  // }
 
   createFormCompanies() {
     return this.formBuilder.group({
@@ -185,9 +208,4 @@ export class HomeComponent implements OnInit {
     let general0 = general.controls[j] as FormGroup
     general0.get("id").patchValue(event.key)
   }
-
-  arrow(event){
-    this.router.navigate([`tenant/detail/${event.data.id}`],{relativeTo:this.route})
-  }
-
 }

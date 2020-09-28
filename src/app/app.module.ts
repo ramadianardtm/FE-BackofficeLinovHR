@@ -36,6 +36,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     imports: [
         BrowserModule,
+
         BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule.forRoot(),

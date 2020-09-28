@@ -32,10 +32,25 @@ export class TenantDetailComponent implements OnInit {
         this.menuActionList = res.subPlans.menuActionsList
         this.tempNameCode = `Name: ${res.subPlans.name} / ${res.subPlans.code}`
         this.tenantDetail = res
-        console.log('RESPONSE TENANT', this.tenantDetail)
-        console.log('RESPONSE COMPANY', this.companyTenant)
       }
     )  
+  }
+
+  reports(){
+    this.href = this.router.url;
+    this.lastURI = this.href.split('/').pop();
+    console.log(this.lastURI)
+    this.tenantService.getReports(this.lastURI).subscribe(
+      (res:any)=>{
+        console.log('RESPONSE REPORTS', res.file)
+        let pdfWindow = window.open("")
+        pdfWindow.document.write(
+            "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+            encodeURI(res.file) + "'></iframe>"
+        )
+      }
+    )  
+
   }
 
 

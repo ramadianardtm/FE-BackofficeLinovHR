@@ -1,52 +1,54 @@
 <style>
     p {
-        text-align: center;
+    text-align: center;
     }
-
     .detail {
-        font-size: 1rem;
+    font-size: 1rem;
     }
-</style>
-
-
-<div class="ui-g-12 mt-4">
+ </style>
+ <div class="ui-g-12 mt-4">
+   <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
     <div class="container">
-        <p-tabView>
-            <p-tabPanel header="Tenant Management">
-                <app-search (search)='onTypeSearch($event)' isActive=true></app-search>
-                <div>
-
-                    <p-table 
-                        [value]="tenants" 
-                        [(selection)]="selectedTenantTypes" 
-                        dataKey="code" 
-                        selectionMode="single" 
-                        [paginator]="true" 
-                        [rows]="10" 
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
-                        [rowsPerPageOptions]="[10,25,50]" 
-                        dataKey="id"
-                        (onRowSelect)="arrow($event)">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>id</th>
-                                <th>Name</th>
-                                <th>Code</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-tenant>
-                            <tr [pSelectableRow]="tenant">
-                                <td>{{tenant.id}}</td>
-                                <td>{{tenant.name}}</td>
-                                <td>{{tenant.code}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-
+       <p-tabView>
+          <p-tabPanel header="Tenant Management">
+             <div class="row">
+                <div class=" col-md-12 d-flex flex-row-reverse">
+                   <button type="button" [routerLink]="['/home/tenant/add']" class="btn btn-primary ml-2 mb-2">Tambah</button>
                 </div>
-            </p-tabPanel>
-
-        </p-tabView>
-
+             </div>
+             <div>
+                <p-table 
+                [value]="tenants" 
+                [(selection)]="selectedTenantTypes" 
+                selectionMode="single" 
+                [paginator]="true"
+                [lazy]="true"
+                [rows]="5" 
+                [rowsPerPageOptions]="pageSizeOptions"
+                [totalRecords]="rowsPerPage"
+                dataKey="id"
+                (onLazyLoad)="getPage($event)">
+                <ng-template pTemplate="header">
+                   <tr>
+                      <th>Name</th>
+                      <th>Code</th>
+                      <th>Action</th>
+                   </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-tenant>
+                   <tr [pSelectableRow]="tenant">
+                      <td>{{tenant.name}}</td>
+                      <td>{{tenant.code}}</td>
+                      <td> 
+                         <button type="button" (click)="detailTenant(tenant.id)" class="btn btn-sm btn-primary ml-2 mb-2">Detail</button>
+                         <button type="button" (click)="updateTenant(tenant.id)" class="btn btn-sm btn-warning ml-2 mb-2">Update</button>
+                         <button type="button" (click)="deleteTenant(tenant.id)" class="btn btn-sm btn-danger ml-2 mb-2">Delete</button>
+                     </td>
+                   </tr>
+                </ng-template>
+                </p-table>
+             </div>
+          </p-tabPanel>
+       </p-tabView>
     </div>
-</div>
+ </div>

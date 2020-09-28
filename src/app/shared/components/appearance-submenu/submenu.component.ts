@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, OnInit, OnChanges } from '@angular/core';
-import $ from 'jquery';
+import * as $ from 'jquery';
 
 import { Parent } from 'app/shared/models/sub-menu.interface';
 import { Router } from '@angular/router';

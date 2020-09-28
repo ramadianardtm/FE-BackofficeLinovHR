@@ -24,8 +24,10 @@ import { PackageUpdateComponent } from './package-update/package-update.componen
 import { PackageCreateComponent } from './package-create/package-create.component';
 // import { MyappDetailComponent } from './my-applications/myapp-detail/myapp-detail.component';
 // import { MyappListComponent } from './my-applications/myapp-list/myapp-list.component';
+
+import { Select2Module } from 'ng2-select2';
 @NgModule({
-    imports: [SharedModule, LaddaModule, CheckboxModule, LovModule, LoggerFormModule,GlobalAllModule,Ng2SearchPipeModule,FormsModule],
+    imports: [Select2Module, SharedModule, LaddaModule, CheckboxModule, LovModule, LoggerFormModule,GlobalAllModule,Ng2SearchPipeModule,FormsModule],
     declarations: [
         LoginPageComponent,
         HomeComponent,
@@ -41,6 +43,5 @@ import { PackageCreateComponent } from './package-create/package-create.componen
         PackageCreateComponent,
         
     ],
-    providers: [],
 })
 export class LoginModule { }

@@ -1,23 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../http/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class TenantService {
-  private TENANT_LIST = "https://eeec170f8c58.ngrok.io/api/v1/tenants?page=1&limit=0";
-  private TENANT_DETAIL = "https://eeec170f8c58.ngrok.io/api/v1/tenan-detail/";
-  constructor(private httpClient: HttpClient) { }
+  private TENANT_LIST = "tenants";
+  private TENANT_DETAIL = `tenan-detail/`;
+  private TENANT_DELETE = `tenant/`;
+  private CURRENCIES_LIST = `lov/currencies`;
+  private DATES_FORMAT_LIST = `lov/date-formats`;
+  private LANG_LIST = `lov/languages`;
+  private PLANS_LIST = `subs/plans`;
+  private REPORT_PDF = `report/`;
+  constructor(private api:ApiService) { }
 
-  public sendGetTenantServices(){
-    console.log('data tenantService: ')
-    return this.httpClient.get(this.TENANT_LIST);
+  public sendGetTenantServices(page, limit){
+    return this.api.get(`${this.TENANT_LIST}?page=${page}&limit=${limit}`);
   }
 
   public sendGetTenantDetailServices(uuid){
-    console.log('data tenantService: ')
-    return this.httpClient.get(`${this.TENANT_DETAIL}${uuid}`);
+    return this.api.get(`${this.TENANT_DETAIL}${uuid}`);
   }
+
+  public tenantServicesDelete(uuid){
+    return this.api.delete(`${this.TENANT_DELETE}${uuid}`);
+  }
+
+  public getCurrencies(){
+    return this.api.get(this.CURRENCIES_LIST);
+  }
+
+  public getDateFormats(){
+    return this.api.get(this.DATES_FORMAT_LIST);
+  }
+
+  public getLang(){
+    return this.api.get(this.LANG_LIST);
+  }
+
+  public getPlans(){
+    return this.api.get(this.PLANS_LIST);
+  }
+
+  public getReports(uuid){
+    return this.api.get(`${this.REPORT_PDF}${uuid}`);
+  }
+
+  postLogin(body){
+    
+  }
+
 
 }

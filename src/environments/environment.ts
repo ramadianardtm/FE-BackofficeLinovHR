@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     // apiUrl: 'http://api-dev4.linovhr.com:8080/linov/api/v1/',
-    apiUrl: 'https://45bf91ccc959.ngrok.io/api/v1/',
+    apiUrl: 'https://7f514844bc81.ngrok.io/api/v1/',
 
     mockApiUrl: 'http://localhost:3000/',
     reportUrl: 'http://api-dev.linovhr.com:7080/report/',

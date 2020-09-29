@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PlansService } from '../../../services/plans.service';
 
 @Component({
   selector: 'app-package-detail',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./package-detail.component.scss']
 })
 export class PackageDetailComponent implements OnInit {
-
-  constructor() { }
+  href: string = "";
+  lastURI: string ="";
+  plansData: any = {};
+  constructor(
+    private router : Router,
+    private plansService: PlansService,
+  ) { }
 
   ngOnInit() {
+    this.href = this.router.url;
+    this.lastURI = this.href.split('/').pop();
+
+    this.plansService.getPlanDetailServices(this.lastURI).subscribe(
+      (res:any)=>{
+        console.log(res)
+        this.plansData = res
+      }
+    )  
   }
 
 }

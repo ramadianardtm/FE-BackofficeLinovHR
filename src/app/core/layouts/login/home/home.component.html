@@ -37,9 +37,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-tenant>
                    <tr [pSelectableRow]="tenant">
-                      <td>{{tenant.name}}</td>
-                      <td>{{tenant.code}}</td>
-                      <td> 
+                     <td>{{tenant.name}}</td>
+                     <td>{{tenant.code}}</td>
+                     <td> 
                          <button type="button" (click)="detailTenant(tenant.id)" class="btn btn-sm btn-primary ml-2 mb-2">Detail</button>
                          <button type="button" (click)="updateTenant(tenant.id)" class="btn btn-sm btn-warning ml-2 mb-2">Update</button>
                          <button type="button" (click)="deleteTenant(tenant.id)" class="btn btn-sm btn-danger ml-2 mb-2">Delete</button>

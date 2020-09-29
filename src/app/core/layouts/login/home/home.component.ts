@@ -13,6 +13,7 @@ import { TableColumn } from 'app/shared/models/table.interface';
 import { SearchComponent } from 'app/global-all/search/search.component';
 import { TenantService } from '../../../services/tenant.service';
 import * as $ from 'jquery';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -22,7 +23,6 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
   tenants:any[];
   public currentPage = 0;
-
   tenantManagementColumn: TableColumn[];
   selectedTenantTypes: any[];
   searchForm: FormGroup
@@ -70,14 +70,14 @@ export class HomeComponent implements OnInit {
   getPage(event:LazyLoadEvent){
     let page = (event.first/ event.rows +1)
     let rows = event.rows
-    this.tenantService.sendGetTenantServices(page,rows).subscribe((data: any)=>{ 
+    this.tenantService.sendGetTenantServices(page,rows).toPromise().then((data: any)=>{ 
       this.tenants = data.data;
       this.rowsPerPage = data.count;
     }) 
   }
 
   updateTenant(params){
-    this.messageService.add({ severity: 'info', summary: 'Maaf', detail: 'Fitur ini Belum Tersedia' });
+    this.messageService.add({ severity: 'info',  summary: 'Maaf', detail: 'Fitur ini Belum Tersedia' });
   }
 
   detailTenant(params){
@@ -86,13 +86,17 @@ export class HomeComponent implements OnInit {
 
   deleteTenant(params){
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to perform this action?',
+      message: 'Anda yakin ingin menghapus data?',
       accept: () => {
         this.tenantService.tenantServicesDelete(params).subscribe((data: any)=>{ 
-          console.log(data)
+          this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil menghapus data' });
+          this.tenantService.sendGetTenantServices(1,this.rowsPerPage).toPromise().then((data: any)=>{ 
+            this.tenants = data.data;
+            this.rowsPerPage = data.count;
+          }) 
         }) 
       }
-  });
+    });
   }
 
   createFormGroup() {

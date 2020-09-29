@@ -7,6 +7,7 @@ import { ApiService } from '../http/api.service';
 })
 export class PlansService {
   private PLAN_LIST = "subs/planss";
+  private PLAN_DELETE = "subs/plans/delete";
   constructor(private api:ApiService) { }
 
   public getPlansServices(page, limit){
@@ -15,6 +16,10 @@ export class PlansService {
 
   public getPlanDetailServices(uuid){
     return this.api.get(`${this.PLAN_LIST}/${uuid}`);
+  }
+
+  public deletePlanServices(uuid){
+    return this.api.delete(`${this.PLAN_DELETE}/${uuid}`);
   }
 
 }

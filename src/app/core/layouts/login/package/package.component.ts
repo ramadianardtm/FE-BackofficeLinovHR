@@ -27,7 +27,7 @@ export class PackageComponent implements OnInit {
   getPage(event:LazyLoadEvent){
     let page = (event.first/ event.rows +1)
     let rows = event.rows
-    this.plansService.getPlansServices(page,rows).subscribe((data: any)=>{ 
+    this.plansService.getPlansServices(page,rows).toPromise().then((data: any)=>{ 
       console.log(data.data)
       this.plans = data.data;
       this.rowsPerPage = data.count;
@@ -44,13 +44,18 @@ export class PackageComponent implements OnInit {
 
   deletePlans(params){
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to perform this action?',
+      message: 'Anda yakin ingin menghapus data?',
       accept: () => {
-        this.plansService.getPlanDetailServices(params).subscribe((data: any)=>{ 
-          console.log(data)
+        this.plansService.deletePlanServices(params).subscribe((data: any)=>{ 
+          this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil menghapus data' });
+            this.plansService.getPlansServices(1,this.rowsPerPage).toPromise().then((data: any)=>{ 
+              console.log(data.data)
+              this.plans = data.data;
+              this.rowsPerPage = data.count;
+            }) 
         }) 
       }
-  });
+    });
   }
 
 }

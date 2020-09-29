@@ -1,12 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, FormArray, Form } from "@angular/forms";
-import { RegisterTenantService } from "../shared/register-tenant-service";
-import { MessageService } from "primeng/api";
-import { AppConstant } from "app/configs/app.config";
-import { AuthenticationService } from "app/core/authentication/authentication.service";
-import { ApiService } from "app/core/http/api.service";
-import { modules_radio } from "./json-modules";
 import { TenantService } from '../../../services/tenant.service';
 
 @Component({

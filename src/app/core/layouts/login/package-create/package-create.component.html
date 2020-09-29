@@ -1,1 +1,31 @@
-<p>package-create works!</p>
+<div class="container">
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+        <label class="form-check-label" for="inlineCheckbox1">1</label>
+    </div>
+    
+    <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
+    <form [formGroup]="formReady">
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+            <div class="col-sm-8">
+                <input type="text" size="30" formControlName="name" placeholder="Input Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-4 col-form-label">Code</label>
+            <div class="col-sm-8">
+                <input type="text" formControlName="code" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="code.." />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-4 col-form-label">Description</label>
+            <div class="col-sm-8">
+                <input type="text" formControlName="description" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="code.." />
+            </div>
+        </div>
+
+        
+    </form>
+</div>

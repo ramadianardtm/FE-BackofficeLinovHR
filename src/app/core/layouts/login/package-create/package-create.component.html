@@ -25,7 +25,10 @@
                 <input type="text" formControlName="description" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="code.." />
             </div>
         </div>
+        <div id='treeparent'>
+            <ejs-treeview #treeview="" id='treeelement' [fields]='field' [showCheckBox]='showCheckBox' (nodeChecked)='nodeChecked($event)'>
 
+            </ejs-treeview></div>
         
     </form>
 </div>

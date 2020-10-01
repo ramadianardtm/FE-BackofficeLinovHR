@@ -24,6 +24,7 @@ import { TableModule } from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {MenuItem} from 'primeng/api';
+import { TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, '../translations/', '.json');
@@ -36,7 +37,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     imports: [
         BrowserModule,
-
+        TreeViewModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule.forRoot(),

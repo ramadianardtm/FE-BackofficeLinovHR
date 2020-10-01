@@ -12,7 +12,10 @@
             <p>
                 Code : {{tenantDetail.code}} <br/>
                 Date : {{tenantDetail.startDate}} - {{tenantDetail.endDate}} <br/>
+                Phone : {{tenantDetail.phone}} <br/>
+                PIC : {{tenantDetail.pic}} <br/>
                 Version : {{tenantDetail.version}} <br/>
+
             </p>
         </div>
     </div>
@@ -35,9 +38,23 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-menuAction>
                             <tr>
-                                <td>{{menuAction.menu.module.name}}</td>     
-                                <td>{{menuAction.menu.name}}</td>
-                                <td>{{menuAction.name}} </td>
+                                <td>{{menuAction.name}}</td>     
+                                <td colspan="2">
+                                    <tr *ngFor="let item of menuAction.menus">
+                                        <div class="row widthSetting">
+                                            <div class="col-6">
+                                                <td>{{item.name}}</td>
+                                            </div>
+                                            <div class="col-6">
+                                                <td class="tree-table">
+                                                    <tr *ngFor="let data of item.menuActions" >
+                                                        <td>{{data.name}}</td>
+                                                    </tr>
+                                                </td>   
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </td>   
                             </tr>
                         </ng-template>
                       </p-table>

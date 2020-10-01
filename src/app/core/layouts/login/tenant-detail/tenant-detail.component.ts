@@ -29,7 +29,7 @@ export class TenantDetailComponent implements OnInit {
     this.tenantService.sendGetTenantDetailServices(this.lastURI).subscribe(
       (res:any)=>{
         this.companyTenant = res.company
-        this.menuActionList = res.subPlans.menuActionsList
+        this.menuActionList = res.subPlans.module
         this.tempNameCode = `Name: ${res.subPlans.name} / ${res.subPlans.code}`
         this.tenantDetail = res
       }

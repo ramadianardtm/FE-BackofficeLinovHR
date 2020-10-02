@@ -28,10 +28,10 @@ export class TenantDetailComponent implements OnInit {
     this.lastURI = this.href.split('/').pop();
     this.tenantService.sendGetTenantDetailServices(this.lastURI).subscribe(
       (res:any)=>{
-        this.companyTenant = res.company
-        this.menuActionList = res.subPlans.module
-        this.tempNameCode = `Name: ${res.subPlans.name} / ${res.subPlans.code}`
-        this.tenantDetail = res
+        this.companyTenant = res.data.company
+        this.menuActionList = res.data.subPlans.module
+        this.tempNameCode = `Name: ${res.data.subPlans.name} / ${res.data.subPlans.code}`
+        this.tenantDetail = res.data
       }
     )  
   }

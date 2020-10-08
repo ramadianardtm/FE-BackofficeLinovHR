@@ -9,6 +9,7 @@ export class PlansService {
   private PLAN_LIST = "subs/planss";
   private PLAN_DELETE = "subs/plans/delete";
   private MODULES_LIST = "modules";
+  private POST_PLAN = "subs/plans";
   constructor(private api:ApiService) { }
 
   public getPlansServices(page, limit){
@@ -25,6 +26,14 @@ export class PlansService {
 
   public deletePlanServices(uuid){
     return this.api.delete(`${this.PLAN_DELETE}/${uuid}`);
+  }
+
+  public postPlans(data){
+    return this.api.post(`${this.POST_PLAN}`, data)
+  }
+
+  public updatePlans(data){
+    return this.api.put(`${this.POST_PLAN}`, data)
   }
 
 }

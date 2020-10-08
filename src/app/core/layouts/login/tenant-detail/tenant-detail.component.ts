@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TenantService } from '../../../services/tenant.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class TenantDetailComponent implements OnInit {
   constructor(
     private router : Router,
     private tenantService: TenantService,
+    private route : ActivatedRoute
     ) { }
 
     
@@ -37,10 +38,7 @@ export class TenantDetailComponent implements OnInit {
   }
 
   reports(){
-    this.href = this.router.url;
-    this.lastURI = this.href.split('/').pop();
-    console.log(this.lastURI)
-    this.tenantService.getReports(this.lastURI).subscribe(
+    this.tenantService.getReports(this.route.snapshot.params.uuid).subscribe(
       (res:any)=>{
         console.log('RESPONSE REPORTS', res.file)
         let pdfWindow = window.open("")
@@ -50,7 +48,6 @@ export class TenantDetailComponent implements OnInit {
         )
       }
     )  
-
   }
 
 

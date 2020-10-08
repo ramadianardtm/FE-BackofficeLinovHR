@@ -35,7 +35,7 @@ export class PackageComponent implements OnInit {
   }
 
   updatePlans(params){
-    this.messageService.add({ severity: 'info', summary: 'Maaf', detail: 'Fitur ini Belum Tersedia' });
+    this.router.navigate([`update/${params}`],{relativeTo:this.route})
   }
 
   detailPlans(params){

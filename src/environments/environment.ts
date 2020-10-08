@@ -2,16 +2,17 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
     production: false,
     // apiUrl: 'http://api-dev4.linovhr.com:8080/linov/api/v1/',
-    apiUrl: 'https://9d8ea5462330.ngrok.io/api/v1/',
-
+    apiUrl: 'https://7f2cccb06bcf.ngrok.io/api/v1/',
     mockApiUrl: 'http://localhost:3000/',
     reportUrl: 'http://api-dev.linovhr.com:7080/report/',
     socketUrl: 'http://api-dev4.linovhr.com:8080/linov/api/v1/socket',
     translateUrl: '/assets/i18n/',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

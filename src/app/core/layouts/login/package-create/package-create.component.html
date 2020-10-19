@@ -1,16 +1,20 @@
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row">
-        <button type="button" [routerLink]="['/home']" class="btn btn-default ml-2 mb-2">Back</button>
-        <button type="button" (click)="submit()" class="btn btn-primary ml-2 mb-2">Tambah</button>
-    </div>
-    <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
+    
+    <!-- <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form> -->
     <form [formGroup]="formReady">
+
+      <div *ngIf="isLoading; then show else hidden"></div>
+      <ng-template #show>
+        <div class="container row">
+            <button type="button" [routerLink]="['/home/package']" class="btn btn-default ml-2 mb-2">Back</button>
+            <button type="button" (click)="submit()" class="btn btn-primary ml-2 mb-2">Tambah</button>
+        </div>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
-            <div class="col-sm-8">
-                <input type="text" size="30" formControlName="name" placeholder="Input Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
-            </div>
+          <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+          <div class="col-sm-8">
+              <input type="text" size="30" formControlName="name" placeholder="Input Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-4 col-form-label">Code</label>
@@ -24,43 +28,49 @@
                 <input type="text" formControlName="description" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="code.." />
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Module</label>
-            <div class="col-sm-8">
-                <div class="row nodeParent" *ngFor="let module of modules.data">
-                    <div class="col-md-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
-                            <label class="form-check-label">{{module.name}}</label>
-                        </div>
-                    </div>
-                    <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
-                        <div class="form-check">
-                            <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
-                            <ng-template #yesCheckList>
-                                <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" checked />
-                            </ng-template>
-                            <ng-template #noCheckList>
-                                <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" />
-                            </ng-template>
-                            <label class="form-check-label">{{menu.name}}</label>
-                        </div>
-                        <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
-                            <div class="form-check">
-                                <div *ngIf="checkedTickets.includes(actions.id); then yesCheckList2 else noCheckList2"></div>
-                                <ng-template #yesCheckList2>
-                                    <input  class="form-check-input" type="checkbox" [name]="actions.id" [id]="actions.id" [value]="actions.id" (change)="onCheck(actions.id)"checked />
-                                </ng-template>
-                                <ng-template #noCheckList2>
-                                    <input  class="form-check-input" type="checkbox" [name]="actions.id" [id]="actions.id" [value]="actions.id" (change)="onCheck(actions.id)" />
-                                </ng-template>
-                                
-                                <label class="form-check-label">{{actions.name}}</label>
-                            </div>
-                        </div>
+      </ng-template>
+      <ng-template #hidden>
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </ng-template>
+      <div class="form-group row">
+          <div class="col-md-3 nodeParent" *ngFor="let module of modules.data" style="background-color: #fbf7f0; padding-top: 50px;">
+            <div class="col-md-12" >
+                <div class="row"> 
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
+                      <label class="form-check-label">{{module.name}}</label>
+                  </div>
+                </div>
+            </div>
+            <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
+                <div class="form-check">
+                    <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
+                    <ng-template #yesCheckList>
+                      <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" checked />
+                    </ng-template>
+                    <ng-template #noCheckList>
+                        <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" />
+                    </ng-template>
+                    <label class="form-check-label">{{menu.name}}</label>
+                </div>
+                <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
+                    <div class="form-check">
+                        <div *ngIf="checkedTickets.includes(actions.idMenuAction[0]); then yesCheckList2 else noCheckList2"></div>
+                        <ng-template #yesCheckList2>
+                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" checked />
+                        </ng-template>
+                        <ng-template #noCheckList2>
+                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" />
+                        </ng-template>
+                        <label class="form-check-label">{{actions.name}}</label>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
+
     </form>
 </div>

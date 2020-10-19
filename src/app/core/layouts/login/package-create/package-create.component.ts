@@ -13,8 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PackageCreateComponent implements OnInit, OnChanges {
   formReady: FormGroup;
   modules:any;
+  isLoading: boolean;
   checkedTickets = [];
   actionMenu =[];
+  onClickParent: any;
   constructor(
     private formBuilder: FormBuilder,
     private plansService: PlansService,
@@ -28,12 +30,13 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.isLoading = false;
     this.plansService.getModules().subscribe((data)=>{
       if(data) {
+          this.isLoading = true;
           this.modules = data;
         }
     })  
-
   }
 
 
@@ -41,46 +44,67 @@ export class PackageCreateComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.modules.data.length; i++) {
       if(this.modules.data[i].id == evt){
         if(this.checkedTickets.includes(evt)){
-          for (let a = 0; a < this.modules.data[i].menus.length; a++) {
-            var index = this.checkedTickets.indexOf(this.modules.data[i].menus[a].id);
-            if (index > -1) {
-                  this.checkedTickets.splice(index, 1);
-              }
-            if(this.modules.data[i].menus[a].menuActions == undefined){
-            } else {
-              for(let b = 0; b < this.modules.data[i].menus[a].menuActions.length; b++) {
-                var index = this.checkedTickets.indexOf(this.modules.data[i].menus[a].menuActions[b].id);
-                if (index > -1) {
-                    this.checkedTickets.splice(index, 1);
-                }
+          var index = this.checkedTickets.indexOf(this.modules.data[i].id);
+          if (index > -1) {
+            this.checkedTickets.splice(index, 1);
+          }
+          for(let k=0; k < this.modules.data[i].menus.length; k++){
+            for(let l=0; l < this.modules.data[i].menus[k].menuActions.length; l++){
+              var index = this.checkedTickets.indexOf(this.modules.data[i].menus[k].menuActions[l].idMenuAction[0]);
+              if (index > -1) {
+                this.checkedTickets.splice(index, 1);
               }
             }
+            var index = this.checkedTickets.indexOf(this.modules.data[i].menus[k].id);
+            if (index > -1) {
+              this.checkedTickets.splice(index, 1);
+            }
           }
-        } 
-        else {
-          for (let a = 0; a < this.modules.data[i].menus.length; a++) {
-            this.checkedTickets.push(this.modules.data[i].menus[a].id);
-            if(this.modules.data[i].menus[a].menuActions == undefined){
-            } else {
-              for(let b = 0; b < this.modules.data[i].menus[a].menuActions.length; b++) {
-                this.checkedTickets.push( this.modules.data[i].menus[a].menuActions[b].id);
+        } else {
+          this.checkedTickets.push(this.modules.data[i].id)
+          for(let k=0; k < this.modules.data[i].menus.length; k++){
+            for(let l=0; l < this.modules.data[i].menus[k].menuActions.length; l++){
+              this.checkedTickets.push(this.modules.data[i].menus[k].menuActions[l].idMenuAction[0]);
+            }
+            this.checkedTickets.push(this.modules.data[i].menus[k].id)
+          }
+        }
+      }
+      for(let o = 0; o < this.modules.data[i].menus.length; o++){
+        if(this.modules.data[i].menus[o].id == evt){
+          if(this.checkedTickets.includes(evt)){
+            var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].id);
+            if (index > -1) {
+              this.checkedTickets.splice(index, 1);
+            }
+            for(let l=0; l < this.modules.data[i].menus[o].menuActions.length; l++){
+              var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].menuActions[l].idMenuAction[0]);
+              if (index > -1) {
+                this.checkedTickets.splice(index, 1);
               }
+            }
+          } else {
+            this.checkedTickets.push(this.modules.data[i].menus[o].id)
+            for(let l=0; l < this.modules.data[i].menus[o].menuActions.length; l++){
+              this.checkedTickets.push(this.modules.data[i].menus[o].menuActions[l].idMenuAction[0]);
+            }
+          }
+        }
+        for(let x = 0; x < this.modules.data[i].menus[o].menuActions.length; x++){
+          if(this.modules.data[i].menus[o].menuActions[x].idMenuAction[0] == evt){
+            if(this.checkedTickets.includes(evt[0])){
+              var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].menuActions[x].idMenuAction[0]);if (index > -1) {
+                  this.checkedTickets.splice(index, 1);
+              }
+            } else {
+              this.checkedTickets.push(this.modules.data[i].menus[o].menuActions[x].idMenuAction[0])
             }
           }
         }
       }
-     }
-    if (!this.checkedTickets.includes(evt)) {
-      this.checkedTickets.push(evt);
-    } else {
-      var index = this.checkedTickets.indexOf(evt);
-      if (index > -1) {
-        this.checkedTickets.splice(index, 1);
-      }
     }
-    console.log(this.checkedTickets);
+    console.log(this.checkedTickets)
   }
-
   validation(){
     for(let i = 0; i < this.modules.data.length; i++) {
       if(this.checkedTickets.includes(this.modules.data[i].id)){
@@ -101,6 +125,11 @@ export class PackageCreateComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  nodeParentClick(data){
+    this.onClickParent = data
+    console.log('hello', this.onClickParent)
   }
 
   submit(){

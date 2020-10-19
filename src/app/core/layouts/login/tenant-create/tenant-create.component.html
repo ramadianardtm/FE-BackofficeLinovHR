@@ -1,47 +1,101 @@
+<app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
 <div class="container-custom">
-
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">1</label>
-    </div>
-    
-    <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
     <form [formGroup]="formReady">
         <div class="form-group row">
+          <button type="button" [routerLink]="['/home']" class="btn btn-default ml-2 mb-2">Back</button>
+          <button type="button" (click)="submit()" class="btn btn-primary ml-2 mb-2">Tambah</button>
+        </div>
+        <div class="form-group row">  
             <label for="staticEmail" class="col-sm-4 col-form-label">Tenant Name</label>
             <div class="col-sm-8">
-                <input type="text" size="30" formControlName="tenantName" placeholder="Input Tenant Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+                <input type="text" formControlName="name" placeholder="Input Tenant Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
             </div>
         </div>
+        <div class="form-group row">  
+          <label for="staticEmail" class="col-sm-4 col-form-label">PIC</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="pic" placeholder="Input PIC Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">  
+          <label for="staticEmail" class="col-sm-4 col-form-label">Phone</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="phone" placeholder="Input Phone" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
+        </div>
         <div class="form-group row">
-            <label for="inputPassword" clasws="col-sm-4 col-form-label">Tenant Email</label>
-            <div class="col-sm-8">
-                <input type="text" formControlName="email" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="company@gmail.com" />
-            </div>
+          <label for="staticEmail" class="col-sm-4 col-form-label">Tenant Email</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="email" placeholder="company@gmail.com" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-4 col-form-label">Start - End Date</label>
             <div class="col-sm-4">
-                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="startDate" class="calender border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
+                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="startDateApp" class="calender border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
             </div>
             <div class="col-sm-4">
-                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="endDate" class="border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
+                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="endDateApp" class="border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
             </div>
         </div>
         <div class="division">
             <p-tabView>
                 <p-tabPanel header="Packages">
-                    <div class="custom-control custom-radio"  *ngFor="let item of plansData">
-                        <input type="radio"  name="plans" [id]="item.id" [value]="item.id" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio1">{{item.name}}</label>
-                    </div>
-
-                    <div class="custom-control custom-radio">
-                        <input value="null" type="radio" id="null" name="plans" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio1">Custom</label>
-                    </div>
+                    <select class="custom-select" formControlName="plans">
+                      <option 
+                          *ngFor="let item of plansData ? plansData.data : plansData"
+                          [value]="item.id">
+                          {{item.name}}
+                      </option>
+                      <option 
+                          value="custom">
+                          Custom
+                      </option>
+                  </select>
                 </p-tabPanel>
             </p-tabView>
+            <div *ngIf="formReady.value.plans == 'custom'">
+              <div class="form-group row">
+                <div class="col-md-3 nodeParent" *ngFor="let module of modules.data" style="background-color: #fbf7f0; padding-top: 50px;">
+                  <div class="col-md-12" >
+                      <div class="row"> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
+                            <label class="form-check-label">{{module.name}}</label>
+                        </div>
+                      </div>
+                  </div>
+                  <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
+                      <div class="form-check">
+                          <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
+                          <ng-template #yesCheckList>
+                            <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" checked />
+                          </ng-template>
+                          <ng-template #noCheckList>
+                              <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" />
+                          </ng-template>
+                          <label class="form-check-label">{{menu.name}}</label>
+                      </div>
+                      <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
+                          <div class="form-check">
+                              <div *ngIf="checkedTickets.includes(actions.idMenuAction[0]); then yesCheckList2 else noCheckList2"></div>
+                              <ng-template #yesCheckList2>
+                                  <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" checked />
+                              </ng-template>
+                              <ng-template #noCheckList2>
+                                  <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" />
+                              </ng-template>
+                              <label class="form-check-label">{{actions.name}}</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          
+            
+          </div>
+
+          
         </div>
         <div class="row division">
             <div class="col-md-6">

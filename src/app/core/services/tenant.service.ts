@@ -7,6 +7,7 @@ import { ApiService } from '../http/api.service';
 })
 export class TenantService {
   private TENANT_LIST = "tenants";
+  private TENANT_POST = "register/";
   private TENANT_DETAIL = `tenan-detail/`;
   private TENANT_DELETE = `tenant/`;
   private CURRENCIES_LIST = `lov/currencies`;
@@ -42,6 +43,10 @@ export class TenantService {
 
   public getPlans(){
     return this.api.get(this.PLANS_LIST);
+  }
+
+  public postTenants(data){
+    return this.api.post(`${this.TENANT_POST}`, data)
   }
 
   public getReports(uuid){

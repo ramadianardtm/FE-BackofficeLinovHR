@@ -42,7 +42,6 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
         console.log('res :', res)
         this.plansData = res
         this.onPatchForm(res);
-        console.log('this.plansData.module.length', this.plansData.module.length)
         for (let i = 0; i < this.plansData.module.length; i++) {
           for(let j = 0; j < this.plansData.module[i].menus.length; j++) {
             for(let k = 0; k < this.plansData.module[i].menus[j].menuActions.length; k++) {
@@ -54,7 +53,6 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
           }
           console.log('module', this.plansData.module[i].id)
           this.checkedTickets.push(this.plansData.module[i].id);
-        
         }
       }
     ) 
@@ -171,13 +169,10 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
     }) 
   }
 
+
+
   onPatchForm(res){
     this.formReady.patchValue(res)
-    // this.formReady.get("id").patchValue(res.id)
-    // this.formReady.get("name").patchValue(res.name)
-    // this.formReady.get("code").patchValue(res.code)
-    // this.formReady.get("actionMenu").patchValue(this.actionMenu)
-    // this.formReady.get("version").patchValue(this.actionMenu)
   }
   
   createFormGroup() {

@@ -1,1 +1,196 @@
-<p>tenant-update works!</p>
+<app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
+<div class="container-custom">
+    <form [formGroup]="formReady">
+        <div class="form-group row">
+          <button type="button" [routerLink]="['/home']" class="btn btn-default ml-2 mb-2">Back</button>
+          <button type="button" (click)="submit()" class="btn btn-primary ml-2 mb-2">Tambah</button>
+        </div>
+        <div class="form-group row">  
+            <label for="staticEmail" class="col-sm-4 col-form-label">Tenant Name</label>
+            <div class="col-sm-8">
+                <input type="text" formControlName="name" placeholder="Input Tenant Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">  
+          <label for="staticEmail" class="col-sm-4 col-form-label">PIC</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="pic" placeholder="Input PIC Name" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">  
+          <label for="staticEmail" class="col-sm-4 col-form-label">Phone</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="phone" placeholder="Input Phone" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-4 col-form-label">Tenant Email</label>
+          <div class="col-sm-8">
+              <input type="text" formControlName="email" placeholder="company@gmail.com" pattern="[a-zA-Z0-9 ]*" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-4 col-form-label">Start - End Date</label>
+            <div class="col-sm-4">
+                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="startDateApp" class="calender border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
+            </div>
+            <div class="col-sm-4">
+                <p-calendar [monthNavigator]="true" appendTo="body" [yearNavigator]="true" readonlyInput="true" formControlName="endDateApp" class="border-none pad-4" yearRange="{{ '' | primeYearRange }}"> </p-calendar>
+            </div>
+        </div>
+        <div class="division">
+            <p-tabView>
+                <p-tabPanel header="Packages">
+                    <select class="custom-select" formControlName="plans">
+                      <option 
+                          *ngFor="let item of plansData ? plansData.data : plansData"
+                          [value]="item.id">
+                          {{item.name}}
+                      </option>
+                      <option 
+                          value="custom">
+                          Custom
+                      </option>
+                  </select>
+                </p-tabPanel>
+            </p-tabView>
+            <div *ngIf="formReady.value.plans == 'custom'">
+              <div class="form-group row">
+                <div class="col-md-3 nodeParent" *ngFor="let module of modules.data" style="background-color: #fbf7f0; padding-top: 50px;">
+                  <div class="col-md-12" >
+                      <div class="row"> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
+                            <label class="form-check-label">{{module.name}}</label>
+                        </div>
+                      </div>
+                  </div>
+                  <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
+                      <div class="form-check">
+                          <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
+                          <ng-template #yesCheckList>
+                            <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" checked />
+                          </ng-template>
+                          <ng-template #noCheckList>
+                              <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" />
+                          </ng-template>
+                          <label class="form-check-label">{{menu.name}}</label>
+                      </div>
+                      <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
+                          <div class="form-check">
+                              <div *ngIf="checkedTickets.includes(actions.idMenuAction[0]); then yesCheckList2 else noCheckList2"></div>
+                              <ng-template #yesCheckList2>
+                                  <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" checked />
+                              </ng-template>
+                              <ng-template #noCheckList2>
+                                  <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" />
+                              </ng-template>
+                              <label class="form-check-label">{{actions.name}}</label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          
+            
+          </div>
+
+          
+        </div>
+        <div class="row division">
+            <div class="col-md-6">
+                <h4>Company</h4>
+            </div>
+            <div class="col-md-6 d-flex flex-row-reverse">
+                <button (click)="addCompany()" type="button" class="btn btn-primary">Tambah Perusahaan</button>
+            </div>
+        </div>
+        <p-tabView>
+            <p-tabPanel *ngFor="let item of formReady['controls'].company['controls']; let i = index;last as isFirst" [selected]="isFirst" header="Company {{i+1}}">
+                <div formArrayName="company">
+                    <div [formGroupName]="i">
+                        <div class="row styling-remove">
+                            <div *ngIf="i > 0" class="col-md-12  d-flex flex-row-reverse">
+                                <i class="fa fa-close"  (click)="removeCompany(i)" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">name</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="name" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Tax Number</label>
+                            <div class="col-sm-8">
+                                <p-inputMask placeholder="99.999.999.9-999.999" mask="99.999.999.9-999.999" [unmask]="true" type="text" formControlName="taxNamber" pattern="[a-zA-Z0-9 ]*" placeholder="" ></p-inputMask>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Language Default</label>
+                            <div class="col-sm-8">
+                                <select class="custom-select" formControlName="languageDefault">
+                                    <option 
+                                        *ngFor="let item of languages"
+                                        [value]="item.key">
+                                        {{item.value}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Date Format</label>
+                            <div class="col-sm-8">
+                                <select class="custom-select" formControlName="dateFormat">
+                                    <option 
+                                        *ngFor="let item of dateFormats"
+                                        [value]="item.key">
+                                        {{item.value}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Currency</label>
+                            <div class="col-sm-8">
+                                <select class="custom-select" formControlName="curency">
+                                    <option 
+                                        *ngFor="let item of currencies"
+                                        [value]="item.key">
+                                        {{item.value}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="address" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Postal Code</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="postalCode" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-4 col-form-label">Company Position</label>
+                            <div class="col-sm-8">
+                                <input type="text" formControlName="companyPosition" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword" class="col-sm-4 col-form-label">Phone</label>
+                          <div class="col-sm-8">
+                              <input type="text" formControlName="phone" pattern="[a-zA-Z0-9 ]*" class="form-control" placeholder="" />
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+
+        
+    </form>
+</div>

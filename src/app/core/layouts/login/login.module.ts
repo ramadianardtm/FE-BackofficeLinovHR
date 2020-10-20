@@ -30,7 +30,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 
 import { Select2Module } from 'ng2-select2';
 @NgModule({
-    imports: [Select2Module,  ProgressBarModule, ProgressSpinnerModule,SharedModule, LaddaModule, CheckboxModule, LovModule, LoggerFormModule,GlobalAllModule,Ng2SearchPipeModule,FormsModule, TreeViewModule,],
+    imports: [Select2Module, ProgressBarModule, ProgressSpinnerModule,SharedModule, LaddaModule, CheckboxModule, LovModule, LoggerFormModule,GlobalAllModule,Ng2SearchPipeModule,FormsModule, TreeViewModule,],
     declarations: [
         LoginPageComponent,
         HomeComponent,

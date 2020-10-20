@@ -221,6 +221,7 @@ export class TenantCreateComponent implements OnInit {
       curency: ["f702fc4c-0773-4179-998d-60d1443bfe39"],
       address:[""],
       postalCode:[""],
+      phone:[""],
       companyPosition:[""],
     });
   }

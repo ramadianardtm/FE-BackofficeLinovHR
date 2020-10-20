@@ -13,7 +13,7 @@ export class PlansService {
   constructor(private api:ApiService) { }
 
   public getPlansServices(page, limit){
-    return this.api.get(`${this.PLAN_LIST}?page=${page}&limit=${limit}`);
+    return this.api.get(`${this.PLAN_LIST}?page=${page}&limit=${limit}&name=&order=&asc=`);
   }
 
   public getModules(){

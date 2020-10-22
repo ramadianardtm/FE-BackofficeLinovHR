@@ -1,71 +1,50 @@
-<style>
-    p {
-        text-align: center;
-    }
 
-    .detail {
-        font-size: 1rem;
-    }
-</style>
-
-
-<div class="ui-g-12 mt-4">
-    <div class="container">
-        <p-tabView>
-            <p-tabPanel header="Tenant Management">
-                <app-search (refresh)='onRefresh()' (search)='onTypeSearch($event)' isActive=true></app-search>
-                <div>
-
-                    <p-table [value]="product" [(selection)]="selectedTenantTypes" dataKey="code" selectionMode="single"
-                        [paginator]="true" [rows]="5"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                        [rowsPerPageOptions]="[10,25,50]" dataKey="id" (onRowSelect)="arrow($event)">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-product>
-                            <tr [pSelectableRow]="product">
-                                <td>{{product.code}}</td>
-                                <td>{{product.name}}</td>
-                                <td>{{product.category}}</td>
-                                <td>{{product.quantity}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-
-                </div>
-            </p-tabPanel>
-
-        </p-tabView>
-
+ <div class="container">
+  <div class="row">
+    <div class="col-sm" style="margin: auto;">
+      <h4>Tenant Management</h4>
     </div>
-</div>
-
-
-<p-dialog header="Your Account" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-    <div class="ui-g-12">
-        <div class="ui-g-4 ">
-            <label>USERNAME</label>
-        </div>
-        <div class="ui-g-7">
-            <label>{{user?.username || "-"}}</label>
-        </div>
+    <div class="col-sm" style="text-align: right;">
+      <button type="button" (click)="reports()" class="btn btn-primary ml-2 mb-2">Report All</button>
+      <button type="button" [routerLink]="['/home/tenant/add']" class="btn btn-primary ml-2 mb-2">Tambah</button>
     </div>
-    <div class="ui-g-12">
-        <div class="ui-g-4 ">
-            <label>PASSWORD</label>
-        </div>
-        <div class="ui-g-7">
-            <label>{{user?.password || "-"}}</label>
-        </div>
+  </div>
+
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  <div class="row" style="margin-top:20px">
+    <div class="col-sm-12">
+      <div>
+        <p-table 
+        [value]="tenants" 
+        [(selection)]="selectedTenantTypes" 
+        selectionMode="single" 
+        [paginator]="true"
+        [lazy]="true"
+        [rows]="5" 
+        [rowsPerPageOptions]="pageSizeOptions"
+        [totalRecords]="rowsPerPage"
+        dataKey="id"
+        (onLazyLoad)="getPage($event)">
+        <ng-template pTemplate="header">
+           <tr>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Action</th>
+           </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tenant>
+           <tr [pSelectableRow]="tenant">
+             <td>{{tenant.name}}</td>
+             <td>{{tenant.code}}</td>
+             <td> 
+                 <button type="button" (click)="detailTenant(tenant.id)" class="btn btn-sm btn-primary ml-2 mb-2">Detail</button>
+                 <button type="button" (click)="deleteTenant(tenant.id)" class="btn btn-sm btn-danger ml-2 mb-2">Deactive</button>
+             </td>
+           </tr>
+        </ng-template>
+        </p-table>
+     </div>
     </div>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="doLogin()" label="login"></button>
-        <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="close"></button>
-    </p-footer>
-</p-dialog>
+  </div>
+
+ </div>

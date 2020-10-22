@@ -1,0 +1,60 @@
+
+
+
+<div class="container">
+    <div class="row">
+        <button type="button" [routerLink]="['/home/package']" class="btn btn-default ml-2 mb-2">Back</button>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1>{{plansData.name}}</h1>
+            <p>
+                Code : {{plansData.code}} <br/>
+                Description : {{plansData.description}} <br/>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="alert alert-info col-md-12" role="alert">
+            Module Detail
+        </div>
+        <div class="col-md-12 mb-4">
+            <p-panel  header={{plansData.code}} [toggleable]="true">
+                <div class="col-md-12">
+                    <!-- nanti diisi nama2 modul -->
+                    <p-table [value]="plansData.module">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Module</th>  
+                                <th>Menu</th>  
+                                <th>Menu Actions</th>  
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-module>
+                            <tr>
+                                <td>{{module.name}}</td>     
+                                <td colspan="2">
+                                    <tr *ngFor="let item of module.menus">
+                                        <div class="row widthSetting">
+                                            <div class="col-6">
+                                                <td>{{item.name}}</td>
+                                            </div>
+                                            <div class="col-6">
+                                                <td class="tree-table">
+                                                    <tr *ngFor="let data of item.menuActions" >
+                                                        <td>{{data.name}}</td>
+                                                    </tr>
+                                                </td>   
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </td>   
+                            </tr>
+                        </ng-template>
+                      </p-table>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

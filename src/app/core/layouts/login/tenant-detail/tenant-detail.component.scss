@@ -1,0 +1,42 @@
+.lawen-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:10px;
+  }
+  @media (min-width: 768px) {
+    .lawen-container {
+      width: 650px;
+    }
+  }
+  @media (min-width: 992px) {
+    .lawen-container {
+      width: 770px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .lawen-container {
+      width: 970px;
+    }
+  }
+  
+.widthSetting{
+  width:600px;
+  // border-bottom: 0.01px solid #333333;
+  padding: 6px;
+  margin-top:6px;
+}
+
+
+
+.nodeParent{
+  margin-bottom:20px
+}
+.nodeChild{
+  margin-left:20px;
+  margin-bottom:20px
+}
+.nodeChildren{
+  margin-left:20px;
+}

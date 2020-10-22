@@ -1,20 +1,10 @@
-<!-- <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form> -->
-<div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <button type="button" [routerLink]="['/home']" class="btn btn-warning ml-2 mb-2">Back</button>
-      </div>
-    </div>
-    <div class="alert alert-primary" role="alert">
-      <div class="row">
-        <div class="col-sm">
-          <h4>Tambah Tenant</h4>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-    <div class="col-md-12">
+<app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form>
+<div class="container-custom">
     <form [formGroup]="formReady">
+        <div class="form-group row">
+          <button type="button" [routerLink]="['/home']" class="btn btn-default ml-2 mb-2">Back</button>
+          <button type="button" (click)="submit()" class="btn btn-primary ml-2 mb-2">Tambah</button>
+        </div>
         <div class="form-group row">  
             <label for="staticEmail" class="col-sm-4 col-form-label">Tenant Name</label>
             <div class="col-sm-8">
@@ -101,7 +91,11 @@
                   </div>
               </div>
             </div>
+          
+            
           </div>
+
+          
         </div>
         <div class="row division">
             <div class="col-md-6">
@@ -113,7 +107,7 @@
         </div>
         <p-tabView>
             <p-tabPanel *ngFor="let item of formReady['controls'].company['controls']; let i = index;last as isFirst" [selected]="isFirst" header="Company {{i+1}}">
-                <div formGroupName="company">
+                <div formArrayName="company">
                     <div [formGroupName]="i">
                         <div class="row styling-remove">
                             <div *ngIf="i > 0" class="col-md-12  d-flex flex-row-reverse">
@@ -197,10 +191,6 @@
             </p-tabPanel>
         </p-tabView>
 
-        <div class="form-group row">
-          <button type="button" (click)="submit()" class="btn btn-primary mt-2">Tambah</button>
-        </div>
+        
     </form>
-  </div>
-  </div>
 </div>

@@ -7,11 +7,11 @@ import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api'
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: "app-tenant-create",
-  templateUrl: "./tenant-create.component.html",
-  styleUrls: ["./tenant-create.component.scss"],
+  templateUrl: "./tenant-update.component.html",
+  styleUrls: ["./tenant-update.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TenantCreateComponent implements OnInit {
+export class TenantUpdateComponent implements OnInit {
   formReady: FormGroup;
   index: number = 0;
   languages:any[];
@@ -23,6 +23,9 @@ export class TenantCreateComponent implements OnInit {
   plansField:any[];
   actionMenu =[];
   checkedTickets = [];
+
+  href: string = "";
+  lastURI: string ="";
 
   startDateAPI:any;
   endDateAPI:any;
@@ -55,6 +58,17 @@ export class TenantCreateComponent implements OnInit {
           this.modules = data;
         }
     }) 
+
+    this.href = this.router.url;
+    this.lastURI = this.href.split('/').pop();
+    this.tenantService.sendGetTenantDetailServices(this.lastURI).subscribe(
+      (res:any)=>{
+        // this.companyTenant = res.data.company
+        // this.menuActionList = res.data.subPlans.module
+        // this.tempNameCode = `Name: ${res.data.subPlans.name} / ${res.data.subPlans.code}`
+        // this.tenantDetail = res.data
+      }
+    )  
   }
   
   onCheck(evt) {

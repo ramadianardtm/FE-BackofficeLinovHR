@@ -9,6 +9,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { LaddaModule } from 'angular2-ladda';
+import {PanelModule} from 'primeng/panel';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { LoaderModule } from './core/layouts/loader/loader.module';
 import { TableModule } from 'primeng/table';
+import {AccordionModule} from 'primeng/accordion';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {MenuItem} from 'primeng/api';
+import { TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, '../translations/', '.json');
@@ -32,6 +37,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     ],
     imports: [
         BrowserModule,
+        TreeViewModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule.forRoot(),
@@ -42,6 +48,9 @@ export const createTranslateLoader = (http: HttpClient) => {
         FullCalendarModule,
         NgApexchartsModule,
         TableModule,
+        AccordionModule,
+        BreadcrumbModule,
+        PanelModule,
         AgmCoreModule.forRoot({
             apiKey: '',
         }),

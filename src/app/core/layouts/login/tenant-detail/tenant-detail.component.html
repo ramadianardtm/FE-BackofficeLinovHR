@@ -1,0 +1,534 @@
+<div class="container">
+
+  <div *ngIf="isLoading; then show else hidden"></div>
+  <ng-template #show>
+    <div class="row">
+      <button
+        type="button"
+        [routerLink]="['/home']"
+        class="btn btn-default ml-2 mb-2"
+      >
+        Back
+      </button>
+      <button type="button" (click)="reports()" class="btn btn-primary ml-2 mb-2">
+        Reports
+      </button>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>{{tenantDetail.name}}</h1>
+        <p>
+          Code : {{tenantDetail.code}} <br />
+          Date : {{tenantDetail.startDate}} - {{tenantDetail.endDate}} <br />
+          Phone : {{tenantDetail.phone}} <br />
+          PIC : {{tenantDetail.pic}} <br />
+          Version : {{tenantDetail.version}} <br />
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="alert alert-primary col-12" role="alert">
+        <div class="row">
+          <div class="col-sm" style="margin: auto;">
+            PLANS LIST
+          </div>
+          <div class="col-sm" style="text-align: right;">
+            <button (click)="editPlans()" type="button" class="btn btn-primary">CHANGE</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-4">
+        <p-panel header="{{tempNameCode}}" [toggleable]="true">
+          <div class="col-md-12">
+      
+            <p-table [value]="menuActionList">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Module</th>
+                  <th>Menu</th>
+                  <th>Name</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-menuAction>
+                <tr>
+                  <td>{{menuAction.name}}</td>
+                  <td colspan="2">
+                    <tr *ngFor="let item of menuAction.menus">
+                      <div class="row widthSetting">
+                        <div class="col-6">
+                          <td>{{item.name}}</td>
+                        </div>
+                        <div class="col-6">
+                          <td class="tree-table">
+                            <tr *ngFor="let data of item.menuActions">
+                              <td>{{data.name}}</td>
+                            </tr>
+                          </td>
+                        </div>
+                      </div>
+                    </tr>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="alert alert-primary col-12" role="alert">
+        <div class="row">
+          <div class="col-sm" style="margin: auto;">
+            COMPANY LIST
+          </div>
+          <div class="col-sm" style="text-align: right;">
+            <button (click)="addCompany()" type="button" class="btn btn-primary">ADD COMPANY</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 table-responsive">
+        <table class="table table-bordered table-responsive fixed_header">
+          <thead class="thead-dark">
+            <tr>
+              <td class="sorting" style="width:200px;">Company Name</td>
+              <td class="sorting" style="width:100px;">Version</td>
+              <td class="sorting" style="width:200px;">Tax</td>
+              <td class="sorting" style="width:100px;">Phone</td>
+              <td class="sorting" style="width:150px;">Currency</td>
+              <td class="sorting" style="width:100px;">Date Format</td>
+              <td class="sorting" style="width:200px;">Language</td>
+              <td class="sorting" style="width:100px;">Status</td>
+              <td class="sorting" style="width:150px;">action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of companyTenant" style="cursor: pointer">
+              <td>{{item.name}}</td>
+              <td>{{item.version}}</td>
+              <td>{{item.companyTaxNumber}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.generalCompanies[0].lovGnty.valData}}</td>
+              <td>{{item.generalCompanies[1].lovGnty.valData}}</td>
+              <td>{{item.generalCompanies[2].lovGnty.valData}}</td>
+              <td>{{item.isActive}}</td>
+              <td>
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Action
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a (click)="changeCompany(item)" class="dropdown-item"
+                      >Change Data</a
+                    >
+                    <a (click)="deactiveCompany(item)" class="dropdown-item"
+                      >Deactive</a
+                    >
+                    <a (click)="deleteCompany(item.id)" class="dropdown-item"
+                      >Delete</a
+                    >
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #hidden>
+    <button class="btn btn-primary" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Memuat data tenant, module, company...
+    </button>
+  </ng-template>
+
+
+  <p-dialog
+    header="Update Company"
+    [style]="{width: '50vw'}"
+    [(visible)]="display"
+  >
+    <div class="container-fluid" style="font-size: 13px">
+      <div class="row">
+        <form [formGroup]="formReady">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Company Name</label
+                >
+                <div *ngIf="display; then displayValueName"></div>
+                <ng-template #displayValueName
+                  ><input
+                    formControlName="name"
+                    class="form-control form-control-sm"
+                    value="{{companyData.name}}"
+                /></ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >TAX Number</label
+                >
+                <div *ngIf="display; then displayValueTax"></div>
+                <ng-template #displayValueTax
+                  ><input
+                    formControlName="companyTaxNumber"
+                    class="form-control form-control-sm"
+                    value="{{companyData.companyTaxNumber}}"
+                /></ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Phone</label
+                >
+                <div *ngIf="display; then displayValuePhone"></div>
+                <ng-template #displayValuePhone
+                  ><input
+                    formControlName="phone"
+                    class="form-control form-control-sm"
+                    value="{{companyData.phone}}"
+                /></ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Language Default</label
+                >
+                <select
+                  class="custom-select"
+                  formControlName="languageDefaultIDAfter"
+                >
+                  <option *ngFor="let item of languages" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Date Format</label
+                >
+                <select
+                  class="custom-select"
+                  formControlName="dateFormatIDAfter"
+                >
+                  <option *ngFor="let item of dateFormats" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Currency</label
+                >
+                <select class="custom-select" formControlName="curremcyIDAfter">
+                  <option *ngFor="let item of currencies" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div formGroupName="companyAddresses">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="exampleInputEmail1" style="width: 150px"
+                    >Address</label
+                  >
+
+                  <div *ngIf="display; then displayValueAddress"></div>
+                  <ng-template #displayValueAddress
+                    ><input
+                      formControlName="address"
+                      class="form-control form-control-sm"
+                  /></ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="exampleInputEmail1" style="width: 150px"
+                    >Postal Code</label
+                  >
+                  <div *ngIf="display; then displayValuePostalCode"></div>
+                  <ng-template #displayValuePostalCode
+                    ><input
+                      formControlName="postalCode"
+                      class="form-control form-control-sm"
+                  /></ng-template>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="exampleInputEmail1" style="width: 150px"
+                    >Description</label
+                  >
+                  <div *ngIf="display; then displayValueDescription"></div>
+                  <ng-template #displayValueDescription
+                    ><input
+                      formControlName="description"
+                      class="form-control form-control-sm"
+                  /></ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <button
+              type="button"
+              (click)="submitEditMenu()"
+              class="btn btn-primary ml-2 mb-2"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-dialog>
+
+
+  <p-dialog
+    header="Add Company"
+    [style]="{width: '50vw'}"
+    [(visible)]="displayAddCompany"
+  >
+    <div class="container-fluid" style="font-size: 13px">
+      <div class="row">
+        <form [formGroup]="formReadyAddCompany">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Company Name</label
+                >
+                <input
+                    formControlName="name"
+                    class="form-control form-control-sm"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >TAX Number</label
+                >
+                <input
+                    formControlName="taxNamber"
+                    class="form-control form-control-sm"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Phone</label
+                >
+                <input
+                    formControlName="phone"
+                    class="form-control form-control-sm"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Language Default</label
+                >
+                <select
+                  class="custom-select"
+                  formControlName="languageDefault"
+                >
+                  <option *ngFor="let item of languages" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Date Format</label
+                >
+                <select
+                  class="custom-select"
+                  formControlName="dateFormat"
+                >
+                  <option *ngFor="let item of dateFormats" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <label for="exampleInputEmail1" style="width: 150px"
+                  >Currency</label
+                >
+                <select class="custom-select" formControlName="curency">
+                  <option *ngFor="let item of currencies" [value]="item.key">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+   
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="exampleInputEmail1" style="width: 150px"
+                    >Address</label
+                  >
+
+                  <input
+                    formControlName="address"
+                    class="form-control form-control-sm"
+                    />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="exampleInputEmail1" style="width: 150px"
+                    >Postal Code</label
+                  >
+                  <input
+                  formControlName="postalCode"
+                  class="form-control form-control-sm"
+                  />
+                </div>
+              </div>
+            </div>
+
+          <div class="col-sm-12">
+            <button
+              type="button"
+              (click)="submitAddCompanny()"
+              class="btn btn-primary ml-2 mb-2"
+            >
+              Tambah
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog
+  header="Edit Plans"
+  [style]="{width: '90vw'}"
+  [(visible)]="displayEditPlans"
+>
+  <div class="container-fluid" style="font-size: 13px">
+    <div class="row">
+      <form [formGroup]="formReadyEditPlans">
+        
+        <div class="form-group row">
+          <div class="col-md-3 nodeParent" *ngFor="let module of modules.data" style="background-color: #fbf7f0; padding-top: 50px;">
+            <div class="col-md-12" >
+                <div class="row"> 
+                  <div class="form-check">
+                    <div *ngIf="checkedTickets.includes(module.id); then moduleYesCheckList else moduleNoCheckList"></div>
+                    <ng-template #moduleYesCheckList>
+                      <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" checked/>
+                    </ng-template>
+                    <ng-template #moduleNoCheckList>
+                      <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
+                    </ng-template>
+                      <label class="form-check-label">{{module.name}}</label>
+                  </div>
+                </div>
+            </div>
+            <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
+                <div class="form-check">
+                    <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
+                    <ng-template #yesCheckList>
+                      <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" checked />
+                    </ng-template>
+                    <ng-template #noCheckList>
+                        <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id" [value]="menu.id" (change)="onCheck(menu.id)" />
+                    </ng-template>
+                    <label class="form-check-label">{{menu.name}}</label>
+                </div>
+                <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
+                    <div class="form-check">
+                        <div *ngIf="checkedTickets.includes(actions.idMenuAction[0]); then yesCheckList2 else noCheckList2"></div>
+                        <ng-template #yesCheckList2>
+                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" checked />
+                        </ng-template>
+                        <ng-template #noCheckList2>
+                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" />
+                        </ng-template>
+                        <label class="form-check-label">{{actions.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+          <button
+            type="button"
+            (click)="submitEditPlans()"
+            class="btn btn-primary ml-2 mb-2"
+          >
+            Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</p-dialog>
+  
+
+</div>

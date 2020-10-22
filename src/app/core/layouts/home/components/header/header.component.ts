@@ -24,7 +24,7 @@ import { HomeComponent } from '../../pages/home/home.component';
 
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
-import $ from 'jquery';
+
 import { PageInfo } from 'app/shared/models/page-info.model';
 import { AppState } from '@state/app-state.interface';
 import { GetNotification, RefreshToken } from '@actions/notification.action';

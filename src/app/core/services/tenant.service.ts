@@ -15,6 +15,7 @@ export class TenantService {
   private LANG_LIST = `lov/languages`;
   private PLANS_LIST = `subs/plans`;
   private REPORT_PDF = `report/`;
+  private REPORT_ALL = `report-alltenant`;
   private COMPANY_DEACTIVE = `company/deactive/`;
   private COMPANY_DELETE = `company/`;
   private COMPANY_UPDATE = `company/`;
@@ -56,6 +57,10 @@ export class TenantService {
 
   public getReports(uuid){
     return this.api.get(`${this.REPORT_PDF}${uuid}`);
+  }
+
+  public getReportsAll(){
+    return this.api.get(`${this.REPORT_ALL}`);
   }
 
   public deactiveCompany(uuid){

@@ -467,14 +467,13 @@
 
   <p-dialog
   header="Edit Plans"
-  [style]="{width: '50vw'}"
+  [style]="{width: '90vw'}"
   [(visible)]="displayEditPlans"
 >
   <div class="container-fluid" style="font-size: 13px">
     <div class="row">
       <form [formGroup]="formReadyEditPlans">
         
-    
         <div class="form-group row">
           <div class="col-md-3 nodeParent" *ngFor="let module of modules.data" style="background-color: #fbf7f0; padding-top: 50px;">
             <div class="col-md-12" >

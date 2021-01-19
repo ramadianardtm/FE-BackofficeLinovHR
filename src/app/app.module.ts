@@ -11,7 +11,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { LaddaModule } from 'angular2-ladda';
 import {PanelModule} from 'primeng/panel';
 
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';  
 import { AppRoutingModule } from './app-routing.module';
 import { PrimeAppModule } from './shared/prime-app.module';
 

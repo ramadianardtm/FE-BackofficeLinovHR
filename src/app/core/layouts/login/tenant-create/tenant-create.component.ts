@@ -39,20 +39,25 @@ export class TenantCreateComponent implements OnInit {
   ngOnInit() {
     this.tenantService.getLang().subscribe((data: any)=>{
       this.languages = data;
+      console.log(this.languages,"Languages")
     })  
     this.tenantService.getDateFormats().subscribe((data: any)=>{
       this.dateFormats = data;
+      console.log(this.dateFormats,"DateFormats")
     })  
     this.tenantService.getCurrencies().subscribe((data: any)=>{
       this.currencies = data;
+      console.log(this.currencies,"Currencies")
     })  
     this.tenantService.getPlans().subscribe((data: any[])=>{
       this.plansData = data;
+      console.log(this.plansData,"plansData")
     })  
     this.plansService.getModules().subscribe((data)=>{
       if(data) {
           this.isLoading = true;
           this.modules = data;
+          console.log(this.modules,"modules")
         }
     }) 
   }
@@ -165,7 +170,7 @@ export class TenantCreateComponent implements OnInit {
       this.formReady.get('endDateApp').disable();
       this.formReady.get("actionMenu").patchValue([])
     }
-    console.log(this.formReady.value)
+    console.log(JSON.stringify(this.formReady.value))
     this.tenantService.postTenants(this.formReady.value).toPromise().then((data: any)=>{ 
       console.log(JSON.parse(data).success)
       if(JSON.parse(data).success === true){

@@ -92,6 +92,7 @@ export class TenantDetailComponent implements OnInit {
         if(data) {
             this.isLoading = true;
             this.modules = data;
+            console.log(this.modules,"MODULE");
           }
       })
 
@@ -288,7 +289,6 @@ export class TenantDetailComponent implements OnInit {
   reports(){
     this.tenantService.getReports(this.route.snapshot.params.uuid).subscribe(
       (res:any)=>{
-        console.log('RESPONSE REPORTS', res.file)
         let pdfWindow = window.open("")
         pdfWindow.document.write(
             "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +

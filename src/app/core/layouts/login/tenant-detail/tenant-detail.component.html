@@ -481,16 +481,17 @@
                   <div class="form-check">
                     <div *ngIf="checkedTickets.includes(module.id); then moduleYesCheckList else moduleNoCheckList"></div>
                     <ng-template #moduleYesCheckList>
-                      <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" checked/>
+                      <input class="form-check-input" type="checkbox"  checked/>
                     </ng-template>
                     <ng-template #moduleNoCheckList>
-                      <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id" [value]="module.id" (change)="onCheck(module.id)" />
+                      <input class="form-check-input" type="checkbox"  />
                     </ng-template>
                       <label class="form-check-label">{{module.name}}</label>
                   </div>
                 </div>
             </div>
-            <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
+            <hr />
+            <div *ngFor="let menu of modules.data.menus" class="col-md-12 nodeChild">
                 <div class="form-check">
                     <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
                     <ng-template #yesCheckList>

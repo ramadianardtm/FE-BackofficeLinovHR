@@ -53,22 +53,28 @@
             </button>
         </ng-template> -->
 
-        <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxMenu=index">
-            <p-accordionTab [header]="module.name">
-                <div class="form-check">
-                    <input type="checkbox" (change)="checkAll(menu, $event.target.checked)" [checked]="selectedAll">
-                    <label class="col-sm-3">
-                        Pilih Semua
-                    </label>
-                </div>
-                <div class="form-check" *ngFor="let menu of module.menus; let idxAction=index;">
-                    <input type="checkbox" (change)="checkMenu(idxMenu, idxAction, $event.target.checked)">
-                    <label class="col-sm-3">
-                        {{menu.name}}
-                    </label>
-                </div>
-            </p-accordionTab>
-        </p-accordion>
+        <p-tabView>
+            <p-tabPanel [header]="item" *ngFor="let item of apps; let i = index" [selected]="i == 0">
+                <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxMenu=index">
+                        <ng-container *ngIf="module.apps.name === item;">
+                            <p-accordionTab [header]="module.name" [selected]="false">
+                                <div class="form-check">
+                                    <input type="checkbox" (change)="checkAll(idxMenu, $event.target.checked)">
+                                    <label class="col-sm-3">
+                                        Pilih Semua
+                                    </label>
+                                </div>
+                                <div class="form-check" *ngFor="let menu of module.menus; let idxAction=index;">
+                                    <input type="checkbox" (change)="checkMenu(idxMenu, idxAction, $event.target.checked)" [checked]="module.isChecked">
+                                    <label class="col-sm-3">
+                                        {{menu.name}}
+                                    </label>
+                                </div>
+                            </p-accordionTab>
+                        </ng-container>
+                    </p-accordion>
+            </p-tabPanel>
+        </p-tabView>
 
         <!-- <div class="form-group row">
             <div class="col-md-3 nodeParent" *ngFor="let module of modules.data"

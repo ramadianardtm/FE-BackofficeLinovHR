@@ -14,6 +14,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   formReady: FormGroup;
   modules: any;
   datas: any[];
+  apps: any[];
   isLoading: boolean;
   checkedTickets = [];
   actionMenu = [];
@@ -23,6 +24,8 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   names: any;
   selectedAll: any;
   selectedNames: any;
+
+  checkedMenu: boolean;
   constructor(
     private formBuilder: FormBuilder,
     private plansService: PlansService,
@@ -30,16 +33,16 @@ export class PackageCreateComponent implements OnInit, OnChanges {
     private router: Router,
   ) {
     this.createFormGroup();
-    this.names = [
-      { name: 'Prashobh', selected: false },
-      { name: 'Abraham', selected: false },
-      { name: 'Anil', selected: false },
-      { name: 'Sam', selected: false },
-      { name: 'Natasha', selected: false },
-      { name: 'Marry', selected: false },
-      { name: 'Zian', selected: false },
-      { name: 'karan', selected: false },
-    ]
+    // this.names = [
+    //   { name: 'Prashobh', selected: false },
+    //   { name: 'Abraham', selected: false },
+    //   { name: 'Anil', selected: false },
+    //   { name: 'Sam', selected: false },
+    //   { name: 'Natasha', selected: false },
+    //   { name: 'Marry', selected: false },
+    //   { name: 'Zian', selected: false },
+    //   { name: 'karan', selected: false },
+    // ]
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.ngOnInit()
@@ -50,57 +53,64 @@ export class PackageCreateComponent implements OnInit, OnChanges {
     this.plansService.getModules().subscribe((data) => {
       this.isLoading = true;
       this.modules = data;
-      this.datas = data.data;
-      console.log(this.datas);
+     this.apps = this.modules.data.map(item => item.apps.name).filter((v, i, a) => a.indexOf(v) === i);
+
+      console.log(this.modules, "modules");
     })
-  }
-
-  checkAll(menuIndex, isChecked: boolean) {
-    this.selectedAll = !this.selectedAll;
-    this.modules.data[menuIndex].menus.forEach(menu => {
-      menu.menuActions.forEach(action => {
-
-      });
-    });
-    console.log(isChecked);
   }
 
   checkMenu(idxMenu: number, idxAction: number, isChecked: boolean) {
     this.arrayActions = [];
-    this.modules.data[idxMenu].menus[idxAction].menuActions.map(element => {
-      this.arrayActions.push(element.id)
-    });
+
+    this.modules.data[idxMenu].isChecked = isChecked;
+    if(idxAction > -1){
+      this.modules.data[idxMenu].menus[idxAction].menuActions.map(action => {
+        this.arrayActions.push(action.id)
+      });
+      console.log("idxAction triggered");
+    } else {
+      this.modules.data[idxMenu].menus.map(menu => menu.menuActions.map(action => {
+        this.arrayActions.push(action.id)}));
+    }
 
     const firstIndex: String = this.arrayActions[0];
 
-    if(this.arrayActions.length > 0){
+    if (this.arrayActions.length > 0) {
       if (isChecked) {
         this.actionMenu.push(this.arrayActions);
       } else {
-        const idx = this.arrayActions.findIndex(item => item.includes(firstIndex));
+        const idx = this.actionMenu.findIndex(item => item.includes(firstIndex));
         if (idx > -1) {
-           this.actionMenu.splice(idx, 1);
+          this.actionMenu.splice(idx, 1);
         }
+        console.log(idx, "idx");
       }
     }
+
+    console.log(this.actionMenu,"actionMenuInside");
+    console.log(this.modules.data[idxMenu].isChecked,"menuSelected");
   }
 
-  selectAll() {
-    this.selectedAll = !this.selectedAll;
-    console.log(this.selectedAll, "selectAll()");
-    for (var i = 0; i < this.names.length; i++) {
-      this.names[i].selected = this.selectedAll;
-    }
+  checkAll(idxMenu, isChecked){
+    this.checkMenu(idxMenu, -1, isChecked);
   }
-  checkIfAllSelected() {
-    var totalSelected = 0;
-    for (var i = 0; i < this.names.length; i++) {
-      if (this.names[i].selected) totalSelected++;
-    }
-    this.selectedAll = totalSelected === this.names.length;
 
-    return true;
-  }
+  // selectAll() {
+  //   this.selectedAll = !this.selectedAll;
+  //   console.log(this.selectedAll, "selectAll()");
+  //   for (var i = 0; i < this.names.length; i++) {
+  //     this.names[i].selected = this.selectedAll;
+  //   }
+  // }
+  // checkIfAllSelected() {
+  //   var totalSelected = 0;
+  //   for (var i = 0; i < this.names.length; i++) {
+  //     if (this.names[i].selected) totalSelected++;
+  //   }
+  //   this.selectedAll = totalSelected === this.names.length;
+
+  //   return true;
+  // }
 
   onCheck(evt) {
     // for (let i = 0; i < this.modules.data.length; i++) {
@@ -195,19 +205,19 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   }
 
   submit() {
-    console.log(this.actionMenu.join().split(","),"array");
+    console.log(this.actionMenu.join().split(","), "array");
     this.validation()
     this.formReady.get("actionMenu")
       .patchValue(this.actionMenu.join().split(","))
-    this.plansService.postPlans(this.formReady.value).toPromise().then((data: any)=>{ 
+    this.plansService.postPlans(this.formReady.value).toPromise().then((data: any) => {
       console.log(JSON.parse(data).success)
-      if(JSON.parse(data).success === true){
+      if (JSON.parse(data).success === true) {
         this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Menambah data' });
         this.router.navigate([`home/package`])
       } else {
         this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Menambah data' });
       }
-    }) 
+    })
   }
 
   createFormGroup() {

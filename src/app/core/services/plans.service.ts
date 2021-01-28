@@ -20,7 +20,7 @@ export class PlansService {
     return this.api.get(`${this.PLAN_LIST}?page=${page}&limit=${limit}&name=&order=&asc=`);
   }
 
-  public getModules():Observable<any>{
+  public getModules(){
     return this.api.get(`${this.MODULES_LIST}`);
   }
 

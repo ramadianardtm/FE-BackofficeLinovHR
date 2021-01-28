@@ -1,25 +1,5 @@
 <div class="container-fluid">
 
-    <div class="row">
-        `
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" (change)="selectAll()" [checked]="selectedAll">
-            <label class="form-check-label">
-                Select All
-            </label>
-        </div>
-        <div class="form-check" *ngFor="let n of names">
-            <input class="form-check-input" type="checkbox" value="{{n.name}}" [(ngModel)]="n.selected"
-                (change)="checkIfAllSelected()">
-            <label class="form-check-label">
-                {{n.name}}
-            </label>
-        </div>
-        {{selectedNames}}
-        `
-    </div>
-
-    <!-- <app-component-logger-form [storeItem]="null" [formValue]="formReady"> </app-component-logger-form> -->
     <form [formGroup]="formReady">
 
         <div class="container row">
@@ -52,70 +32,57 @@
                 Loading...
             </button>
         </ng-template> -->
+        <div class="form-group row">
 
+            <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxMenu=index">
+                <ng-container *ngIf="module.apps.name === item;">
+                    <p-accordionTab [header]="module.name" [selected]="true">
+                        <div class="form-check">
+                            <input type="checkbox" (change)="checkMenu('MODULE',idxMenu, undefined, $event.target.checked)">
+                            <label class="col-sm-3">
+                                Pilih Semua
+                            </label>
+                        </div>
+                        <div class="form-check" *ngFor="let menu of module.menus; let idxAction=index;">
+                            <input type="checkbox" (change)="checkMenu('SINGLE',idxMenu, idxAction, $event.target.checked)"
+                                [checked]="module.isChecked">
+                            <label class="col-sm-3">
+                                {{menu.name}}
+                            </label>
+                        </div>
+                    </p-accordionTab>
+                </ng-container>
+            </p-accordion>
+        </div>
+        
         <p-tabView>
+            <div class="form-check">
+                <input type="checkbox" (change)="checkMenu('ALL',undefined, undefined, $event.target.checked)">
+                <label class="col-sm-3">
+                    Pilih Semua
+                </label>
+            </div>
             <p-tabPanel [header]="item" *ngFor="let item of apps; let i = index" [selected]="i == 0">
                 <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxMenu=index">
-                        <ng-container *ngIf="module.apps.name === item;">
-                            <p-accordionTab [header]="module.name" [selected]="false">
-                                <div class="form-check">
-                                    <input type="checkbox" (change)="checkAll(idxMenu, $event.target.checked)">
-                                    <label class="col-sm-3">
-                                        Pilih Semua
-                                    </label>
-                                </div>
-                                <div class="form-check" *ngFor="let menu of module.menus; let idxAction=index;">
-                                    <input type="checkbox" (change)="checkMenu(idxMenu, idxAction, $event.target.checked)" [checked]="module.isChecked">
-                                    <label class="col-sm-3">
-                                        {{menu.name}}
-                                    </label>
-                                </div>
-                            </p-accordionTab>
-                        </ng-container>
-                    </p-accordion>
+                    <ng-container *ngIf="module.apps.name === item;">
+                        <p-accordionTab [header]="module.name" [selected]="true">
+                            <div class="form-check">
+                                <input type="checkbox" (change)="checkMenu('MODULE',idxMenu, undefined, $event.target.checked)" [checked]="module.isChecked">
+                                <label class="col-sm-3">
+                                    Pilih Semua
+                                </label>
+                            </div>
+                            <div class="form-check" *ngFor="let menu of module.menus; let idxAction=index;">
+                                <input type="checkbox" (change)="checkMenu('SINGLE',idxMenu, idxAction, $event.target.checked)"
+                                    [checked]="module.isChecked">
+                                <label class="col-sm-3">
+                                    {{menu.name}}
+                                </label>
+                            </div>
+                        </p-accordionTab>
+                    </ng-container>
+                </p-accordion>
             </p-tabPanel>
         </p-tabView>
-
-        <!-- <div class="form-group row">
-            <div class="col-md-3 nodeParent" *ngFor="let module of modules.data"
-                style="background-color: #fbf7f0; padding-top: 50px;">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" [name]="module.id" [id]="module.id"
-                                [value]="module.id" (change)="onCheck(module.id)" />
-                            <label class="form-check-label">{{module.name}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div *ngFor="let menu of module.menus" class="col-md-12 nodeChild">
-                    <div class="form-check">
-                        <div *ngIf="checkedTickets.includes(menu.id); then yesCheckList else noCheckList"></div>
-                        <ng-template #yesCheckList>
-                            <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id"
-                                [value]="menu.id" (change)="onCheck(menu.id)" checked />
-                        </ng-template>
-                        <ng-template #noCheckList>
-                            <input class="form-check-input" type="checkbox" [name]="menu.id" [id]="menu.id"
-                                [value]="menu.id" (change)="onCheck(menu.id)" />
-                        </ng-template>
-                        <label class="form-check-label">{{menu.name}}</label>
-                    </div>
-                    <!-- <div class="col-md-12 nodeChildren"  *ngFor="let actions of menu.menuActions">
-                    <div class="form-check">
-                        <div *ngIf="checkedTickets.includes(actions.idMenuAction[0]); then yesCheckList2 else noCheckList2"></div>
-                        <ng-template #yesCheckList2>
-                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" checked />
-                        </ng-template>
-                        <ng-template #noCheckList2>
-                            <input  class="form-check-input" type="checkbox" [name]="actions.idMenuAction" [id]="actions.idMenuAction" [value]="actions.idMenuAction" (change)="onCheck(actions.idMenuAction)" />
-                        </ng-template>
-                        <label class="form-check-label">{{actions.name}}</label>
-                    </div>
-                </div> -->
-        <!--</div>
-            </div>
-        </div> -->
-
     </form>
 </div>

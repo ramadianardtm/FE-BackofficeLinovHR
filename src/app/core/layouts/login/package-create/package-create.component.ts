@@ -51,7 +51,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
     })
   }
 
-  checkMenu(type: String, idxMenu?: number, idxAction?: number, isChecked?: boolean) {
+  checkMenu(type: String, idxModule?: number, idxMenu?: number, idxAction?: number, isChecked?: boolean) {
     this.arrayActions = [];
     switch (type) {
       case "ALL":
@@ -61,6 +61,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
         this.modules.data.map(modul => {
           modul.isChecked = isChecked;
           modul.menus.map(menu => menu.menuActions.map(action => {
+            action.isChecked = isChecked;
             this.arrayActions.push(action.id);
           }));
         });
@@ -68,24 +69,28 @@ export class PackageCreateComponent implements OnInit, OnChanges {
         this.proccesToArray(this.arrayActions, isChecked);
         break;
       case "MODULE":
-        while (this.actionMenu.length) {
-          this.actionMenu.pop()
-        }
-        this.modules.data[idxMenu].isChecked = isChecked;
-        this.modules.data[idxMenu].menus.map(menu => {
+        this.modules.data[idxModule].isChecked = isChecked;
+        this.modules.data[idxModule].menus.map(menu => {
           menu.menuActions.map(action => {
+            action.isChecked = isChecked;
             this.arrayActions.push(action.id);
           });
         });
         this.proccesToArray(this.arrayActions, isChecked);
         break;
 
-      case "SINGLE":
-        this.modules.data[idxMenu].menus[idxAction].menuActions.map(action => {
+      case "MENU":
+        this.modules.data[idxModule].menus[idxMenu].menuActions.map(action => {
+          action.isChecked = isChecked;
           this.arrayActions.push(action.id)
         });
         this.proccesToArray(this.arrayActions, isChecked);
         break;
+
+      // case "ACTION":
+      //   this.arrayActions.push(this.modules.data[idxModule].menus[idxMenu].menuActions[idxAction].id);
+      //   this.proccesToArray(this.arrayActions, isChecked);
+      //   break;
       default:
         this.arrayActions = []
         break;

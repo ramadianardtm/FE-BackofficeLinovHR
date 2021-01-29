@@ -23,8 +23,11 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   plansData: any;
   modules: any;
 
-  modulesSelected: any[];
+  selectedModules: any[];
   arrayActions = [];
+
+  apps: any;
+  results: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,46 +51,35 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
     forkJoin([this.plansService.getPlanDetailServices(this.lastURI), this.plansService.getModules()]).subscribe(results => {
       this.plansData = results[0];
       this.modules = results[1].data;
-      this.modulesSelected = this.plansData.module;
+      this.selectedModules = this.plansData.module;
 
-      this.modulesSelected.map(module => {
+      this.compareSelectedModules(this.modules, this.selectedModules)
+    })
+  }
+
+  compareSelectedModules(originModules, selectedModules) {
+    console.log(originModules);
+    console.log(selectedModules, "selectedModule");
+
+    this.apps = originModules.map(item => item.apps.name).filter((v, i, a) => a.indexOf(v) === i);
+
+    const modulId = selectedModules.map(({ id }) => { return id });
+    const menuId = selectedModules.map(({ menus }) => menus.map(menu => { return menu.id }));
+    const menuIdJoin = menuId.join().split(",");
+
+    console.log(modulId, "modulId");
+
+    this.results = originModules.map(module => {
+      const isModuleSelected = modulId.includes(module.id)
+
+      if (isModuleSelected) {
         module.menus.map(menu => {
-          this.actionMenu.push(
-            menu.menuActions.map(action => {
-              return action.id
-            })
-          )
+          const isMenuSelected = menuIdJoin.includes(menu.id);
+          menu.isMenuSelected = isMenuSelected;
         })
-      })
-
-      console.log(this.modulesSelected, "selected");
-
-      // fixed way
-      // for (let i = 0; i < this.modules.length; i++) {
-
-      //   for (let j = 0; j < this.modules[i].menus.length; j++) {
-      //     let isSelected;
-      //     this.modulesSelected.map(select => {
-      //       isSelected = select.menus.some(menu => {
-      //         return menu.id === this.modules[i].menus[j].id;
-      //       })
-      //     })
-      //     this.modules[i].menus[j].isSelected = isSelected;
-      //   }
-      //   console.log(this.modules[i], "mod");
-      // }
-
-      for(let i=0; i<this.modules.length; i++) {
-        for(let j=0; j<this.modules[i].menus.length; j++){
-          let isSelected;
-          this.modulesSelected.map(select => {
-            isSelected = select.menus.some(menu => {
-               return menu.id === this.modules[i].menus[j].id;
-            })
-          })
-              this.modules[i].menus[j].status = isSelected;
-              console.log(this.modules[i].menus[j], "ALL")
-        }
+        return { ...module, isModuleSelected }
+      } else {
+        return { ...module };
       }
     })
   }
@@ -113,72 +105,6 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
 
     console.log(this.arrayActions, "name : ")
     console.log(this.actionMenu, "action");
-  }
-
-  onCheck(evt) {
-    // for (let i = 0; i < this.modules.data.length; i++) {
-    //   if (this.modules.data[i].id == evt) {
-    //     if (this.checkedTickets.includes(evt)) {
-    //       var index = this.checkedTickets.indexOf(this.modules.data[i].id);
-    //       if (index > -1) {
-    //         this.checkedTickets.splice(index, 1);
-    //       }
-    //       for (let k = 0; k < this.modules.data[i].menus.length; k++) {
-    //         for (let l = 0; l < this.modules.data[i].menus[k].menuActions.length; l++) {
-    //           var index = this.checkedTickets.indexOf(this.modules.data[i].menus[k].menuActions[l].idMenuAction[0]);
-    //           if (index > -1) {
-    //             this.checkedTickets.splice(index, 1);
-    //           }
-    //         }
-    //         var index = this.checkedTickets.indexOf(this.modules.data[i].menus[k].id);
-    //         if (index > -1) {
-    //           this.checkedTickets.splice(index, 1);
-    //         }
-    //       }
-    //     } else {
-    //       this.checkedTickets.push(this.modules.data[i].id)
-    //       for (let k = 0; k < this.modules.data[i].menus.length; k++) {
-    //         for (let l = 0; l < this.modules.data[i].menus[k].menuActions.length; l++) {
-    //           this.checkedTickets.push(this.modules.data[i].menus[k].menuActions[l].idMenuAction[0]);
-    //         }
-    //         this.checkedTickets.push(this.modules.data[i].menus[k].id)
-    //       }
-    //     }
-    //   }
-    //   for (let o = 0; o < this.modules.data[i].menus.length; o++) {
-    //     if (this.modules.data[i].menus[o].id == evt) {
-    //       if (this.checkedTickets.includes(evt)) {
-    //         var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].id);
-    //         if (index > -1) {
-    //           this.checkedTickets.splice(index, 1);
-    //         }
-    //         for (let l = 0; l < this.modules.data[i].menus[o].menuActions.length; l++) {
-    //           var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].menuActions[l].idMenuAction[0]);
-    //           if (index > -1) {
-    //             this.checkedTickets.splice(index, 1);
-    //           }
-    //         }
-    //       } else {
-    //         this.checkedTickets.push(this.modules.data[i].menus[o].id)
-    //         for (let l = 0; l < this.modules.data[i].menus[o].menuActions.length; l++) {
-    //           this.checkedTickets.push(this.modules.data[i].menus[o].menuActions[l].idMenuAction[0]);
-    //         }
-    //       }
-    //     }
-    //     for (let x = 0; x < this.modules.data[i].menus[o].menuActions.length; x++) {
-    //       if (this.modules.data[i].menus[o].menuActions[x].idMenuAction[0] == evt) {
-    //         if (this.checkedTickets.includes(evt[0])) {
-    //           var index = this.checkedTickets.indexOf(this.modules.data[i].menus[o].menuActions[x].idMenuAction[0]); if (index > -1) {
-    //             this.checkedTickets.splice(index, 1);
-    //           }
-    //         } else {
-    //           this.checkedTickets.push(this.modules.data[i].menus[o].menuActions[x].idMenuAction[0])
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    // console.log(this.checkedTickets)
   }
 
   validation() {

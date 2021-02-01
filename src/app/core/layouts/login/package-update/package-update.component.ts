@@ -17,6 +17,8 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   formPackage: FormGroup;
   checkedTickets = [];
   actionMenu = [];
+  actionMenuCache = [];
+  actionResults = [];
   isLoading: boolean;
   href: string = "";
   lastURI: string = "";
@@ -58,43 +60,92 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   }
 
   compareSelectedModules(originModules, selectedModules) {
-    console.log(originModules);
-    console.log(selectedModules, "selectedModule");
-
     this.apps = originModules.map(item => item.apps.name).filter((v, i, a) => a.indexOf(v) === i);
 
     const modulId = selectedModules.map(({ id }) => { return id });
     const menuId = selectedModules.map(({ menus }) => menus.map(menu => { return menu.id }));
     const menuIdJoin = menuId.join().split(",");
 
-    console.log(modulId, "modulId");
-
     this.results = originModules.map(module => {
-      const isModuleSelected = modulId.includes(module.id)
+      const isChecked = modulId.includes(module.id)
 
-      if (isModuleSelected) {
+      if (isChecked) {
         module.menus.map(menu => {
-          const isMenuSelected = menuIdJoin.includes(menu.id);
-          menu.isMenuSelected = isMenuSelected;
+          const isChecked = menuIdJoin.includes(menu.id);
+          menu.isChecked = isChecked;
+
+          if (menu.isChecked) {
+            menu.menuActions.map(action => {
+              this.actionMenuCache.push(action.id);
+            })
+          }
         })
-        return { ...module, isModuleSelected }
+        
+        return { ...module, isChecked }
       } else {
         return { ...module };
       }
     })
   }
 
-  checkMenu(idxMenu: number, idxAction: number, isChecked: boolean) {
+  checkMenu(type: String, idxModule?: number, idxMenu?: number, isChecked?: boolean) {
     this.arrayActions = [];
+    switch (type) {
+      case "ALL":
+        while (this.actionMenu.length) {
+          this.actionMenu.pop()
+        }
+        this.results.map(modul => {
+          modul.isChecked = isChecked;
+          modul.menus.map(menu => menu.menuActions.map(action => {
+            action.isChecked = isChecked;
+            this.arrayActions.push(action.id);
+          }));
+        });
+        this.proccesToArray(this.arrayActions, isChecked, isChecked);
+        break;
+      case "MODULE":
+        this.results[idxModule].isChecked = isChecked;
+        this.results[idxModule].menus.map(menu => {
+          menu.menuActions.map(action => {
+            action.isChecked = isChecked;
+            this.arrayActions.push(action.id);
+          });
+        });
+        this.proccesToArray(this.arrayActions, isChecked, isChecked);
+        break;
 
-    this.modules[idxMenu].menus[idxAction].menuActions.map(action => {
-      this.arrayActions.push(action.id)
-    });
+      case "MENU":
+        this.results[idxModule].menus[idxMenu].menuActions.map(action => {
+          action.isChecked = isChecked;
+          this.arrayActions.push(action.id)
+        });
+        this.proccesToArray(this.arrayActions, isChecked, isChecked);
+        break;
 
-    const firstIndex: String = this.arrayActions[0];
-    if (this.arrayActions.length > 0) {
+      default:
+        this.arrayActions = []
+        break;
+    }
+    
+  }
+
+  proccesToArray(arrayAct: any[], isChecked: boolean, isUpdate?: boolean) {
+    // actionMenuCache === actionMenu
+
+    //if remove checkbox
+    this.actionResults = this.actionMenuCache;
+    if(!isUpdate) {
+      this.actionResults = this.actionMenuCache.filter(item => {
+        if (arrayAct.indexOf(item) == -1 ) return item;
+      })
+    }
+
+    const firstIndex: String = arrayAct[0];
+
+    if (arrayAct.length > 0) {
       if (isChecked) {
-        this.actionMenu.push(this.arrayActions);
+        this.actionMenu.push(arrayAct);
       } else {
         const idx = this.actionMenu.findIndex(item => item.includes(firstIndex));
         if (idx > -1) {
@@ -102,9 +153,6 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
         }
       }
     }
-
-    console.log(this.arrayActions, "name : ")
-    console.log(this.actionMenu, "action");
   }
 
   validation() {
@@ -130,190 +178,16 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   }
 
   submit() {
-
-    let all = [
-      {
-        "id": "1430f951-5917-4cb1-8df0-81e39d5add38",
-        "updatedAt": "2019-09-24T06:56:10.000+0000",
-        "version": 0,
-        "code": "PE",
-        "name": "Payroll",
-        "sortOrder": 6,
-        "menus": [
-          {
-            "id": "78e7cbfa-423d-49bb-9d75-010f69cb6e4e",
-            "updatedAt": "2020-01-14T09:11:02.000+0000",
-            "version": 0,
-            "code": "PEP01",
-            "name": "Payslip",
-            "parent": "def32238-43f1-468c-a747-5c71c5cea424",
-            "level": 1,
-            "sortOrder": 1,
-            "menuActions": [
-              {
-                "id": "2737920d-e64f-41a6-b605-23d135d20fef",
-                "updatedAt": "2020-02-05T07:28:36.000+0000",
-                "version": 0,
-                "code": "PEP0102",
-                "name": "Add"
-              },
-              {
-                "id": "27b598d3-5ad6-47c1-9e5f-54835fc45262",
-                "updatedAt": "2020-02-05T07:28:36.000+0000",
-                "version": 0,
-                "code": "PEP0104",
-                "name": "Edit"
-              },
-              {
-                "id": "477bbfe7-4a83-465d-8312-e8305f0a4819",
-                "updatedAt": "2020-02-05T07:28:36.000+0000",
-                "version": 0,
-                "code": "PEP0101",
-                "name": "View"
-              },
-              {
-                "id": "80e2a8e5-53c5-4eab-be15-15c88d5e33f6",
-                "updatedAt": "2020-02-05T07:28:36.000+0000",
-                "version": 0,
-                "code": "PEP0103",
-                "name": "Delete"
-              }
-            ],
-            "child": null
-          }
-        ],
-        "apps": {
-          "id": "5e8813da-6f7d-40d0-b0f5-2511318e5882",
-          "updatedAt": null,
-          "version": 0,
-          "isActive": true,
-          "code": "WESS",
-          "name": "WEB-ESS"
-        }
-      },
-      {
-        "id": "7a2e133c-5bf0-4c93-a19d-6f91d59e2e84",
-        "updatedAt": "2019-09-24T06:56:10.000+0000",
-        "version": 0,
-        "code": "TC",
-        "name": "Tax Calculator",
-        "sortOrder": 98,
-        "menus": [
-          {
-            "id": "46f99dd7-b661-438b-86f6-6b03023072c7",
-            "updatedAt": "2020-11-12T07:02:20.155+0000",
-            "version": 0,
-            "code": "TCC",
-            "name": "Tax Calculator",
-            "parent": null,
-            "level": 0,
-            "sortOrder": 0,
-            "menuActions": [
-              {
-                "id": "6ddaad09-5b06-49d2-a416-a88de28790c8",
-                "updatedAt": "2020-11-12T07:04:50.097+0000",
-                "version": 0,
-                "code": "TCC01",
-                "name": "View"
-              }
-            ],
-            "child": null
-          }
-        ],
-        "apps": {
-          "id": "e507789e-80bd-4560-b926-260b7d47634f",
-          "updatedAt": null,
-          "version": 0,
-          "isActive": true,
-          "code": "WADM",
-          "name": "WEB-ADM"
-        }
-      },
-      {
-        "id": "903ffe91-177e-4d31-9ea0-a36207bfcee6",
-        "updatedAt": "2019-09-24T06:56:10.000+0000",
-        "version": 0,
-        "code": "TS",
-        "name": "Tax Simulation",
-        "sortOrder": 99,
-        "menus": [
-          {
-            "id": "eec4d554-4861-43bd-b0e9-2f4f8fc87c12",
-            "updatedAt": "2020-11-12T07:41:49.093+0000",
-            "version": 0,
-            "code": "TSS",
-            "name": "Tax Simulation",
-            "parent": null,
-            "level": 0,
-            "sortOrder": 0,
-            "menuActions": [
-              {
-                "id": "f08d1222-1373-4c98-ae0b-b81130ceecbd",
-                "updatedAt": "2020-11-12T07:43:26.746+0000",
-                "version": 0,
-                "code": "TSS01",
-                "name": "View"
-              }
-            ],
-            "child": null
-          }
-        ],
-        "apps": {
-          "id": "e507789e-80bd-4560-b926-260b7d47634f",
-          "updatedAt": null,
-          "version": 0,
-          "isActive": true,
-          "code": "WADM",
-          "name": "WEB-ADM"
-        }
-      }
-    ];
-
-    let own = [
-      {
-        "id": "903ffe91-177e-4d31-9ea0-a36207bfcee6",
-        "updatedAt": "2019-09-24T06:56:10.000+0000",
-        "version": 0,
-        "code": "TS",
-        "name": "Tax Simulation",
-        "sortOrder": 99,
-        "menus": [
-          {
-            "id": "eec4d554-4861-43bd-b0e9-2f4f8fc87c12",
-            "updatedAt": "2020-11-12T07:41:49.093+0000",
-            "version": 0,
-            "code": "TSS",
-            "name": "Tax Simulation",
-            "parent": null,
-            "level": 0,
-            "sortOrder": 0,
-            "menuActions": [
-              {
-                "id": "f08d1222-1373-4c98-ae0b-b81130ceecbd",
-                "updatedAt": "2020-11-12T07:43:26.746+0000",
-                "version": 0,
-                "code": "TSS01",
-                "name": "View"
-              }
-            ],
-            "child": null
-          }
-        ],
-        "apps": {
-          "id": "e507789e-80bd-4560-b926-260b7d47634f",
-          "updatedAt": null,
-          "version": 0,
-          "isActive": true,
-          "code": "WADM",
-          "name": "WEB-ADM"
-        }
-      }
-    ];
     this.validation()
-    console.log(this.actionMenu);
+    this.actionMenu.push(this.actionResults)
+    let arraySplit = this.actionMenu.join().split(",");
+    let actMenu = arraySplit.filter(function (item, pos) {
+      return arraySplit.indexOf(item) == pos
+    });
+
     this.formReady.get("actionMenu")
-      .patchValue(this.actionMenu.join().split(","))
-    console.log(this.formReady.value, 'form')
+    .patchValue(actMenu)
+    console.log(this.formReady.value);
     this.plansService.updatePlans(this.formReady.value).toPromise().then((data: any) => {
       console.log(data.success)
       if (JSON.parse(data).success === true) {

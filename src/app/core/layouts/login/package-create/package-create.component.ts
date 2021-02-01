@@ -51,7 +51,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
     })
   }
 
-  checkMenu(type: String, idxModule?: number, idxMenu?: number, idxAction?: number, isChecked?: boolean) {
+  checkMenu(type: String, idxModule?: number, idxMenu?: number, isChecked?: boolean) {
     this.arrayActions = [];
     switch (type) {
       case "ALL":
@@ -87,10 +87,6 @@ export class PackageCreateComponent implements OnInit, OnChanges {
         this.proccesToArray(this.arrayActions, isChecked);
         break;
 
-      // case "ACTION":
-      //   this.arrayActions.push(this.modules.data[idxModule].menus[idxMenu].menuActions[idxAction].id);
-      //   this.proccesToArray(this.arrayActions, isChecked);
-      //   break;
       default:
         this.arrayActions = []
         break;

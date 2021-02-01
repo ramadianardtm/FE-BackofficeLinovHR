@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../http/api.service';
-import { Observable } from 'rxjs';
-import { Module } from "../layouts/login/shared/interface/module";
-import { Response } from "../layouts/login/shared/interface/response";
-import { map } from 'jquery';
 
 @Injectable({
   providedIn: 'root'

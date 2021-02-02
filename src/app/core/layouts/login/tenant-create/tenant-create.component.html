@@ -53,7 +53,7 @@
                 <p-tabPanel header="Packages">
                     <select class="custom-select" formControlName="plans">
                       <option 
-                          *ngFor="let item of plansData ? plansData.data : plansData"
+                          *ngFor="let item of plansData"
                           [value]="item.id">
                           {{item.name}}
                       </option>

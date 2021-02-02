@@ -44,11 +44,11 @@ export class PackageCreateComponent implements OnInit, OnChanges {
       if (data) {
         this.isLoading = true;
         this.modules = data;
-        console.log(this.apps, "apps");
-        console.log(this.modules.data, "data");
-        this.apps = this.modules.data.map(item => item.apps.name).filter((v, i, a) => a.indexOf(v) === i);
       }
     })
+    this.plansService.getApps().subscribe(data => {
+      this.apps = data;
+    });
   }
 
   checkMenu(type: String, idxModule?: number, idxMenu?: number, isChecked?: boolean) {

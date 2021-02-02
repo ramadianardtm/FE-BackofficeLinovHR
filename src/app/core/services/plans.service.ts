@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
 import { ApiService } from '../http/api.service';
 
 @Injectable({
@@ -9,6 +10,7 @@ export class PlansService {
   private PLAN_DELETE = "subs/plans/delete";
   private MODULES_LIST = "modules";
   private POST_PLAN = "subs/plans";
+  private APP_LIST = "app";
   constructor(private api:ApiService) { }
 
   public getPlansServices(page, limit){
@@ -17,6 +19,10 @@ export class PlansService {
 
   public getModules(){
     return this.api.get(`${this.MODULES_LIST}`);
+  }
+
+  public getApps(){
+    return this.api.get(`${this.APP_LIST}`);
   }
 
   public getPlanDetailServices(uuid){

@@ -57,11 +57,13 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
 
       this.compareSelectedModules(this.modules, this.selectedModules)
     })
+
+    this.plansService.getApps().subscribe(data => {
+      this.apps = data;
+    });
   }
 
   compareSelectedModules(originModules, selectedModules) {
-    this.apps = originModules.map(item => item.apps.name).filter((v, i, a) => a.indexOf(v) === i);
-
     const modulId = selectedModules.map(({ id }) => { return id });
     const menuId = selectedModules.map(({ menus }) => menus.map(menu => { return menu.id }));
     const menuIdJoin = menuId.join().split(",");

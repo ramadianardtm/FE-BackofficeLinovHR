@@ -27,35 +27,6 @@
                     placeholder="code.." />
             </div>
         </div>
-        <!-- <button class="btn btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-            </button>
-        </ng-template> -->
-        <div class="form-group row">
-
-            <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxModule=index">
-                <ng-container *ngIf="module.apps.name === item;">
-                    <p-accordionTab [header]="module.name" [selected]="true">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                (change)="checkMenu('MODULE',idxModule, undefined, $event.target.checked)">
-                            <label class="col-sm-3">
-                                Pilih Semua
-                            </label>
-                        </div>
-                        <div class="form-check" *ngFor="let menu of module.menus; let idxMenu=index;">
-                            <input type="checkbox"
-                                (change)="checkMenu('ACTION',idxModule, idxMenu, undefined, $event.target.checked)"
-                                [checked]="module.isChecked">
-                            <label class="col-sm-3">
-                                {{menu.name}}
-                            </label>
-                        </div>
-                    </p-accordionTab>
-                </ng-container>
-            </p-accordion>
-        </div>
 
         <p-tabView>
             <div class="form-check">
@@ -64,9 +35,9 @@
                     Pilih Semua
                 </label>
             </div>
-            <p-tabPanel [header]="item" *ngFor="let item of apps; let i = index" [selected]="i == 0">
+            <p-tabPanel [header]="item.name" *ngFor="let item of apps.data; let i = index" [selected]="i == 0">
                 <p-accordion [multiple]="true" *ngFor="let module of modules.data; let idxModule=index">
-                    <ng-container *ngIf="module.apps.name === item;">
+                    <ng-container *ngIf="module.apps.name === item.name;">
                         <p-accordionTab [header]="module.name" [selected]="true">
                             <div class="form-check">
                                 <input type="checkbox"
@@ -84,15 +55,6 @@
                                 <label class="col-sm-6">
                                     {{menu.name}}
                                 </label>
-
-                                <!-- <ng-container *ngFor="let action of menu.menuActions; let idxAction=index;">
-                                    <input type="checkbox">
-                                    <label class="col-sm-1">
-                                        {{action.name }}
-                                    </label>
-                                </ng-container>
-
-                                <hr> -->
                             </div>
                         </p-accordionTab>
                     </ng-container>

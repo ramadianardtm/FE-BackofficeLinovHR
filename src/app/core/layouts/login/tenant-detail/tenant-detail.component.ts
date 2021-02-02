@@ -320,8 +320,8 @@ export class TenantDetailComponent implements OnInit {
   }
 
 
-  deactiveCompany(){
-    this.tenantService.deactiveCompany(this.route.snapshot.params.uuid).subscribe(
+  deactiveCompany(uid){
+    this.tenantService.deactiveCompany(uid).subscribe(
       (data:any)=>{
         console.log(JSON.parse(data).success)
         if(JSON.parse(data).success === true){

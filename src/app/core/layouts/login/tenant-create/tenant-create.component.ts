@@ -17,7 +17,7 @@ export class TenantCreateComponent implements OnInit {
   languages:any[];
   dateFormats:any[];
   currencies:any[];
-  plansData:any[];
+  plansData: any;
   modules:any;
   isLoading: boolean;
   plansField:any[];
@@ -49,8 +49,8 @@ export class TenantCreateComponent implements OnInit {
       this.currencies = data;
       console.log(this.currencies,"Currencies")
     })  
-    this.tenantService.getPlans().subscribe((data: any[])=>{
-      this.plansData = data;
+    this.tenantService.getPlans().subscribe(data=>{
+      this.plansData = data.data;
       console.log(this.plansData,"plansData")
     })  
     this.plansService.getModules().subscribe((data)=>{

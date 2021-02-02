@@ -17,7 +17,7 @@ export class TenantUpdateComponent implements OnInit {
   languages:any[];
   dateFormats:any[];
   currencies:any[];
-  plansData:any[];
+  plansData:any;
   modules:any;
   isLoading: boolean;
   plansField:any[];
@@ -49,8 +49,8 @@ export class TenantUpdateComponent implements OnInit {
     this.tenantService.getCurrencies().subscribe((data: any)=>{
       this.currencies = data;
     })  
-    this.tenantService.getPlans().subscribe((data: any[])=>{
-      this.plansData = data;
+    this.tenantService.getPlans().subscribe(data =>{
+      this.plansData = data.data;
     })  
     this.plansService.getModules().subscribe((data)=>{
       if(data) {

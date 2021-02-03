@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   selector: 'app-package-create',
   templateUrl: './package-create.component.html',
   styleUrls: ['./package-create.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class PackageCreateComponent implements OnInit, OnChanges {

@@ -4,12 +4,13 @@ import { FormBuilder, FormGroup, FormArray, Form } from "@angular/forms";
 import { PlansService } from '../../../services/plans.service';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { Response } from '../shared/interface/response';
+import { Apps } from '../shared/interface/apps';
 @Component({
   selector: 'app-package-update',
   templateUrl: './package-update.component.html',
   styleUrls: ['./package-update.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class PackageUpdateComponent implements OnInit, OnChanges {
@@ -28,9 +29,10 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   selectedModules: any[];
   arrayActions = [];
 
-  apps: any;
+  apps: Response<Apps>;
   results: any[];
 
+  isRendered: boolean = true;
   constructor(
     private formBuilder: FormBuilder,
     private plansService: PlansService,
@@ -50,6 +52,12 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
 
     this.formReady.get("id").patchValue(this.lastURI)
 
+    this.plansService.getApps().subscribe(data => {
+        this.isRendered = true;
+        this.apps = data;
+        console.log(this.apps, "newApp");
+    });
+
     forkJoin([this.plansService.getPlanDetailServices(this.lastURI), this.plansService.getModules()]).subscribe(results => {
       this.plansData = results[0];
       this.modules = results[1].data;
@@ -57,10 +65,6 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
 
       this.compareSelectedModules(this.modules, this.selectedModules)
     })
-
-    this.plansService.getApps().subscribe(data => {
-      this.apps = data;
-    });
   }
 
   compareSelectedModules(originModules, selectedModules) {

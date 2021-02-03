@@ -1,12 +1,9 @@
-import { map } from 'jquery';
 import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Form } from "@angular/forms";
 import { PlansService } from '../../../services/plans.service';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { Response } from '../shared/interface/response';
-import { Apps } from '../shared/interface/apps';
 @Component({
   selector: 'app-package-update',
   templateUrl: './package-update.component.html',
@@ -29,7 +26,7 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   selectedModules: any[];
   arrayActions = [];
 
-  apps: Response<Apps>;
+  apps: any;
   results: any[];
 
   isRendered: boolean = true;

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ApiService } from '../http/api.service';
+import { Package } from '../layouts/login/shared/interface/package';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,7 @@ export class PlansService {
     return this.api.get(`${this.APP_LIST}`);
   }
 
-  public getPlanDetailServices(uuid){
+  public getPlanDetailServices(uuid): Observable<Package>{
     return this.api.get(`${this.PLAN_LIST}/${uuid}`);
   }
 

@@ -171,15 +171,15 @@ export class TenantCreateComponent implements OnInit {
       this.formReady.get("actionMenu").patchValue([])
     }
     console.log(JSON.stringify(this.formReady.value))
-    this.tenantService.postTenants(this.formReady.value).toPromise().then((data: any)=>{ 
-      console.log(JSON.parse(data).success)
-      if(JSON.parse(data).success === true){
-        this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Menambah data' });
-        this.router.navigate([`home/package`])
-      } else {
-        this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Menambah data' });
-      }
-    }) 
+    // this.tenantService.postTenants(this.formReady.value).toPromise().then((data: any)=>{ 
+    //   console.log(JSON.parse(data).success)
+    //   if(JSON.parse(data).success === true){
+    //     this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Menambah data' });
+    //     this.router.navigate([`home/package`])
+    //   } else {
+    //     this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Menambah data' });
+    //   }
+    // }) 
   }
 
   openNext() {
@@ -229,5 +229,9 @@ export class TenantCreateComponent implements OnInit {
       phone:[""],
       companyPosition:[""],
     });
+  }
+
+  emit(event) {
+    console.log(event);
   }
 }

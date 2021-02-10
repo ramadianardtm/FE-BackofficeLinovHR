@@ -6,6 +6,7 @@ import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api'
 import { TableColumn } from 'app/shared/models/table.interface';
 import { SearchComponent } from 'app/global-all/search/search.component';
 import { TenantService } from '../../../services/tenant.service';
+import { Paginator } from 'app/configs/paginator.config';
 
 
 @Component({
@@ -15,8 +16,10 @@ import { TenantService } from '../../../services/tenant.service';
 export class HomeComponent implements OnInit {
   tenants:any[];
   currentPage = 0;
+  rowsPerPageOptions = Paginator.rowsPerPageOptions;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   rowsPerPage:any[];
+//  checked: boolean = true;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private regis: RegisterTenantService, private route:ActivatedRoute,
     private messageService: MessageService,
@@ -34,7 +37,30 @@ export class HomeComponent implements OnInit {
     this.tenantService.sendGetTenantServices(page,rows).toPromise().then((data: any)=>{ 
       this.tenants = data.data;
       this.rowsPerPage = data.count;
+
+      console.log(this.tenants)
     }) 
+  }
+
+  switchActive(id, event) {
+    this.confirmationService.confirm({
+      message: 'Anda yakin ingin menghapus data?',
+      accept: () => {
+        if (event.checked) {
+          this.tenantService.tenantServicesActive(id).subscribe((data: any)=>{ 
+            this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Tenant Activate' });
+          })
+        } else {
+          this.tenantService.tenantServicesDeactive(id).subscribe((data: any)=>{ 
+            this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Tenant Not Activated' });
+            this.tenantService.sendGetTenantServices(1,this.rowsPerPage).toPromise().then((data: any)=>{ 
+              this.tenants = data.data;
+              this.rowsPerPage = data.count;
+            })
+          })
+        }
+      }
+    });
   }
 
   updateTenant(params){
@@ -49,7 +75,7 @@ export class HomeComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Anda yakin ingin menghapus data?',
       accept: () => {
-        this.tenantService.tenantServicesDelete(params).subscribe((data: any)=>{ 
+        this.tenantService.tenantServicesDeactive(params).subscribe((data: any)=>{ 
           this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil menghapus data' });
           this.tenantService.sendGetTenantServices(1,this.rowsPerPage).toPromise().then((data: any)=>{ 
             this.tenants = data.data;

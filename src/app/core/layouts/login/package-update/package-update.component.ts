@@ -1,9 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Form } from "@angular/forms";
 import { PlansService } from '../../../services/plans.service';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
+import { Response } from '../shared/interface/response';
+import { Apps } from '../shared/interface/apps';
+import { Package } from '../shared/interface/package';
 @Component({
   selector: 'app-package-update',
   templateUrl: './package-update.component.html',
@@ -20,13 +23,13 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
   isLoading: boolean;
   href: string = "";
   lastURI: string = "";
-  plansData: any;
+  @Input() plansData: Package;
   modules: any;
 
   selectedModules: any[];
   arrayActions = [];
 
-  apps: any;
+  apps: Response<Apps>;
   results: any[];
 
   isRendered: boolean = true;
@@ -52,15 +55,17 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
     this.plansService.getApps().subscribe(data => {
         this.isRendered = true;
         this.apps = data;
-        console.log(this.apps, "newApp");
     });
 
     forkJoin([this.plansService.getPlanDetailServices(this.lastURI), this.plansService.getModules()]).subscribe(results => {
-      this.plansData = results[0];
-      this.modules = results[1].data;
-      this.selectedModules = this.plansData.module;
-
-      this.compareSelectedModules(this.modules, this.selectedModules)
+      if(results){
+        this.plansData = results[0];
+        this.modules = results[1].data;
+        this.selectedModules = this.plansData.module;
+  
+        console.log(this.plansData, "plansData");
+        this.compareSelectedModules(this.modules, this.selectedModules)
+      }
     })
   }
 
@@ -190,16 +195,17 @@ export class PackageUpdateComponent implements OnInit, OnChanges {
 
     this.formReady.get("actionMenu")
     .patchValue(actMenu)
+    console.log(JSON.stringify(actMenu), "actMenu");
     console.log(this.formReady.value);
-    this.plansService.updatePlans(this.formReady.value).toPromise().then((data: any) => {
-      console.log(data.success)
-      if (JSON.parse(data).success === true) {
-        this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Mengubah data' });
-        this.router.navigate([`home/package`])
-      } else {
-        this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Mengubah data' });
-      }
-    })
+    // this.plansService.updatePlans(this.formReady.value).toPromise().then((data: any) => {
+    //   console.log(data.success)
+    //   if (JSON.parse(data).success === true) {
+    //     this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Mengubah data' });
+    //     this.router.navigate([`home/package`])
+    //   } else {
+    //     this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Mengubah data' });
+    //   }
+    // })
   }
 
 

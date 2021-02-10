@@ -39,6 +39,8 @@ export class TenantDetailComponent implements OnInit {
   isLoading: boolean;
   plansData: any = {};
   modules:any;
+  apps: any;
+  order: string = 'code';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,6 +67,11 @@ export class TenantDetailComponent implements OnInit {
       this.tenantService.getCurrencies().subscribe((data: any)=>{
         this.currencies = data;
       })  
+
+      this.plansService.getApps().subscribe(data => {
+        this.apps = data;
+      });
+
       this.tenantService.sendGetTenantDetailServices(this.lastURI).subscribe(
         (res:any)=>{
 
@@ -73,16 +80,15 @@ export class TenantDetailComponent implements OnInit {
           this.tempNameCode = `Name: ${res.data.subPlans.name} / ${res.data.subPlans.code}`
           this.tenantDetail = res.data
           this.plansData = res.data
+
+          console.log(this.plansData, "response")
           for (let i = 0; i < this.plansData.subPlans.module.length; i++) {
             for(let j = 0; j < this.plansData.subPlans.module[i].menus.length; j++) {
               for(let k = 0; k < this.plansData.subPlans.module[i].menus[j].menuActions.length; k++) {
-                console.log('menuActions', this.plansData.subPlans.module[i].menus[j].menuActions[k].id)
                 this.checkedTickets.push(this.plansData.subPlans.module[i].menus[j].menuActions[k].id);
               }
-              console.log('menus', this.plansData.subPlans.module[i].menus[j].id)
               this.checkedTickets.push(this.plansData.subPlans.module[i].menus[j].id);
             }
-            console.log('module', this.plansData.subPlans.module[i].id)
             this.checkedTickets.push(this.plansData.subPlans.module[i].id);
           }
         }

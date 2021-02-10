@@ -29,7 +29,8 @@
           [rowsPerPageOptions]="pageSizeOptions"
           [totalRecords]="rowsPerPage"
           dataKey="id"
-          (onLazyLoad)="getPage($event)">
+          (onLazyLoad)="getPage($event)"
+          class="custom-pagination">
           <ng-template pTemplate="header">
              <tr>
                   <th>Code</th>
@@ -39,10 +40,9 @@
           </ng-template>
           <ng-template pTemplate="body" let-plan>
              <tr [pSelectableRow]="plan">
-                  <td>{{plan.code}}</td>
-                  <td>{{plan.name}}</td>
+                  <td (click)="updatePlans(plan.id)">{{plan.code}}</td>
+                  <td (click)="updatePlans(plan.id)">{{plan.name}}</td>
                   <td> 
-                      <button type="button" (click)="updatePlans(plan.id)" class="btn btn-sm btn-primary ml-2 mb-2">Update</button>
                       <button type="button" (click)="deletePlans(plan.id)" class="btn btn-sm btn-danger ml-2 mb-2">Delete</button>
                   </td>
              </tr>

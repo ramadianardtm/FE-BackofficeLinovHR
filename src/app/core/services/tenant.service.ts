@@ -9,7 +9,8 @@ export class TenantService {
   private TENANT_LIST = "tenants";
   private TENANT_POST = "register/";
   private TENANT_DETAIL = `tenan-detail/`;
-  private TENANT_DELETE = `tenant-deactive/`;
+  private TENANT_DEACTIVE = `tenant-deactive/`;
+  private TENANT_ACTIVE = `tenant-active/`;
   private CURRENCIES_LIST = `lov/currencies`;
   private DATES_FORMAT_LIST = `lov/date-formats`;
   private LANG_LIST = `lov/languages`;
@@ -31,8 +32,12 @@ export class TenantService {
     return this.api.get(`${this.TENANT_DETAIL}${uuid}`);
   }
 
-  public tenantServicesDelete(uuid){
-    return this.api.delete(`${this.TENANT_DELETE}${uuid}`);
+  public tenantServicesDeactive(uuid){
+    return this.api.delete(`${this.TENANT_DEACTIVE}${uuid}`);
+  }
+
+  public tenantServicesActive(uuid){
+    return this.api.delete(`${this.TENANT_ACTIVE}${uuid}`);
   }
 
   public getCurrencies(){

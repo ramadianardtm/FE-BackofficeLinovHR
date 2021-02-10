@@ -13,14 +13,14 @@ import { Observable } from 'rxjs';
 export class PackageCreateComponent implements OnInit, OnChanges {
   formReady: FormGroup;
   modules: any;
-  datas: any[];
   apps: any;
-  obser$: any[];
   isLoading: boolean;
   checkedTickets = [];
-  actionMenu = [];
+  actionMenuCache = [];
   onClickParent: any;
-  arrayActions = [];
+  arrayActionsClicked = [];
+
+  results = [];
 
   names: any;
   checkedAll: boolean;
@@ -51,43 +51,43 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   }
 
   checkMenu(type: String, idxModule?: number, idxMenu?: number, isChecked?: boolean) {
-    this.arrayActions = [];
+    this.arrayActionsClicked = [];
     switch (type) {
       case "ALL":
-        while (this.actionMenu.length) {
-          this.actionMenu.pop()
+        while (this.actionMenuCache.length) {
+          this.actionMenuCache.pop()
         }
         this.modules.data.map(modul => {
           modul.isChecked = isChecked;
           modul.menus.map(menu => menu.menuActions.map(action => {
             action.isChecked = isChecked;
-            this.arrayActions.push(action.id);
+            this.arrayActionsClicked.push(action.id);
           }));
         });
 
-        this.proccesToArray(this.arrayActions, isChecked);
+        this.proccesToArray(this.arrayActionsClicked, isChecked);
         break;
       case "MODULE":
         this.modules.data[idxModule].isChecked = isChecked;
         this.modules.data[idxModule].menus.map(menu => {
           menu.menuActions.map(action => {
             action.isChecked = isChecked;
-            this.arrayActions.push(action.id);
+            this.arrayActionsClicked.push(action.id);
           });
         });
-        this.proccesToArray(this.arrayActions, isChecked);
+        this.proccesToArray(this.arrayActionsClicked, isChecked);
         break;
 
       case "MENU":
         this.modules.data[idxModule].menus[idxMenu].menuActions.map(action => {
           action.isChecked = isChecked;
-          this.arrayActions.push(action.id)
+          this.arrayActionsClicked.push(action.id)
         });
-        this.proccesToArray(this.arrayActions, isChecked);
+        this.proccesToArray(this.arrayActionsClicked, isChecked);
         break;
 
       default:
-        this.arrayActions = []
+        this.arrayActionsClicked = []
         break;
     }
   }
@@ -97,14 +97,28 @@ export class PackageCreateComponent implements OnInit, OnChanges {
 
     if (arrayAct.length > 0) {
       if (isChecked) {
-        this.actionMenu.push(arrayAct);
+        arrayAct.map(item => {
+          this.actionMenuCache.push(item)
+        })
+        // this.actionMenuCache.push(arrayAct);
       } else {
-        const idx = this.actionMenu.findIndex(item => item.includes(firstIndex));
-        if (idx > -1) {
-          this.actionMenu.splice(idx, 1);
-        }
+        // const idx = this.actionMenuCache.findIndex(item => item.includes(firstIndex));
+        // if (idx > -1) {
+        //   this.actionMenuCache.splice(idx, 1);
+        // }
+        this.actionMenuCache = this.actionMenuCache.filter(item => {
+          if (arrayAct.indexOf(item) == -1) {
+            return item;
+          }
+        });
       }
     }
+
+    this.results = this.actionMenuCache.filter(function (item, pos, self) {
+      return self.indexOf(item) == pos
+    });
+
+    console.log(this.results);
   }
 
   validation() {
@@ -135,23 +149,23 @@ export class PackageCreateComponent implements OnInit, OnChanges {
   }
 
   submit() {
-    let arraySplit = this.actionMenu.join().split(",");
+    let arraySplit = this.actionMenuCache.join().split(",");
     let actMenu = arraySplit.filter(function (item, pos) {
       return arraySplit.indexOf(item) == pos
     });
     this.validation()
-    this.formReady.get("actionMenu")
+    this.formReady.get("actionMenuCache")
       .patchValue(actMenu)
     console.log(this.formReady.value, "form");
-    this.plansService.postPlans(this.formReady.value).toPromise().then((data: any) => {
-      console.log(JSON.parse(data).success)
-      if (JSON.parse(data).success === true) {
-        this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Menambah data' });
-        this.router.navigate([`home/package`])
-      } else {
-        this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Menambah data' });
-      }
-    })
+    // this.plansService.postPlans(this.formReady.value).toPromise().then((data: any) => {
+    //   console.log(JSON.parse(data).success)
+    //   if (JSON.parse(data).success === true) {
+    //     this.messageService.add({ severity: 'success', summary: 'Berhasil', detail: 'Berhasil Menambah data' });
+    //     this.router.navigate([`home/package`])
+    //   } else {
+    //     this.messageService.add({ severity: 'error', summary: 'Gagal', detail: 'Gagal Menambah data' });
+    //   }
+    // })
   }
 
   createFormGroup() {
@@ -159,7 +173,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
       name: [""],
       code: [""],
       description: [""],
-      actionMenu: [""],
+      actionMenuCache: [""],
     });
   }
 

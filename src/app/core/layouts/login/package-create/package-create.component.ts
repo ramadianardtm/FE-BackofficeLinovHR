@@ -100,12 +100,7 @@ export class PackageCreateComponent implements OnInit, OnChanges {
         arrayAct.map(item => {
           this.actionMenuCache.push(item)
         })
-        // this.actionMenuCache.push(arrayAct);
       } else {
-        // const idx = this.actionMenuCache.findIndex(item => item.includes(firstIndex));
-        // if (idx > -1) {
-        //   this.actionMenuCache.splice(idx, 1);
-        // }
         this.actionMenuCache = this.actionMenuCache.filter(item => {
           if (arrayAct.indexOf(item) == -1) {
             return item;

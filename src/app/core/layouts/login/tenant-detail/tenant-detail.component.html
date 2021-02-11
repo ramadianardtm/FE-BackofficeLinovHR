@@ -10,25 +10,32 @@
         Reports
       </button>
     </div>
+
     <div class="row">
-      <div class="col">
-        <h1>{{tenantDetail.name}}</h1>
-        <p>
-          Code : {{tenantDetail.code}} <br />
-          Date : {{tenantDetail.startDate}} - {{tenantDetail.endDate}} <br />
-          Phone : {{tenantDetail.phone}} <br />
-          PIC : {{tenantDetail.pic}} <br />
-        </p>
+      <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Code</strong></label>
+      <div class="col-sm-10">
+        <label for="staticEmail" class="col-form-label">: {{tenantDetail.code}}</label>
       </div>
     </div>
 
     <div class="row">
-      <div class="col">
-        <p-table>
-          <tr>
-            <td>one</td>
-          </tr>
-        </p-table>
+      <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Period</strong></label>
+      <div class="col-sm-10">
+        <label for="staticEmail" class="col-form-label">: {{tenantDetail.startDate}} - {{tenantDetail.endDate}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="staticEmail" class="col-sm-2 col-form-label"><strong>PIC</strong></label>
+      <div class="col-sm-10">
+        <label for="staticEmail" class="col-form-label">: {{tenantDetail.pic}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Phone</strong></label>
+      <div class="col-sm-10">
+        <label for="staticEmail" class="col-form-label">: {{tenantDetail.phone}}</label>
       </div>
     </div>
 
@@ -407,8 +414,8 @@
   </div>
 </p-dialog> -->
 
-  <p-dialog header="Edit Plan" [(visible)]="displayEditPlans" [blockScroll]="true"
-    [modal]="true" [contentStyle]="{'overflow':'auto','width':'180vh'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <p-dialog header="Edit Plan" [(visible)]="displayEditPlans" [blockScroll]="true" [modal]="true"
+    [contentStyle]="{'overflow':'auto','width':'180vh'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
 
     <p-tabView>
       <div class="form-check">

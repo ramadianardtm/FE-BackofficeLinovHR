@@ -60,19 +60,25 @@
                     <p-tabView>
                         <p-tabPanel header="Packages">
                             <select class="custom-select" formControlName="plans">
-                                <option *ngFor="let item of plansData" [value]="item.id">
-                                    {{item.name}}
-                                </option>
-                                <option value="custom">
-                                    Custom
-                                </option>
+                                <ng-container *ngIf="plansData; else elseTemplate">
+                                    <option *ngFor="let item of plansData" [value]="item.id">
+                                        {{item.name}}
+                                    </option>
+                                    <option value="custom">
+                                        Custom
+                                    </option>
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                    Loading Data...
+                                </ng-template>
                             </select>
                         </p-tabPanel>
                     </p-tabView>
                     <div *ngIf="formReady.value.plans == 'custom'">
                         <div class="form-group row">
                             <div class="col-md-12 nodeParent">
-                                <app-form-package [isModuleOnly]="true" (emitFormPackage)="emit($event)"></app-form-package>
+                                <app-form-package [isModuleOnly]="true" (emitFormPackage)="emit($event)">
+                                </app-form-package>
                             </div>
                         </div>
                     </div>

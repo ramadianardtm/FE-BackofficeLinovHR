@@ -1,0 +1,22 @@
+h4{
+    color: #0275D8;
+    font-size: 18px;
+    font-weight: bold;
+}
+table{
+    border: 1px solid rgb(196, 185, 185);
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+/* top-left border-radius */
+tr:first-child th:first-child {
+    border-top-left-radius: 10px !important;
+  }
+  
+  /* top-right border-radius */
+tr:first-child th:last-child {
+    border-top-right-radius: 10px !important;
+  }

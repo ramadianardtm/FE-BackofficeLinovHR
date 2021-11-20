@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 
@@ -17,7 +17,7 @@ export class LoginPageComponent {
     isDesktop = false;
     isMobile = false;
     isTablet = false;
-
+    isVisible = true;
     language: SelectItem[];
     selectedLang = 'En';
 
@@ -33,6 +33,10 @@ export class LoginPageComponent {
             this.router.navigate(['/dashboard']);
         }
 
+        if (this.router.url === '/home'){
+            this.isVisible = false
+        }
+
         this.language = [
             { label: 'EN', value: 'En' },
             { label: 'ID', value: 'Id' },
@@ -43,7 +47,11 @@ export class LoginPageComponent {
         this.isMobile = deviceService.isMobile();
         this.isTablet = deviceService.isTablet();
     }
-
+    backPackage(){
+        if (this.router.url === '/home/package/add'){
+            this.router.navigate(['/home/package'])
+        }
+    }
     onCheckLogin(): boolean {
         return this.authService.isLoggedIn();
     }

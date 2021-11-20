@@ -26,6 +26,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import { OrderModule } from 'ngx-order-pipe';
 import { Select2Module } from 'ng2-select2';
 import { FormPackageComponent } from './form-package/form-package.component';
+
 @NgModule({
     imports: [Select2Module, ProgressBarModule, ProgressSpinnerModule,SharedModule, LaddaModule, CheckboxModule, LovModule, LoggerFormModule,GlobalAllModule,Ng2SearchPipeModule,FormsModule, TreeViewModule, 
         OrderModule],

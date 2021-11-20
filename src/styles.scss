@@ -35,15 +35,15 @@ h6,
 td,
 th,
 label {
-    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body .ui-widget {
-    font-family: "Roboto", sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 }
 
 body {
-    font-family: "Roboto", sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
 
     * {
         &:hover {
@@ -497,11 +497,11 @@ input.input-text.ui-inputtext {
 
 // Table STYLE//
 body .ui-table .ui-table-thead>tr>th {
-    border-top: 1px solid #c8c8c8 !important;
-    border-bottom: 1px solid #c8c8c8 !important;
+    border-top: none !important;
+    border-bottom: none !important;
     border-left: none !important;
     border-right: none !important;
-    background-color: #ffffff !important;
+    background-color: #F2F2F2 !important;
 }
 
 body .ui-table .ui-table-tbody>tr>td {
@@ -518,17 +518,18 @@ body .ui-table .ui-table-tbody>tr>td {
 }
 
 .btn-back {
-    font-size: 12px !important;
+    font-size: 13px !important;
+    font-weight: 500;
     min-width: 67px;
     height: 26px;
-    color: #FF3333 !important;
-    border: 1px solid #B3B3B3 !important;
-    background-image: linear-gradient(to bottom, white, #E6E6E6);
+    color: #fff !important;
+    border: none;
+    background-color: #0275D8;
     margin-right: 8px !important;
 
     &:hover {
-        color: #FF3333 !important;
-        border: 1px solid #B3B3B3 !important;
+        color: #fff !important;
+        background-color: #3F9FF2;
     }
 
     &:enabled:focus {
@@ -733,7 +734,6 @@ p-card.card-style .ui-card {
         color: #333333;
     }
 
-
     //table and caption styling
     .ui-table {
         .ui-table-caption {
@@ -746,7 +746,8 @@ p-card.card-style .ui-card {
 
         .ui-table-thead>tr>th {
             //width: 150px;
-            text-transform: uppercase;
+            text-transform: capitalize;
+            color: #767676;
             font-size: 12px;
         }
 
@@ -777,22 +778,29 @@ p-card.card-style .ui-card {
     //paginator styling
     .ui-paginator {
         margin-top: 8px;
-        background-color: white;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #E0EEF8;
         border: none;
         display: flex;
+        gap: 5px;
         justify-content: center;
         position: relative;
         background-color: transparent;
 
         .ui-paginator-page {
-            border: 1px solid #DDDDDD;
+            cursor: pointer;
+            border: none;
+            background-color: #E0EEF8;
         }
 
         .ui-paginator-pages {
             margin: 0px;
 
             .ui-paginator-page {
-                border: 1px solid #DDDDDD;
+                border: 1px solid #0087E0;
+                padding-left: 5px;
+                padding-right: 5px;
             }
         }
 
@@ -801,39 +809,49 @@ p-card.card-style .ui-card {
         }
 
         .ui-paginator-first {
-            border: 1px solid #DDDDDD;
+            cursor: pointer;
+            background-color: #E0EEF8;
+            border: none;
             border-radius: 2px 0 0 2px;
 
             .ui-paginator-icon::before {
                 content: "\f100";
                 font-family: "FontAwesome";
+                color: #0275D8;
+                font-size: 16px;
             }
         }
 
         .ui-paginator-prev {
-            border: 1px solid #DDDDDD;
+            background-color: #E0EEF8;
+            border: none;
 
             .ui-paginator-icon::before {
                 content: "\f104";
+                color: #0275D8;
                 font-family: "FontAwesome";
             }
         }
 
         .ui-paginator-next {
-            border: 1px solid #DDDDDD;
+            padding-right: 5px;
+            background-color: #E0EEF8;
+            border: none;
 
             .ui-paginator-icon::before {
                 content: "\f105";
+                color: #0275D8;
                 font-family: "FontAwesome";
             }
         }
 
         .ui-paginator-last {
-            border: 1px solid #DDDDDD;
-            border-radius: 0 2px 2px 0;
+            background-color: #E0EEF8;
+            border: none;
 
             .ui-paginator-icon::before {
                 content: "\f101";
+                color: #0275D8;
                 font-family: "FontAwesome";
             }
         }
@@ -848,12 +866,13 @@ p-card.card-style .ui-card {
             left: 0;
 
             &::before {
+                font-weight: 1000;
                 content: "Show";
                 font-size: 12px;
             }
 
             .ui-dropdown {
-                border: 1px solid #DDDDDD;
+                border: 1px solid #0087E0;
 
                 .ui-dropdown-trigger {
                     .pi {
@@ -1087,3 +1106,6 @@ lov-core[ng-reflect-readonly="true"] {
         background-color: #eaeaea;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

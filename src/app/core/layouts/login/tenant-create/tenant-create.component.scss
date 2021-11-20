@@ -11,6 +11,29 @@
 .styling-remove{
     margin-bottom:20px;
     margin-top:20px;
-    color:red;
+    color:#767676;
     font-size:24px;
+}
+h4{
+    color: #0275D8;
+    font-size: 20px;
+    font-weight: 800;
+}
+hr{
+    margin-bottom: 25px;
+}
+.form-control{
+    background: #EFF0F7;
+    border-radius: 10px;
+    color: #000000;
+    font-size: 14px;
+    border: none;
+}
+label{
+    color: #5F5F5F;
+    font-weight: bold;
+}
+button .mt-2{
+    background-color: #000000;
+    float: right;
 }

@@ -31,15 +31,15 @@ h6,
 td,
 th,
 label {
-    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body .ui-widget {
-    font-family: "Roboto", sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body {
-    font-family: "Roboto", sans-serif !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body *:hover::-webkit-scrollbar-thumb {
@@ -435,10 +435,9 @@ body .ui-table .ui-table-tbody>tr>td {
     font-size: 12px !important;
     min-width: 67px;
     height: 26px;
-    color: #FF3333 !important;
-    border: 1px solid #B3B3B3 !important;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#E6E6E6));
-    background-image: linear-gradient(to bottom, white, #E6E6E6);
+    background-color: #0087E0 !important;
+    color: #fff !important;
+    border: none;
     margin-right: 8px !important;
 }
 
@@ -516,7 +515,7 @@ body .ui-table .ui-table-tbody>tr>td {
 }
 
 .btn-add:hover {
-    border: 1px solid #0087E0 !important;
+    border: 1px solid #3F9FF2 !important;
 }
 
 .btn-save {

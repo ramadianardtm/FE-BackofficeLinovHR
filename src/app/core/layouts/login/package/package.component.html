@@ -1,13 +1,3 @@
-<style>
-    p {
-    text-align: center;
-    }
-    .detail {
-    font-size: 1rem;
-    }
- </style>
- <div class="ui-g-12 mt-4">
-   
    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
     <div class="container">
       <div class="row">
@@ -15,41 +5,42 @@
           <h4>Package Management</h4>
         </div>
         <div class="col-sm" style="text-align: right;">
-          <button type="button" [routerLink]="['/home/package/add']" class="btn btn-primary ml-2 mb-2">Tambah</button>
+          <button type="button" [routerLink]="['/home/package/add']" class="btn btn-primary ml-2 mb-2"><i class="fas fa-plus" style="margin-right: 10px;"></i>Add</button>
         </div>
       </div>
       <div class="row" style="margin-top:20px">
-        <div>
-          <p-table 
-          [value]="plans" 
-          selectionMode="single" 
-          [paginator]="true"
-          [lazy]="true"
-          [rows]="5" 
-          [rowsPerPageOptions]="pageSizeOptions"
-          [totalRecords]="rowsPerPage"
-          dataKey="id"
-          (onLazyLoad)="getPage($event)"
-          class="custom-pagination">
-          <ng-template pTemplate="header">
-             <tr>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Action</th>
-             </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-plan>
-             <tr [pSelectableRow]="plan">
-                  <td (click)="updatePlans(plan.id)">{{plan.code}}</td>
-                  <td (click)="updatePlans(plan.id)">{{plan.name}}</td>
-                  <td> 
-                      <button type="button" (click)="deletePlans(plan.id)" class="btn btn-sm btn-danger ml-2 mb-2">Delete</button>
-                  </td>
-             </tr>
-          </ng-template>
-          </p-table>
-       </div>
+        <div class="col-sm-12">
+          <div>
+            <p-table 
+            [value]="plans" 
+            selectionMode="single" 
+            [paginator]="true"  
+            [lazy]="true"
+            [rows]="5" 
+            [rowsPerPageOptions]="pageSizeOptions"
+            [totalRecords]="rowsPerPage"
+            dataKey="id"
+            (onLazyLoad)="getPage($event)"
+            class="custom-pagination">
+            <ng-template pTemplate="header">
+              <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-plan>
+              <tr [pSelectableRow]="plan">
+                    <td (click)="updatePlans(plan.id)">{{plan.code}}</td>
+                    <td (click)="updatePlans(plan.id)">{{plan.name}}</td>
+                    <td> 
+                        <button type="button" (click)="deletePlans(plan.id)" class="btn btn-sm btn-danger ml-2 mb-2">Delete</button>
+                    </td>
+              </tr>
+            </ng-template>
+            </p-table>
+          </div>
+        </div>
       </div>
       
     </div>
- </div>

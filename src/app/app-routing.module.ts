@@ -31,12 +31,13 @@ const routes: Routes = [
         component: LoginPageComponent,
         children: [
             {
-                path: '',
-                component: HomeComponent
-            },
+                path:'',
+                pathMatch:'full',
+                redirectTo:'/home/tenant'
+              },
             {
                 path: 'tenant',
-                component: TenantComponent
+                component: HomeComponent
             },
             {
                 path: 'tenant/detail/:uuid',

@@ -28,6 +28,9 @@
               <td (click)="detailTenant(tenant.id)">{{tenant.name}}</td>
               <td (click)="detailTenant(tenant.id)">{{tenant.code}}</td>
               <td>
+                -
+              </td>
+              <td>
                 <p-inputSwitch (onChange)="switchActive(tenant.id, $event)" [(ngModel)]="tenant.isActive"></p-inputSwitch>
               </td>
             </tr>

@@ -1,7 +1,7 @@
 <p-toast position="top-right"></p-toast>
 <nav class="navbar shadow-sm p-3 bg-white rounded navbar-expand-lg navbar-light bg-light">
         <div class="container">
-        <a  [routerLink]="'/home'" class="navbar-brand">
+        <a  [routerLink]="'/home/tenant'" class="navbar-brand">
             <img src="assets/Linov-header.png" style="height: 35px;" alt="" loading="lazy">
         </a>    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,13 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"[routerLink]="'/home'">Tenant Management </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="'/home/tenant'">Tenant Management </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active"  [routerLink]="'/home/package'">Package Management</a>
                 </li>
             </ul>
-            <button (click) = "backPackage()" [routerLink]="'/home'" class="btn-back"><i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</button>
+            <button (click) = "backPackage()" [routerLink]="'/home/tenant'" class="btn-back"><i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back</button>
 
         </div>
     </div>

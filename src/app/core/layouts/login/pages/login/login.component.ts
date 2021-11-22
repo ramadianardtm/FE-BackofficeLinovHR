@@ -33,7 +33,7 @@ export class LoginPageComponent {
             this.router.navigate(['/dashboard']);
         }
 
-        if (this.router.url === '/home'){
+        if (this.router.url === '/home/tenant'){
             this.isVisible = false
         }
 

@@ -65,11 +65,11 @@ export class HomeComponent implements OnInit {
   }
 
   updateTenant(params){
-    this.router.navigate([`tenant/update/${params}`],{relativeTo:this.route})
+    this.router.navigate([`update/${params}`],{relativeTo:this.route})
   }
 
   detailTenant(params){
-    this.router.navigate([`tenant/detail/${params}`],{relativeTo:this.route})
+    this.router.navigate([`detail/${params}`],{relativeTo:this.route})
   }
 
   deleteTenant(params){
